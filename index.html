@@ -192,7 +192,6 @@
 </head>
 
 <body>
-
   <!-- ═══════════════════════════════════════
      NAVBAR
 ═══════════════════════════════════════ -->
@@ -214,21 +213,15 @@
         </nav>
 
         <div class="navbar-actions">
-          <div class="search-wrap" style="display:none;position:relative;" id="search-expand-wrap">
-            <span class="search-icon">🔍</span>
-            <input type="text" id="global-search" class="form-input search-input" placeholder="Search products…"
-              style="width:220px;padding:0.5rem 1rem 0.5rem 2.25rem;font-size:var(--text-sm);">
-          </div>
-          <button class="btn btn-ghost btn-icon"
+          <!-- <button class="btn btn-ghost btn-icon"
             onclick="document.getElementById('search-expand-wrap').style.display=document.getElementById('search-expand-wrap').style.display==='none'?'flex':'none'"
-            title="Search">🔍</button>
-          <button class="theme-toggle" data-theme-toggle title="Toggle Theme">☀</button>
+            title="Search"><i class="fa-solid fa-search"></i></button> -->
+          <button class="theme-toggle" data-theme-toggle title="Toggle Theme"></button>
           <button class="cart-btn" data-cart-toggle title="Cart">
-            🛒
-            <span class="cart-count hidden" id="cart-badge">0</span>
+            <i class="fa-solid fa-cart-arrow-down"></i> <span class="cart-count hidden" id="cart-badge">0</span>
           </button>
-          <a href="dashboard.html" class="btn btn-secondary btn-sm">Dashboard</a>
-          <a href="products.html" class="btn btn-primary btn-sm btn-ripple">Shop Now</a>
+          <!-- <a href="dashboard.html" class="btn btn-secondary btn-sm">Dashboard</a>
+          <a href="products.html" class="btn btn-primary btn-sm btn-ripple">Shop Now</a> -->
         </div>
 
         <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">
@@ -281,24 +274,24 @@
 
           <div class="hero-actions">
             <a href="products.html" class="btn btn-primary btn-lg btn-ripple">
-              🚀 Explore Products
+              <i class="fa-solid fa-rocket"></i> Explore Products
             </a>
             <a href="services.html" class="btn btn-secondary btn-lg">
-              ⚙️ View Services
+              <i class="fa-solid fa-cog"></i> View Services
             </a>
           </div>
 
           <div class="hero-stats">
             <div>
-              <div class="hero-stat-value" data-counter data-target="12000" data-suffix="+">12,000+</div>
+              <div class="hero-stat-value" data-counter data-target="1000" data-suffix="+">1,000+</div>
               <div class="hero-stat-label">Happy Customers</div>
             </div>
             <div>
-              <div class="hero-stat-value" data-counter data-target="200" data-suffix="+">200+</div>
+              <div class="hero-stat-value" data-counter data-target="20" data-suffix="+">20+</div>
               <div class="hero-stat-label">Premium Products</div>
             </div>
             <div>
-              <div class="hero-stat-value" data-counter data-target="99" data-suffix="%">99%</div>
+              <div class="hero-stat-value" data-counter data-target="92" data-suffix="%">92%</div>
               <div class="hero-stat-label">Satisfaction Rate</div>
             </div>
           </div>
@@ -356,22 +349,11 @@
                 </div>
               </div>
               <!-- Recent orders mini -->
-              <div style="font-size:11px;color:rgba(255,255,255,0.5);margin-bottom:var(--space-2);">Recent Orders</div>
-              ${[
-              {name:'Enterprise Dashboard Kit', price:'$149', status:'✅'},
-              {name:'SaaS Landing Page Pro', price:'$79', status:'⏳'},
-              {name:'UI Component Library', price:'$199', status:'✅'},
-              ].map(o=>`
-              <div
-                style="display:flex;align-items:center;justify-content:space-between;padding:var(--space-2) 0;border-bottom:1px solid rgba(59,130,246,0.1);">
-                <span
-                  style="font-size:11px;color:rgba(255,255,255,0.7);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:160px;">${o.name}</span>
-                <div style="display:flex;align-items:center;gap:var(--space-2);">
-                  <span style="font-size:11px;font-weight:700;color:white;">${o.price}</span>
-                  <span style="font-size:11px;">${o.status}</span>
-                </div>
+              <!-- Recent orders mini -->
+              <div style="font-size:11px;color:rgba(255,255,255,0.5);margin-bottom:var(--space-2);">
+                Recent Orders
               </div>
-              `).join('')}
+              <div id="recent-orders"></div>
             </div>
           </div>
 
@@ -426,37 +408,37 @@
 
       <div class="features-grid" data-stagger="100">
         <div class="feature-card reveal-scale">
-          <div class="feature-icon">⚡</div>
+          <div class="feature-icon"><i class="fa-solid fa-bolt"></i></div>
           <h3 class="feature-title">Instant Delivery</h3>
           <p class="feature-desc">Download your digital products instantly after purchase. No waiting, no friction —
             just immediate access to premium assets.</p>
         </div>
         <div class="feature-card reveal-scale">
-          <div class="feature-icon">🎨</div>
+          <div class="feature-icon"><i class="fa-solid fa-paint-brush"></i></div>
           <h3 class="feature-title">Premium Design</h3>
           <p class="feature-desc">Every product is crafted with pixel-perfect precision. Professional-grade UI
             components and templates that stand out.</p>
         </div>
         <div class="feature-card reveal-scale">
-          <div class="feature-icon">🔄</div>
+          <div class="feature-icon"><i class="fa-solid fa-sync"></i></div>
           <h3 class="feature-title">Lifetime Updates</h3>
           <p class="feature-desc">Pay once, benefit forever. All products include lifetime access and continuous updates
             as web standards evolve.</p>
         </div>
         <div class="feature-card reveal-scale">
-          <div class="feature-icon">🔒</div>
+          <div class="feature-icon"><i class="fa-solid fa-lock"></i></div>
           <h3 class="feature-title">Secure Payments</h3>
           <p class="feature-desc">Industry-standard 256-bit SSL encryption. Your transactions are protected with
             enterprise-grade security protocols.</p>
         </div>
         <div class="feature-card reveal-scale">
-          <div class="feature-icon">💬</div>
+          <div class="feature-icon"><i class="fa-solid fa-comment"></i></div>
           <h3 class="feature-title">Expert Support</h3>
           <p class="feature-desc">Access our team of professional developers and designers. Priority support tickets
             answered within 4 hours.</p>
         </div>
         <div class="feature-card reveal-scale">
-          <div class="feature-icon">📊</div>
+          <div class="feature-icon"><i class="fa-solid fa-chart-bar"></i></div>
           <h3 class="feature-title">Analytics Dashboard</h3>
           <p class="feature-desc">Track your purchases, monitor service progress, and manage all orders through a
             beautiful unified dashboard.</p>
@@ -472,19 +454,19 @@
     <div class="container">
       <div class="stats-section reveal">
         <div class="stat-item">
-          <div class="stat-item-value" data-counter data-target="12000" data-suffix="+">12,000+</div>
+          <div class="stat-item-value" data-counter data-target="1000" data-suffix="+">1,000+</div>
           <div class="stat-item-label">Happy Customers</div>
         </div>
         <div class="stat-item">
-          <div class="stat-item-value" data-counter data-target="200" data-suffix="+">200+</div>
+          <div class="stat-item-value" data-counter data-target="20" data-suffix="+">20+</div>
           <div class="stat-item-label">Products & Templates</div>
         </div>
         <div class="stat-item">
-          <div class="stat-item-value" data-counter data-target="50" data-suffix="+">50+</div>
+          <div class="stat-item-value" data-counter data-target="8" data-suffix="+">8+</div>
           <div class="stat-item-label">Professional Services</div>
         </div>
         <div class="stat-item">
-          <div class="stat-item-value" data-counter data-target="99" data-suffix="%">99%</div>
+          <div class="stat-item-value" data-counter data-target="92" data-suffix="%">92%</div>
           <div class="stat-item-label">Satisfaction Rate</div>
         </div>
       </div>
@@ -527,7 +509,7 @@
 
       <div class="services-grid-home">
         <div class="service-card-home reveal-scale">
-          <div style="font-size:2.5rem;margin-bottom:var(--space-4);">⚙️</div>
+          <div style="font-size:2.5rem;margin-bottom:var(--space-4);"><i class="fa-solid fa-gear"></i></div>
           <h3
             style="font-family:var(--font-heading);font-weight:700;font-size:var(--text-lg);margin-bottom:var(--space-3);">
             Custom Development</h3>
@@ -539,7 +521,7 @@
           </div>
         </div>
         <div class="service-card-home reveal-scale delay-100">
-          <div style="font-size:2.5rem;margin-bottom:var(--space-4);">🎨</div>
+          <div style="font-size:2.5rem;margin-bottom:var(--space-4);"><i class="fa-solid fa-palette"></i></div>
           <h3
             style="font-family:var(--font-heading);font-weight:700;font-size:var(--text-lg);margin-bottom:var(--space-3);">
             UI/UX Design</h3>
@@ -551,7 +533,7 @@
           </div>
         </div>
         <div class="service-card-home reveal-scale delay-200">
-          <div style="font-size:2.5rem;margin-bottom:var(--space-4);">🛡️</div>
+          <div style="font-size:2.5rem;margin-bottom:var(--space-4);"><i class="fa-solid fa-shield-alt"></i></div>
           <h3
             style="font-family:var(--font-heading);font-weight:700;font-size:var(--text-lg);margin-bottom:var(--space-3);">
             Maintenance Plans</h3>
@@ -562,6 +544,18 @@
             <a href="services.html?id=svc_004" class="btn btn-primary btn-sm btn-ripple">Get Started</a>
           </div>
         </div>
+        <!-- <div class="service-card-home reveal-scale delay-100">
+          <div style="font-size:2.5rem;margin-bottom:var(--space-4);"><i class="fa-brands fa-hubspot"></i></div>
+          <h3
+            style="font-family:var(--font-heading);font-weight:700;font-size:var(--text-lg);margin-bottom:var(--space-3);">
+            Automation Softwares</h3>
+          <p style="font-size:var(--text-sm);color:var(--text-secondary);line-height:1.7;margin-bottom:var(--space-5);">
+            Streamline your workflow with our automation solutions. Reduce manual tasks and increase productivity.</p>
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span style="font-family:var(--font-heading);font-size:var(--text-xl);font-weight:800;">From $999</span>
+            <a href="services.html?id=svc_002" class="btn btn-primary btn-sm btn-ripple">Get Started</a>
+          </div>
+        </div> -->
       </div>
 
       <div class="text-center" style="margin-top:var(--space-10);">
@@ -569,7 +563,6 @@
       </div>
     </div>
   </section>
-
   <!-- ═══════════════════════════════════════
      HOW IT WORKS
 ═══════════════════════════════════════ -->
@@ -806,7 +799,7 @@
         <div class="faq-item" data-accordion-item>
           <div class="faq-question" data-accordion-trigger>
             What types of digital products do you sell?
-            <div class="faq-icon accordion-icon">▼</div>
+            <div class="faq-icon accordion-icon"><i class="fa-solid fa-angle-down"></i></div>
           </div>
           <div class="faq-answer accordion-content" data-accordion-content>
             We sell a wide range of premium digital products including website templates, UI component libraries, SaaS
@@ -817,7 +810,7 @@
         <div class="faq-item" data-accordion-item>
           <div class="faq-question" data-accordion-trigger>
             Do I get lifetime access after purchasing?
-            <div class="faq-icon accordion-icon">▼</div>
+            <div class="faq-icon accordion-icon"><i class="fa-solid fa-angle-down"></i></div>
           </div>
           <div class="faq-answer accordion-content" data-accordion-content>
             Yes! All one-time purchases include lifetime access to the product and all future updates. We continuously
@@ -827,7 +820,7 @@
         <div class="faq-item" data-accordion-item>
           <div class="faq-question" data-accordion-trigger>
             How does the service booking process work?
-            <div class="faq-icon accordion-icon">▼</div>
+            <div class="faq-icon accordion-icon"><i class="fa-solid fa-angle-down"></i></div>
           </div>
           <div class="faq-answer accordion-content" data-accordion-content>
             After submitting a service request, our team reviews your requirements within 1 business day. We'll send a
@@ -838,7 +831,7 @@
         <div class="faq-item" data-accordion-item>
           <div class="faq-question" data-accordion-trigger>
             What payment methods do you accept?
-            <div class="faq-icon accordion-icon">▼</div>
+            <div class="faq-icon accordion-icon"><i class="fa-solid fa-angle-down"></i></div>
           </div>
           <div class="faq-answer accordion-content" data-accordion-content>
             We accept all major credit cards (Visa, Mastercard, American Express), PayPal, and bank transfers for
@@ -848,7 +841,7 @@
         <div class="faq-item" data-accordion-item>
           <div class="faq-question" data-accordion-trigger>
             Can I use the products for commercial projects?
-            <div class="faq-icon accordion-icon">▼</div>
+            <div class="faq-icon accordion-icon"><i class="fa-solid fa-angle-down"></i></div>
           </div>
           <div class="faq-answer accordion-content" data-accordion-content>
             Absolutely. All products come with a commercial use license. You can use them in client projects, SaaS
@@ -859,7 +852,7 @@
         <div class="faq-item" data-accordion-item>
           <div class="faq-question" data-accordion-trigger>
             Do you offer refunds?
-            <div class="faq-icon accordion-icon">▼</div>
+            <div class="faq-icon accordion-icon"><i class="fa-solid fa-angle-down"></i></div>
           </div>
           <div class="faq-answer accordion-content" data-accordion-content>
             Due to the digital nature of our products, we don't offer refunds after download. However, if you experience
@@ -895,11 +888,11 @@
           <div style="display:flex;gap:var(--space-4);justify-content:center;flex-wrap:wrap;">
             <a href="products.html" class="btn btn-primary btn-lg btn-ripple"
               style="background:linear-gradient(135deg,#1E4D8C,#3B82F6);">
-              🚀 Browse Products
+              <i class="fa-solid fa-rocket"></i> Browse Products
             </a>
             <a href="#contact" class="btn btn-secondary btn-lg"
               style="border-color:rgba(255,255,255,0.25);color:white;">
-              📞 Talk to Sales
+              <i class="fa-solid fa-headset"></i> Talk to Sales
             </a>
           </div>
         </div>
@@ -920,23 +913,8 @@
           <p class="section-subtitle reveal delay-200" style="text-align:left;margin:0 0 var(--space-8);">Whether you're
             exploring products, need a custom solution, or want to discuss enterprise pricing — our team is ready to
             help.</p>
-          <div style="display:flex;flex-direction:column;gap:var(--space-4);" class="reveal delay-300">
-            ${[
-            ['📧', 'Email', 'hello@nexusplatform.io'],
-            ['💬', 'Live Chat', 'Available 9am–6pm EST'],
-            ['📞', 'Phone', '+1 (555) 000-NEXUS'],
-            ['🌍', 'HQ', 'San Francisco, CA'],
-            ].map(([icon, label, val]) => `
-            <div style="display:flex;align-items:center;gap:var(--space-4);">
-              <div
-                style="width:40px;height:40px;background:rgba(37,99,235,0.1);border:1px solid rgba(37,99,235,0.2);border-radius:var(--radius-lg);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;">
-                ${icon}</div>
-              <div>
-                <div style="font-size:var(--text-xs);color:var(--text-muted);font-weight:600;">${label}</div>
-                <div style="font-size:var(--text-sm);font-weight:600;color:var(--text-primary);">${val}</div>
-              </div>
-            </div>
-            `).join('')}
+          <div id="contact-info" class="reveal delay-300"
+            style="display:flex;flex-direction:column;gap:var(--space-4);">
           </div>
         </div>
 
@@ -949,18 +927,19 @@
               <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);">
                 <div class="form-group">
                   <label class="form-label">First Name</label>
-                  <input type="text" class="form-input" data-validate="required" placeholder="Alex">
+                  <input type="text" class="form-input" data-validate="required" placeholder="Sagnik">
                   <span class="form-error">Required</span>
                 </div>
                 <div class="form-group">
                   <label class="form-label">Last Name</label>
-                  <input type="text" class="form-input" data-validate="required" placeholder="Morrison">
+                  <input type="text" class="form-input" data-validate="required" placeholder="Mondal">
                   <span class="form-error">Required</span>
                 </div>
               </div>
               <div class="form-group">
                 <label class="form-label">Email</label>
-                <input type="email" class="form-input" data-validate="required,email" placeholder="alex@company.com">
+                <input type="email" class="form-input" data-validate="required,email"
+                  placeholder="sagnikmondal@gmail.com">
                 <span class="form-error">Valid email required</span>
               </div>
               <div class="form-group">
@@ -1020,17 +999,17 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <a href="/" class="navbar-logo" style="margin-bottom:var(--space-4);display:inline-flex;">
-            <div class="logo-mark">NX</div>
+            <div class="logo-mark">✦</div>
             <span
-              style="color:white;font-family:var(--font-heading);font-weight:800;font-size:var(--text-xl);margin-left:var(--space-3);">Nexus</span>
+              style="color:white;font-family:var(--font-heading);font-weight:800;font-size:var(--text-xl);margin-left:var(--space-3);">NexTSpace</span>
           </a>
           <p>The premier marketplace for digital products and professional services. Built for developers, designers,
             and agencies who demand excellence.</p>
           <div class="footer-social">
-            <button class="social-btn" title="Twitter/X">𝕏</button>
-            <button class="social-btn" title="GitHub">⌂</button>
-            <button class="social-btn" title="LinkedIn">in</button>
-            <button class="social-btn" title="YouTube">▶</button>
+            <button class="social-btn" title="Twitter/X"><i class="fa-brands fa-x-twitter"></i></button>
+            <button class="social-btn" title="GitHub"><i class="fa-brands fa-github"></i></button>
+            <button class="social-btn" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></button>
+            <button class="social-btn" title="YouTube"><i class="fa-brands fa-youtube"></i></button>
           </div>
         </div>
 
@@ -1069,7 +1048,7 @@
       </div>
 
       <div class="footer-bottom">
-        <p>© 2025 Nexus Platform, Inc. All rights reserved.</p>
+        <p>© 2026 Nexus Platform, Inc. All rights reserved.</p>
         <div class="footer-bottom-links">
           <a href="./privacy.html" class="footer-link">Privacy Policy</a>
           <a href="./privacy.html" class="footer-link">Terms of Service</a>
@@ -1124,6 +1103,75 @@
         }
       });
     });
+    const data = [
+      ['<i class="fa-solid fa-envelope"></i>', 'Email', 'nextspace-IN@gmail.com'],
+      ['<i class="fa-solid fa-comment"></i>', 'Live Chat', 'Available 9am–6pm IST'],
+      ['<i class="fa-solid fa-phone"></i>', 'Phone', '+91 98321 45678'],
+      ['<i class="fa-solid fa-earth-asia"></i>', 'HQ', 'Kolkata, INDIA'],
+    ];
+
+    const html = data.map(([icon, label, val]) => `
+  <div style="display:flex;align-items:center;gap:var(--space-4);">
+    <div style="width:40px;height:40px;background:rgba(37,99,235,0.1);
+    border:1px solid rgba(37,99,235,0.2);border-radius:var(--radius-lg);
+    display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;">
+      ${icon}
+    </div>
+    <div>
+      <div style="font-size:var(--text-xs);color:var(--text-muted);font-weight:600;">
+        ${label}
+      </div>
+      <div style="font-size:var(--text-sm);font-weight:600;color:var(--text-primary);">
+        ${val}
+      </div>
+    </div>
+  </div>
+`).join('');
+
+    document.getElementById('contact-info').innerHTML = html;
+
+    document.addEventListener("DOMContentLoaded", () => {
+
+      const orders = [
+        { name: 'Enterprise Dashboard Kit', price: '$149', status: '<i class="fa-solid fa-circle-check" style="color:#10B981;"></i>' },
+        { name: 'SaaS Landing Page Pro', price: '$79', status: '<i class="fa-solid fa-hourglass-half" style="color:#F59E0B;"></i>' },
+        { name: 'UI Component Library', price: '$199', status: '<i class="fa-solid fa-circle-check" style="color:#10B981;"></i>' },
+      ];
+
+      const ordersContainer = document.getElementById('recent-orders');
+
+      ordersContainer.innerHTML = orders.map(o => `
+    <div style="
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:var(--space-2) 0;
+      border-bottom:1px solid rgba(59,130,246,0.1);
+    ">
+      <span style="
+        font-size:11px;
+        color:rgba(255,255,255,0.7);
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        max-width:160px;
+      ">
+        ${o.name}
+      </span>
+
+      <div style="display:flex;align-items:center;gap:var(--space-2);">
+        <span style="font-size:11px;font-weight:700;color:white;">
+          ${o.price}
+        </span>
+        <span style="font-size:11px;">
+          ${o.status}
+        </span>
+      </div>
+    </div>
+  `).join('');
+
+    });
+
   </script>
 </body>
 
