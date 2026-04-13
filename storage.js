@@ -319,8 +319,8 @@ const PRODUCTS = [
     features: ['Product Catalog', 'Cart System', 'Checkout Flow', 'Filter & Search', 'Mobile Optimized', 'localStorage Integration'],
     tags: ['ecommerce', 'store', 'shop'],
     color: 'from-teal-800 to-emerald-700',
-    image: './images/e-commerce.png',
-    emoji: '<i class="fa-solid fa-cart-shopping"></i>',
+    image: '/images/e-commerce.png',
+    // emoji: '<i class="fa-solid fa-cart-shopping"></i>',
   },
   {
     id: 'prod_004',
