@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services — Nexus Platform</title>
+  <meta name="description" content="Professional web development, design, and maintenance services from the Nexus expert team.">
+  <link rel="stylesheet" href="themes.css">
+  <link rel="stylesheet" href="animations.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .services-page-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-6);
+      padding: var(--space-10) 0 var(--space-20);
+    }
+    .service-filter-row {
+      display: flex;
+      gap: var(--space-3);
+      margin-bottom: var(--space-8);
+      flex-wrap: wrap;
+    }
+    .process-timeline {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: var(--space-4);
+      margin-top: var(--space-12);
+      position: relative;
+    }
+    .process-timeline::before {
+      content: '';
+      position: absolute;
+      top: 20px;
+      left: 10%;
+      right: 10%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--navy-600), var(--navy-400));
+      z-index: 0;
+    }
+    .process-step {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    .process-step-num {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--navy-700), var(--navy-500));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      color: white;
+      font-size: var(--text-sm);
+      margin: 0 auto var(--space-3);
+      box-shadow: 0 0 0 4px var(--bg-primary), 0 0 0 6px rgba(37,99,235,0.3);
+    }
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-6);
+    }
+    .why-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      padding: var(--space-6);
+      transition: all var(--transition-base);
+    }
+    .why-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(37,99,235,0.3);
+      box-shadow: var(--shadow-lg);
+    }
+    /* Service modal */
+    .modal-service-form { display: flex; flex-direction: column; gap: var(--space-4); }
+
+    @media (max-width: 1024px) {
+      .services-page-grid { grid-template-columns: repeat(2, 1fr); }
+      .why-grid { grid-template-columns: repeat(2, 1fr); }
+      .process-timeline { grid-template-columns: repeat(3, 1fr); }
+      .process-timeline::before { display: none; }
+    }
+    @media (max-width: 640px) {
+      .services-page-grid { grid-template-columns: 1fr; }
+      .why-grid { grid-template-columns: 1fr; }
+      .process-timeline { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="container">
+    <div class="navbar-inner">
+      <a href="/" class="navbar-logo"><div class="logo-mark">NX</div><span class="logo-text">Nexus</span></a>
+      <nav class="navbar-nav">
+        <a href="/" class="nav-link">Home</a>
+        <a href="products.html" class="nav-link">Products</a>
+        <a href="services.html" class="nav-link active">Services</a>
+        <a href="pricing.html" class="nav-link">Pricing</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+      <div class="navbar-actions">
+        <button class="theme-toggle" data-theme-toggle>☀</button>
+        <button class="cart-btn" data-cart-toggle>🛒<span class="cart-count hidden">0</span></button>
+        <a href="dashboard.html" class="btn btn-secondary btn-sm">Dashboard</a>
+      </div>
+      <button class="menu-toggle" id="menu-toggle"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="/" class="mobile-nav-link">Home</a>
+    <a href="products.html" class="mobile-nav-link">Products</a>
+    <a href="services.html" class="mobile-nav-link">Services</a>
+    <a href="pricing.html" class="mobile-nav-link">Pricing</a>
+    <a href="contact.html" class="mobile-nav-link">Contact</a>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header" style="padding-top:calc(68px + var(--space-12));">
+  <div class="container">
+    <div class="page-header-content">
+      <div class="breadcrumb" style="margin-bottom:var(--space-4);">
+        <a href="/">Home</a>
+        <span class="breadcrumb-sep">›</span>
+        <span class="breadcrumb-current">Services</span>
+      </div>
+      <h1 class="page-header-title reveal">Professional Services</h1>
+      <p class="page-header-subtitle reveal delay-100">Expert development, design, and maintenance services tailored to your vision and business goals.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES LISTING PAGE -->
+<div id="services-page-content">
+  <div class="container">
+    <!-- Category filter -->
+    <div class="service-filter-row" style="padding-top:var(--space-10);">
+      <div class="filter-chip active" data-svc-cat="all">All Services</div>
+      <div class="filter-chip" data-svc-cat="Development">Development</div>
+      <div class="filter-chip" data-svc-cat="Design">Design</div>
+      <div class="filter-chip" data-svc-cat="Maintenance">Maintenance</div>
+      <div class="filter-chip" data-svc-cat="Marketing">Marketing</div>
+    </div>
+
+    <!-- Services grid -->
+    <div class="services-page-grid" id="services-grid">
+      <!-- Filled by JS -->
+    </div>
+  </div>
+
+  <!-- WHY NEXUS -->
+  <section style="background:var(--bg-secondary);padding:var(--space-20) 0;border-top:1px solid var(--border-color);">
+    <div class="container">
+      <div class="text-center" style="margin-bottom:var(--space-12);">
+        <div class="section-badge reveal"><span class="badge-dot"></span> Why Choose Us</div>
+        <h2 class="section-title reveal delay-100">The Nexus Advantage</h2>
+        <p class="section-subtitle reveal delay-200">We combine technical excellence with creative precision to deliver results that drive real business growth.</p>
+      </div>
+
+      <div class="why-grid">
+        <div class="why-card reveal-scale">
+          <div style="font-size:2rem;margin-bottom:var(--space-4);">🎯</div>
+          <h3 style="font-family:var(--font-heading);font-weight:700;font-size:var(--text-lg);margin-bottom:var(--space-3);">Results-Driven</h3>
+          <p style="font-size:var(--text-sm);color:var(--text-secondary);line-height:1.7;">We focus on outcomes, not output. Every project is measured against clear KPIs that align with your business goals.</p>
+        </div>
+        <div class="why-card reveal-scale delay-100">
+          <div style="font-size:2rem;margin-bottom:var(--space-4);">⚡</div>
+          <h3 style="font-family:var(--font-heading);font-weight:700;font-size:var(--text-lg);margin-bottom:var(--space-3);">Fast Delivery</h3>
+          <p style="font-size:var(--text-sm);color:var(--text-secondary);line-height:1.7;">We've perfected our workflow to deliver high-quality work in record time — without cutting corners on quality.</p>
+        </div>
+        <div class="why-card reveal-scale delay-200">
+          <div style="font-size:2rem;margin-bottom:var(--space-4);">🔒</div>
+          <h3 style="font-family:var(--font-heading);font-weight:700;font-size:var(--text-lg);margin-bottom:var(--space-3);">Transparent Process</h3>
+          <p style="font-size:var(--text-sm);color:var(--text-secondary);line-height:1.7;">Full visibility into project progress through your dashboard. Weekly updates, clear milestones, no surprises.</p>
+        </div>
+        <div class="why-card reveal-scale delay-300">
+          <div style="font-size:2rem;margin-bottom:var(--space-4);">💬</div>
+          <h3 style="font-family:var(--font-heading);font-weight:700;font-size:var(--text-lg);margin-bottom:var(--space-3);">Dedicated Support</h3>
+          <p style="font-size:var(--text-sm);color:var(--text-secondary);line-height:1.7;">Every project comes with a dedicated point of contact. We're accessible via chat, email, and video calls.</p>
+        </div>
+        <div class="why-card reveal-scale delay-400">
+          <div style="font-size:2rem;margin-bottom:var(--space-4);">🏆</div>
+          <h3 style="font-family:var(--font-heading);font-weight:700;font-size:var(--text-lg);margin-bottom:var(--space-3);">Expert Team</h3>
+          <p style="font-size:var(--text-sm);color:var(--text-secondary);line-height:1.7;">Our team includes senior engineers and designers with 5+ years of experience at top-tier tech companies.</p>
+        </div>
+        <div class="why-card reveal-scale delay-500">
+          <div style="font-size:2rem;margin-bottom:var(--space-4);">♾</div>
+          <h3 style="font-family:var(--font-heading);font-weight:700;font-size:var(--text-lg);margin-bottom:var(--space-3);">Post-Launch Care</h3>
+          <p style="font-size:var(--text-sm);color:var(--text-secondary);line-height:1.7;">Every service includes 30 days of free post-launch support. We're here when you need us, even after delivery.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section style="padding:var(--space-20) 0;">
+    <div class="container">
+      <div class="text-center" style="margin-bottom:var(--space-4);">
+        <div class="section-badge reveal"><span class="badge-dot"></span> Our Process</div>
+        <h2 class="section-title reveal delay-100">How We Work</h2>
+        <p class="section-subtitle reveal delay-200">A proven process designed to ensure quality at every stage and keep you informed throughout.</p>
+      </div>
+      <div class="process-timeline">
+        <div class="process-step reveal-scale">
+          <div class="process-step-num">1</div>
+          <h4 style="font-family:var(--font-heading);font-weight:700;font-size:var(--text-sm);margin-bottom:var(--space-2);">Discovery</h4>
+          <p style="font-size:var(--text-xs);color:var(--text-secondary);line-height:1.6;">We learn your goals, audience, and constraints.</p>
+        </div>
+        <div class="process-step reveal-scale delay-100">
+          <div class="process-step-num">2</div>
+          <h4 style="font-family:var(--font-heading);font-weight:700;font-size:var(--text-sm);margin-bottom:var(--space-2);">Proposal</h4>
+          <p style="font-size:var(--text-xs);color:var(--text-secondary);line-height:1.6;">Detailed scope, timeline, and fixed-price quote.</p>
+        </div>
+        <div class="process-step reveal-scale delay-200">
+          <div class="process-step-num">3</div>
+          <h4 style="font-family:var(--font-heading);font-weight:700;font-size:var(--text-sm);margin-bottom:var(--space-2);">Design</h4>
+          <p style="font-size:var(--text-xs);color:var(--text-secondary);line-height:1.6;">Wireframes and visual design reviewed and approved.</p>
+        </div>
+        <div class="process-step reveal-scale delay-300">
+          <div class="process-step-num">4</div>
+          <h4 style="font-family:var(--font-heading);font-weight:700;font-size:var(--text-sm);margin-bottom:var(--space-2);">Build</h4>
+          <p style="font-size:var(--text-xs);color:var(--text-secondary);line-height:1.6;">Development with regular demos and progress updates.</p>
+        </div>
+        <div class="process-step reveal-scale delay-400">
+          <div class="process-step-num">5</div>
+          <h4 style="font-family:var(--font-heading);font-weight:700;font-size:var(--text-sm);margin-bottom:var(--space-2);">Launch</h4>
+          <p style="font-size:var(--text-xs);color:var(--text-secondary);line-height:1.6;">Final QA, deployment, and 30-day support included.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section style="background:var(--bg-secondary);padding:var(--space-20) 0;border-top:1px solid var(--border-color);">
+    <div class="container">
+      <div class="text-center" style="margin-bottom:var(--space-12);">
+        <div class="section-badge reveal"><span class="badge-dot"></span> Client Stories</div>
+        <h2 class="section-title reveal delay-100">What Our Clients Say</h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card reveal-scale">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"The SaaS Platform Setup service was exactly what we needed. The team delivered a fully functional MVP in 6 weeks — faster than any agency we've worked with before."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" style="background:linear-gradient(135deg,#0F2044,#2563EB);">TN</div>
+            <div>
+              <div class="author-name">Thomas Nguyen</div>
+              <div class="author-role">CEO at DataFlow</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal-scale delay-150">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"The UI/UX Design System service transformed our product. We went from inconsistent UI to a cohesive design language in two weeks. The Figma source files are incredibly well organized."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" style="background:linear-gradient(135deg,#0D9488,#059669);">LC</div>
+            <div>
+              <div class="author-name">Laura Chen</div>
+              <div class="author-role">Head of Product, Streamline</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal-scale delay-300">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"We've been on the maintenance plan for 8 months now. Our site has never been faster or more secure. The monthly reports are detailed and the team is always proactive about issues."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" style="background:linear-gradient(135deg,#7C3AED,#A78BFA);">RK</div>
+            <div>
+              <div class="author-name">Raj Kumar</div>
+              <div class="author-role">Founder, Shopify Store</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="padding:var(--space-20) 0;">
+    <div class="container">
+      <div style="background:linear-gradient(135deg,var(--navy-800),var(--navy-700));border:1px solid rgba(59,130,246,0.2);border-radius:var(--radius-2xl);padding:var(--space-16) var(--space-12);text-align:center;position:relative;overflow:hidden;" class="reveal-scale">
+        <div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(37,99,235,0.15),transparent 60%);pointer-events:none;"></div>
+        <div style="position:relative;z-index:1;">
+          <h2 style="font-size:clamp(1.75rem,4vw,3rem);font-weight:900;color:white;margin-bottom:var(--space-4);">Ready to Start Your Project?</h2>
+          <p style="font-size:var(--text-lg);color:rgba(255,255,255,0.6);max-width:480px;margin:0 auto var(--space-8);">Tell us about your project and we'll provide a detailed proposal within 24 hours.</p>
+          <button class="btn btn-primary btn-lg btn-ripple" onclick="NexusApp.Modal.open('service-modal')" style="background:linear-gradient(135deg,#1E4D8C,#3B82F6);">
+            🚀 Request a Service
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- SERVICE DETAIL ROOT -->
+<div id="service-detail" style="padding-top:68px;"></div>
+
+<!-- SERVICE REQUEST MODAL -->
+<div class="modal-overlay" id="service-modal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3 class="modal-title" id="service-modal-title">Request a Service</h3>
+      <button class="btn btn-ghost btn-icon" data-modal-close="service-modal">✕</button>
+    </div>
+    <div class="modal-body">
+      <form class="modal-service-form" data-form="service" id="service-request-form">
+        <input type="hidden" id="service-id-input">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);">
+          <div class="form-group">
+            <label class="form-label">First Name</label>
+            <input type="text" class="form-input" data-validate="required" placeholder="Alex">
+            <span class="form-error">Required</span>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Last Name</label>
+            <input type="text" class="form-input" data-validate="required" placeholder="Morrison">
+            <span class="form-error">Required</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Business Email</label>
+          <input type="email" class="form-input" data-validate="required,email" placeholder="alex@company.com">
+          <span class="form-error">Valid email required</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Company / Project Name</label>
+          <input type="text" class="form-input" placeholder="Acme Inc.">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Budget Range</label>
+          <select class="form-input form-select">
+            <option>Under $1,000</option>
+            <option>$1,000 – $5,000</option>
+            <option>$5,000 – $15,000</option>
+            <option>$15,000+</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Project Timeline</label>
+          <select class="form-input form-select">
+            <option>ASAP (Rush)</option>
+            <option>1–2 weeks</option>
+            <option>1 month</option>
+            <option>2–3 months</option>
+            <option>Flexible</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Project Description</label>
+          <textarea class="form-input form-textarea" data-validate="required" placeholder="Tell us about your project, goals, and any specific requirements…" style="min-height:110px;"></textarea>
+          <span class="form-error">Please describe your project</span>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" data-modal-close="service-modal">Cancel</button>
+      <button class="btn btn-primary btn-ripple" onclick="
+        const form = document.getElementById('service-request-form');
+        if (NexusApp.FormValidator.validate(form)) {
+          NexusApp.Modal.close('service-modal');
+          NexusApp.Toast.success('Request Sent!', 'We\'ll contact you within 1 business day with a detailed proposal.');
+          form.reset();
+        }
+      ">Send Request →</button>
+    </div>
+  </div>
+</div>
+
+<!-- Cart & Toast -->
+<div class="cart-overlay" id="cart-overlay"></div>
+<div class="cart-drawer" id="cart-drawer">
+  <div class="cart-drawer-header">
+    <h3 class="cart-drawer-title">🛒 Your Cart</h3>
+    <button class="btn btn-ghost btn-icon" data-cart-close>✕</button>
+  </div>
+  <div class="cart-drawer-body" id="cart-drawer-body"></div>
+  <div class="cart-drawer-footer" id="cart-footer"></div>
+</div>
+<div class="toast-container" id="toast-container"></div>
+
+<!-- FOOTER MINI -->
+<footer style="background:var(--navy-900);border-top:1px solid rgba(59,130,246,0.1);padding:var(--space-6) 0;">
+  <div class="container">
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--space-4);">
+      <a href="/" class="navbar-logo"><div class="logo-mark">NX</div><span style="color:white;font-family:var(--font-heading);font-weight:800;margin-left:var(--space-3);">Nexus</span></a>
+      <p style="font-size:var(--text-sm);color:rgba(255,255,255,0.35);">© 2025 Nexus Platform · All rights reserved</p>
+      <div style="display:flex;gap:var(--space-5);">
+        <a href="products.html" style="font-size:var(--text-sm);color:rgba(255,255,255,0.45);">Products</a>
+        <a href="pricing.html" style="font-size:var(--text-sm);color:rgba(255,255,255,0.45);">Pricing</a>
+        <a href="dashboard.html" style="font-size:var(--text-sm);color:rgba(255,255,255,0.45);">Dashboard</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="storage.js"></script>
+<script src="app.js"></script>
+<script src="animations.js"></script>
+<script src="services.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const isDetail = !!new URLSearchParams(window.location.search).get('id');
+  if (!isDetail) {
+    // Show listing, hide detail shell
+    document.getElementById('service-detail').style.display = 'none';
+
+    // Category filter chips
+    document.querySelectorAll('.filter-chip[data-svc-cat]').forEach(chip => {
+      chip.addEventListener('click', () => {
+        document.querySelectorAll('.filter-chip[data-svc-cat]').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        const cat = chip.dataset.svcCat;
+        const filtered = cat === 'all' ? SERVICES : SERVICES.filter(s => s.category === cat);
+        const grid = document.getElementById('services-grid');
+        grid.innerHTML = filtered.map(NexusServices.renderServiceCard || (s => `<div>${s.name}</div>`)).join('');
+        NexusAnimations.initScrollReveal();
+      });
+    });
+  } else {
+    // Hide listing, show detail
+    document.getElementById('services-page-content').style.display = 'none';
+  }
+});
+
+// Expose renderServiceCard so inline filter can call it
+NexusServices.renderServiceCard = (svc) => `
+  <div class="card card-hover reveal-scale" style="cursor:pointer;">
+    <div style="height:160px;background:linear-gradient(135deg,var(--navy-800) 0%,var(--navy-700) 100%);display:flex;align-items:center;justify-content:center;font-size:3.5rem;">
+      ${svc.emoji}
+    </div>
+    <div class="card-body">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--space-3);">
+        <span class="badge badge-blue">${svc.category}</span>
+        <div style="font-size:var(--text-xs);color:var(--text-muted);">⭐ ${svc.rating}</div>
+      </div>
+      <h3 style="font-family:var(--font-heading);font-size:var(--text-lg);font-weight:700;margin-bottom:var(--space-2);">${svc.name}</h3>
+      <p style="font-size:var(--text-sm);color:var(--text-secondary);line-height:1.65;margin-bottom:var(--space-4);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${svc.desc}</p>
+      <div style="display:flex;align-items:center;justify-content:space-between;">
+        <div>
+          <div style="font-size:var(--text-xs);color:var(--text-muted);">${svc.priceLabel}</div>
+          <div style="font-family:var(--font-heading);font-size:var(--text-xl);font-weight:800;">$${svc.price.toLocaleString()}</div>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-size:var(--text-xs);color:var(--text-muted);">Timeline</div>
+          <div style="font-size:var(--text-sm);font-weight:600;">${svc.timeline}</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer" style="display:flex;gap:var(--space-3);">
+      <a href="/pages/services.html?id=${svc.id}" class="btn btn-secondary btn-sm" style="flex:1;justify-content:center;">Learn More</a>
+      <button class="btn btn-primary btn-sm btn-ripple" style="flex:1;" onclick="event.stopPropagation();NexusServices.openRequest('${svc.id}')">Get Started</button>
+    </div>
+  </div>
+`;
+</script>
+</body>
+</html>

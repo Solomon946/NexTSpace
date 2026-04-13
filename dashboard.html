@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — Nexus Platform</title>
+  <link rel="stylesheet" href="themes.css">
+  <link rel="stylesheet" href="animations.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .dash-page { display: none; }
+    .dash-page.active { display: block; }
+
+    /* Chart placeholder */
+    .mini-chart {
+      display: flex;
+      align-items: flex-end;
+      gap: 4px;
+      height: 48px;
+    }
+    .mini-chart-bar {
+      flex: 1;
+      background: rgba(37,99,235,0.3);
+      border-radius: 3px 3px 0 0;
+      transition: background var(--transition-fast);
+    }
+    .mini-chart-bar:hover { background: rgba(37,99,235,0.7); }
+    .mini-chart-bar.active { background: var(--navy-400); }
+
+    /* Settings toggle */
+    .toggle-switch {
+      position: relative;
+      width: 44px;
+      height: 24px;
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      transition: all var(--transition-base);
+      flex-shrink: 0;
+    }
+    .toggle-switch.on {
+      background: var(--navy-500);
+      border-color: var(--navy-500);
+    }
+    .toggle-knob {
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 18px;
+      height: 18px;
+      background: white;
+      border-radius: 50%;
+      transition: transform var(--transition-base);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    }
+    .toggle-switch.on .toggle-knob { transform: translateX(20px); }
+
+    /* Notification dot */
+    .notif-item {
+      display: flex;
+      gap: var(--space-4);
+      padding: var(--space-4);
+      border-radius: var(--radius-xl);
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      margin-bottom: var(--space-3);
+      transition: all var(--transition-fast);
+      cursor: pointer;
+    }
+    .notif-item:hover { border-color: var(--border-strong); box-shadow: var(--shadow-sm); }
+    .notif-item.unread { border-left: 3px solid var(--navy-500); }
+    .notif-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    /* Profile avatar large */
+    .profile-avatar-lg {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--navy-700), var(--navy-500));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-weight: 900;
+      font-size: var(--text-3xl);
+      color: white;
+      border: 3px solid rgba(37,99,235,0.3);
+      box-shadow: 0 0 0 6px rgba(37,99,235,0.1);
+    }
+
+    /* Mobile sidebar */
+    .mobile-dash-nav {
+      display: none;
+      overflow-x: auto;
+      gap: var(--space-2);
+      padding: var(--space-4) var(--space-4) var(--space-2);
+      border-bottom: 1px solid var(--border-color);
+      background: var(--bg-secondary);
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .mobile-dash-nav::-webkit-scrollbar { display: none; }
+    .mobile-dash-link {
+      white-space: nowrap;
+      padding: var(--space-2) var(--space-4);
+      border-radius: var(--radius-full);
+      font-size: var(--text-xs);
+      font-weight: 600;
+      color: var(--text-secondary);
+      border: 1px solid var(--border-color);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+    .mobile-dash-link.active {
+      background: rgba(37,99,235,0.1);
+      border-color: rgba(37,99,235,0.3);
+      color: var(--navy-400);
+    }
+
+    @media (max-width: 1024px) {
+      .dashboard-layout { grid-template-columns: 1fr !important; }
+      .sidebar { display: none !important; }
+      .mobile-dash-nav { display: flex; }
+    }
+    @media (max-width: 640px) {
+      .dash-stats-grid { grid-template-columns: 1fr 1fr !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="container">
+    <div class="navbar-inner">
+      <a href="/" class="navbar-logo"><div class="logo-mark">NX</div><span class="logo-text">Nexus</span></a>
+      <nav class="navbar-nav">
+        <a href="/" class="nav-link">Home</a>
+        <a href="products.html" class="nav-link">Products</a>
+        <a href="services.html" class="nav-link">Services</a>
+        <a href="pricing" class="nav-link">Pricing</a>
+      </nav>
+      <div class="navbar-actions">
+        <button class="theme-toggle" data-theme-toggle>☀</button>
+        <button class="cart-btn" data-cart-toggle>🛒<span class="cart-count hidden">0</span></button>
+        <!-- Notification bell -->
+        <button class="cart-btn" id="notif-btn" onclick="switchTab('notifications')" title="Notifications">
+          🔔
+          <span class="cart-count" id="notif-count" style="background:var(--error);">3</span>
+        </button>
+        <!-- User avatar -->
+        <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--navy-700),var(--navy-500));display:flex;align-items:center;justify-content:center;font-weight:800;color:white;font-size:var(--text-sm);cursor:pointer;border:2px solid rgba(37,99,235,0.3);" data-user-avatar onclick="switchTab('settings')">A</div>
+      </div>
+      <button class="menu-toggle" id="menu-toggle"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="/" class="mobile-nav-link">Home</a>
+    <a href="products.html" class="mobile-nav-link">Products</a>
+    <a href="services.html" class="mobile-nav-link">Services</a>
+    <a href="pricing.html" class="mobile-nav-link">Pricing</a>
+  </div>
+</nav>
+
+<!-- MOBILE DASHBOARD NAV -->
+<div class="mobile-dash-nav" id="mobile-dash-nav" style="margin-top:68px;">
+  <div class="mobile-dash-link active" onclick="switchTab('overview')">📊 Overview</div>
+  <div class="mobile-dash-link" onclick="switchTab('orders')">📦 Orders</div>
+  <div class="mobile-dash-link" onclick="switchTab('products')">🛍 Products</div>
+  <div class="mobile-dash-link" onclick="switchTab('services')">⚙️ Services</div>
+  <div class="mobile-dash-link" onclick="switchTab('wishlist')">♥ Wishlist</div>
+  <div class="mobile-dash-link" onclick="switchTab('notifications')">🔔 Notifications</div>
+  <div class="mobile-dash-link" onclick="switchTab('settings')">👤 Settings</div>
+</div>
+
+<!-- DASHBOARD LAYOUT -->
+<div class="dashboard-layout" style="display:grid;grid-template-columns:260px 1fr;min-height:calc(100vh - 68px);">
+
+  <!-- ── SIDEBAR ── -->
+  <aside class="sidebar" style="margin-top:68px;">
+    <!-- User info -->
+    <div style="padding:var(--space-4);background:var(--bg-tertiary);border-radius:var(--radius-xl);margin-bottom:var(--space-6);border:1px solid var(--border-color);">
+      <div style="display:flex;align-items:center;gap:var(--space-3);">
+        <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--navy-700),var(--navy-500));display:flex;align-items:center;justify-content:center;font-weight:800;color:white;font-size:var(--text-sm);flex-shrink:0;" data-user-avatar>A</div>
+        <div style="min-width:0;">
+          <div style="font-weight:700;font-size:var(--text-sm);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" data-user-name>Alex Morrison</div>
+          <div style="font-size:var(--text-xs);color:var(--text-muted);" data-user-email>alex@example.com</div>
+        </div>
+      </div>
+      <div style="margin-top:var(--space-3);display:flex;align-items:center;justify-content:space-between;">
+        <span class="badge badge-blue" style="font-size:10px;" data-user-plan>Pro Plan</span>
+        <a href="/#pricing" style="font-size:10px;color:var(--text-brand);font-weight:600;">Upgrade →</a>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="sidebar-section-title">Main</div>
+      <a class="sidebar-link active" onclick="switchTab('overview')" data-tab-link="overview">
+        <span class="sidebar-link-icon">📊</span> Overview
+      </a>
+      <a class="sidebar-link" onclick="switchTab('orders')" data-tab-link="orders">
+        <span class="sidebar-link-icon">📦</span> Orders
+        <span class="sidebar-badge" id="orders-badge">3</span>
+      </a>
+      <a class="sidebar-link" onclick="switchTab('products')" data-tab-link="products">
+        <span class="sidebar-link-icon">🛍</span> My Products
+      </a>
+      <a class="sidebar-link" onclick="switchTab('services')" data-tab-link="services">
+        <span class="sidebar-link-icon">⚙️</span> My Services
+      </a>
+      <a class="sidebar-link" onclick="switchTab('wishlist')" data-tab-link="wishlist">
+        <span class="sidebar-link-icon">♥</span> Wishlist
+      </a>
+
+      <div class="sidebar-section-title" style="margin-top:var(--space-4);">Account</div>
+      <a class="sidebar-link" onclick="switchTab('notifications')" data-tab-link="notifications">
+        <span class="sidebar-link-icon">🔔</span> Notifications
+        <span class="sidebar-badge" style="background:rgba(239,68,68,0.15);color:var(--error);" id="notif-sidebar-badge">3</span>
+      </a>
+      <a class="sidebar-link" onclick="switchTab('settings')" data-tab-link="settings">
+        <span class="sidebar-link-icon">👤</span> Settings
+      </a>
+
+      <div class="sidebar-section-title" style="margin-top:var(--space-4);">Navigate</div>
+      <a href="products.html" class="sidebar-link">
+        <span class="sidebar-link-icon">🏪</span> Shop Products
+      </a>
+      <a href="services.html" class="sidebar-link">
+        <span class="sidebar-link-icon">🚀</span> Browse Services
+      </a>
+      <a href="cart.html" class="sidebar-link">
+        <span class="sidebar-link-icon">🛒</span> Cart
+      </a>
+    </nav>
+  </aside>
+
+  <!-- ── MAIN CONTENT ── -->
+  <main class="dashboard-main" style="margin-top:68px;">
+
+    <!-- OVERVIEW TAB -->
+    <div class="dash-page active" id="tab-overview">
+      <div id="dashboard-root">
+        <div style="display:flex;flex-direction:column;gap:var(--space-5);">
+          <div class="skeleton" style="height:40px;width:40%;border-radius:var(--radius-lg);"></div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-5);">
+            <div class="skeleton" style="height:120px;border-radius:var(--radius-xl);"></div>
+            <div class="skeleton" style="height:120px;border-radius:var(--radius-xl);"></div>
+            <div class="skeleton" style="height:120px;border-radius:var(--radius-xl);"></div>
+            <div class="skeleton" style="height:120px;border-radius:var(--radius-xl);"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ORDERS TAB -->
+    <div class="dash-page" id="tab-orders">
+      <div style="margin-bottom:var(--space-8);">
+        <h1 style="font-family:var(--font-heading);font-size:var(--text-3xl);font-weight:900;margin-bottom:var(--space-2);">My Orders</h1>
+        <p style="color:var(--text-secondary);">Track and manage all your purchases.</p>
+      </div>
+      <div id="orders-content"></div>
+    </div>
+
+    <!-- PRODUCTS TAB -->
+    <div class="dash-page" id="tab-products">
+      <div style="margin-bottom:var(--space-8);">
+        <h1 style="font-family:var(--font-heading);font-size:var(--text-3xl);font-weight:900;margin-bottom:var(--space-2);">My Products</h1>
+        <p style="color:var(--text-secondary);">All your purchased digital products.</p>
+      </div>
+      <div id="my-products-content"></div>
+    </div>
+
+    <!-- SERVICES TAB -->
+    <div class="dash-page" id="tab-services">
+      <div style="margin-bottom:var(--space-8);">
+        <h1 style="font-family:var(--font-heading);font-size:var(--text-3xl);font-weight:900;margin-bottom:var(--space-2);">My Services</h1>
+        <p style="color:var(--text-secondary);">Track your active service requests.</p>
+      </div>
+      <div id="services-content"></div>
+    </div>
+
+    <!-- WISHLIST TAB -->
+    <div class="dash-page" id="tab-wishlist">
+      <div style="margin-bottom:var(--space-8);">
+        <h1 style="font-family:var(--font-heading);font-size:var(--text-3xl);font-weight:900;margin-bottom:var(--space-2);">Wishlist</h1>
+        <p style="color:var(--text-secondary);">Products saved for later.</p>
+      </div>
+      <div id="wishlist-content"></div>
+    </div>
+
+    <!-- NOTIFICATIONS TAB -->
+    <div class="dash-page" id="tab-notifications">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--space-8);">
+        <div>
+          <h1 style="font-family:var(--font-heading);font-size:var(--text-3xl);font-weight:900;margin-bottom:var(--space-2);">Notifications</h1>
+          <p style="color:var(--text-secondary);">Stay updated on orders and platform news.</p>
+        </div>
+        <button class="btn btn-ghost btn-sm" id="mark-all-read-btn">Mark all read</button>
+      </div>
+      <div id="notifications-content"></div>
+    </div>
+
+    <!-- SETTINGS TAB -->
+    <div class="dash-page" id="tab-settings">
+      <div style="margin-bottom:var(--space-8);">
+        <h1 style="font-family:var(--font-heading);font-size:var(--text-3xl);font-weight:900;margin-bottom:var(--space-2);">Account Settings</h1>
+        <p style="color:var(--text-secondary);">Manage your profile, preferences, and security.</p>
+      </div>
+      <div id="settings-content"></div>
+    </div>
+
+  </main>
+</div>
+
+<!-- Cart Drawer -->
+<div class="cart-overlay" id="cart-overlay"></div>
+<div class="cart-drawer" id="cart-drawer">
+  <div class="cart-drawer-header">
+    <h3 class="cart-drawer-title">🛒 Your Cart</h3>
+    <button class="btn btn-ghost btn-icon" data-cart-close>✕</button>
+  </div>
+  <div class="cart-drawer-body" id="cart-drawer-body"></div>
+  <div class="cart-drawer-footer" id="cart-footer"></div>
+</div>
+<div class="toast-container" id="toast-container"></div>
+
+<script src="storage.js"></script>
+<script src="app.js"></script>
+<script src="animations.js"></script>
+<script src="services.js"></script>
+
+<script>
+// ── Tab Navigation ──
+function switchTab(tabId) {
+  document.querySelectorAll('.dash-page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('[data-tab-link]').forEach(l => l.classList.remove('active'));
+  document.querySelectorAll('.mobile-dash-link').forEach(l => l.classList.remove('active'));
+
+  const page = document.getElementById('tab-' + tabId);
+  if (page) page.classList.add('active');
+
+  document.querySelectorAll(`[data-tab-link="${tabId}"]`).forEach(l => l.classList.add('active'));
+
+  // Populate tab content
+  renderTab(tabId);
+}
+
+function renderTab(tabId) {
+  switch(tabId) {
+    case 'orders': renderOrders(); break;
+    case 'products': renderMyProducts(); break;
+    case 'services': renderMyServices(); break;
+    case 'wishlist': renderWishlist(); break;
+    case 'notifications': renderNotifications(); break;
+    case 'settings': renderSettings(); break;
+  }
+}
+
+// ── Render Orders ──
+function renderOrders() {
+  const orders = NexusStorage.orders.get();
+  const root = document.getElementById('orders-content');
+  const statusBadgeClass = { completed:'badge-green', processing:'badge-yellow', cancelled:'badge-red', pending:'badge-gray' };
+
+  root.innerHTML = orders.length ? `
+    <div class="card">
+      <div style="overflow-x:auto;">
+        <table style="width:100%;border-collapse:collapse;">
+          <thead>
+            <tr style="border-bottom:1px solid var(--border-color);">
+              ${['Order ID','Date','Items','Total','Status','Action'].map(h=>`<th style="text-align:left;padding:var(--space-4) var(--space-5);font-size:var(--text-xs);font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;">${h}</th>`).join('')}
+            </tr>
+          </thead>
+          <tbody>
+            ${orders.map(o=>`
+              <tr style="border-bottom:1px solid var(--border-color);transition:background var(--transition-fast);" onmouseenter="this.style.background='var(--bg-secondary)'" onmouseleave="this.style.background='transparent'">
+                <td style="padding:var(--space-4) var(--space-5);font-weight:700;font-family:var(--font-mono);font-size:var(--text-sm);">${o.id}</td>
+                <td style="padding:var(--space-4) var(--space-5);font-size:var(--text-sm);color:var(--text-secondary);">${new Date(o.date).toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric'})}</td>
+                <td style="padding:var(--space-4) var(--space-5);font-size:var(--text-sm);color:var(--text-secondary);max-width:200px;">
+                  ${o.items.map(i=>i.name).join(', ').substring(0,50)}${o.items.map(i=>i.name).join(', ').length>50?'…':''}
+                </td>
+                <td style="padding:var(--space-4) var(--space-5);font-family:var(--font-heading);font-weight:800;">$${o.total}</td>
+                <td style="padding:var(--space-4) var(--space-5);"><span class="badge ${statusBadgeClass[o.status]||'badge-gray'}" style="text-transform:capitalize;">${o.status}</span></td>
+                <td style="padding:var(--space-4) var(--space-5);">
+                  <button class="btn btn-ghost btn-sm" style="font-size:var(--text-xs);">View</button>
+                </td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  ` : `
+    <div style="text-align:center;padding:var(--space-20);color:var(--text-muted);">
+      <div style="font-size:3rem;margin-bottom:var(--space-4);">📦</div>
+      <h3 style="font-family:var(--font-heading);color:var(--text-secondary);margin-bottom:var(--space-4);">No orders yet</h3>
+      <a href="products.html" class="btn btn-primary">Start Shopping</a>
+    </div>
+  `;
+}
+
+// ── Render My Products ──
+function renderMyProducts() {
+  const orders = NexusStorage.orders.get();
+  const root = document.getElementById('my-products-content');
+  const products = orders.filter(o=>o.status==='completed').flatMap(o=>o.items.map(i=>({...i,orderId:o.id,date:o.date})));
+
+  root.innerHTML = products.length ? `
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:var(--space-5);">
+      ${products.map((p,i)=>`
+        <div class="card reveal-scale" style="transition-delay:${i*80}ms;">
+          <div style="height:120px;background:linear-gradient(135deg,var(--navy-800),var(--navy-700));display:flex;align-items:center;justify-content:center;font-size:2.5rem;">📄</div>
+          <div class="card-body">
+            <h3 style="font-family:var(--font-heading);font-weight:700;font-size:var(--text-base);margin-bottom:var(--space-2);">${p.name}</h3>
+            <div style="font-size:var(--text-xs);color:var(--text-muted);margin-bottom:var(--space-4);">Purchased ${new Date(p.date).toLocaleDateString()}</div>
+            <div style="display:flex;gap:var(--space-2);">
+              <button class="btn btn-primary btn-sm btn-ripple" style="flex:1;justify-content:center;" onclick="NexusApp.Toast.success('Download Started','Your file is downloading…')">⬇ Download</button>
+              <button class="btn btn-secondary btn-sm" onclick="NexusApp.Toast.info('License','Commercial license is active for this product.')">📋</button>
+            </div>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+  ` : `
+    <div style="text-align:center;padding:var(--space-20);color:var(--text-muted);">
+      <div style="font-size:3rem;margin-bottom:var(--space-4);">🛍</div>
+      <h3 style="font-family:var(--font-heading);color:var(--text-secondary);margin-bottom:var(--space-4);">No purchased products</h3>
+      <a href="products.html" class="btn btn-primary">Browse Products</a>
+    </div>
+  `;
+  NexusAnimations.initScrollReveal();
+}
+
+// ── Render My Services ──
+function renderMyServices() {
+  const root = document.getElementById('services-content');
+  root.innerHTML = `
+    <div style="display:flex;flex-direction:column;gap:var(--space-4);">
+      ${[
+        { name:'Custom Web Development', status:'in_progress', progress:65, start:'Mar 1, 2025', eta:'Apr 15, 2025', color:'var(--info)' },
+        { name:'UI/UX Design System', status:'review', progress:90, start:'Feb 15, 2025', eta:'Mar 30, 2025', color:'var(--warning)' },
+        { name:'Website Maintenance', status:'active', progress:100, start:'Jan 1, 2025', eta:'Ongoing', color:'var(--success)' },
+      ].map(svc=>`
+        <div class="card">
+          <div class="card-body">
+            <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:var(--space-4);flex-wrap:wrap;gap:var(--space-3);">
+              <div>
+                <h3 style="font-family:var(--font-heading);font-weight:700;font-size:var(--text-lg);margin-bottom:var(--space-2);">${svc.name}</h3>
+                <div style="display:flex;align-items:center;gap:var(--space-3);">
+                  <span style="font-size:var(--text-xs);color:var(--text-muted);">Started: ${svc.start}</span>
+                  <span style="font-size:var(--text-xs);color:var(--text-muted);">ETA: ${svc.eta}</span>
+                </div>
+              </div>
+              <span class="badge ${svc.status==='active'?'badge-green':svc.status==='review'?'badge-yellow':'badge-blue'}" style="text-transform:capitalize;">${svc.status.replace('_',' ')}</span>
+            </div>
+            <div style="margin-bottom:var(--space-2);">
+              <div style="display:flex;justify-content:space-between;font-size:var(--text-xs);color:var(--text-muted);margin-bottom:var(--space-2);">
+                <span>Progress</span><span style="font-weight:700;color:var(--text-primary);">${svc.progress}%</span>
+              </div>
+              <div style="height:6px;background:var(--bg-tertiary);border-radius:var(--radius-full);overflow:hidden;">
+                <div style="height:100%;width:${svc.progress}%;background:${svc.color};border-radius:var(--radius-full);transition:width 1s ease;"></div>
+              </div>
+            </div>
+            <div style="display:flex;gap:var(--space-3);margin-top:var(--space-4);">
+              <button class="btn btn-ghost btn-sm" onclick="NexusApp.Toast.info('Status Update','Your project manager will contact you within 24 hours.')">Contact Team</button>
+              <button class="btn btn-secondary btn-sm" onclick="NexusApp.Toast.success('Report Downloaded','Monthly progress report saved.')">Download Report</button>
+            </div>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+    <div style="margin-top:var(--space-8);text-align:center;">
+      <a href="services.html" class="btn btn-primary btn-ripple">Request New Service</a>
+    </div>
+  `;
+}
+
+// ── Render Wishlist ──
+function renderWishlist() {
+  const items = NexusStorage.wishlist.get();
+  const root = document.getElementById('wishlist-content');
+
+  root.innerHTML = items.length ? `
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:var(--space-5);">
+      ${items.map((item,i)=>`
+        <div class="card reveal-scale" style="transition-delay:${i*80}ms;">
+          <div style="height:140px;background:linear-gradient(135deg,var(--navy-800),var(--navy-700));display:flex;align-items:center;justify-content:center;font-size:3rem;">${item.emoji||'📦'}</div>
+          <div class="card-body">
+            <div style="font-size:var(--text-xs);color:var(--text-brand);font-weight:600;margin-bottom:var(--space-2);">${item.category}</div>
+            <h3 style="font-family:var(--font-heading);font-weight:700;font-size:var(--text-base);margin-bottom:var(--space-3);">${item.name}</h3>
+            <div style="font-family:var(--font-heading);font-size:var(--text-xl);font-weight:900;margin-bottom:var(--space-4);">$${item.price}</div>
+            <div style="display:flex;gap:var(--space-2);">
+              <button class="btn btn-primary btn-sm btn-ripple" style="flex:1;justify-content:center;" onclick="NexusProducts?.addToCart('${item.id}')">🛒 Add to Cart</button>
+              <button class="btn btn-ghost btn-sm" style="color:var(--error);" onclick="
+                NexusStorage.wishlist.toggle(${JSON.stringify(item).replace(/'/g,'&apos;')});
+                NexusApp.Toast.info('Removed','Removed from wishlist.');
+                renderWishlist();
+              ">✕</button>
+            </div>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+  ` : `
+    <div style="text-align:center;padding:var(--space-20);color:var(--text-muted);">
+      <div style="font-size:3rem;margin-bottom:var(--space-4);">♡</div>
+      <h3 style="font-family:var(--font-heading);color:var(--text-secondary);margin-bottom:var(--space-4);">Your wishlist is empty</h3>
+      <a href="products.html" class="btn btn-primary">Browse Products</a>
+    </div>
+  `;
+  NexusAnimations.initScrollReveal();
+}
+
+// ── Render Notifications ──
+function renderNotifications() {
+  const notifs = NexusStorage.notifs.get();
+  const root = document.getElementById('notifications-content');
+  const icons = { order:'📦', system:'⚙️', promo:'🎁' };
+  const colors = { order:'rgba(37,99,235,0.12)', system:'rgba(14,165,233,0.12)', promo:'rgba(245,158,11,0.12)' };
+
+  root.innerHTML = notifs.length ? notifs.map(n => `
+    <div class="notif-item ${n.read ? '' : 'unread'}" onclick="NexusStorage.notifs.markRead(${n.id});renderNotifications();updateNotifCount();">
+      <div class="notif-icon" style="background:${colors[n.type]||colors.system};">${icons[n.type]||'🔔'}</div>
+      <div style="flex:1;min-width:0;">
+        <div style="font-weight:700;font-size:var(--text-sm);margin-bottom:2px;">${n.title}</div>
+        <div style="font-size:var(--text-xs);color:var(--text-secondary);line-height:1.5;">${n.message}</div>
+        <div style="font-size:var(--text-xs);color:var(--text-muted);margin-top:var(--space-2);">${new Date(n.date).toLocaleDateString('en-US',{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'})}</div>
+      </div>
+      ${!n.read ? '<div style="width:8px;height:8px;border-radius:50%;background:var(--navy-400);flex-shrink:0;margin-top:4px;"></div>' : ''}
+    </div>
+  `).join('') : `
+    <div style="text-align:center;padding:var(--space-20);color:var(--text-muted);">
+      <div style="font-size:3rem;margin-bottom:var(--space-4);">🔔</div>
+      <p>No notifications</p>
+    </div>
+  `;
+
+  document.getElementById('mark-all-read-btn')?.addEventListener('click', () => {
+    notifs.forEach(n => NexusStorage.notifs.markRead(n.id));
+    renderNotifications();
+    updateNotifCount();
+    NexusApp.Toast.success('All Read', 'All notifications marked as read.');
+  });
+}
+
+function updateNotifCount() {
+  const count = NexusStorage.notifs.unreadCount();
+  document.getElementById('notif-count').textContent = count;
+  document.getElementById('notif-count').style.display = count ? 'flex' : 'none';
+  const sidebarBadge = document.getElementById('notif-sidebar-badge');
+  if (sidebarBadge) { sidebarBadge.textContent = count; sidebarBadge.style.display = count ? 'inline-flex' : 'none'; }
+}
+
+// ── Render Settings ──
+function renderSettings() {
+  const user = NexusStorage.user.get();
+  const root = document.getElementById('settings-content');
+
+  root.innerHTML = `
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-6);">
+      <!-- Profile -->
+      <div class="card" style="grid-column:1/-1;">
+        <div class="card-body">
+          <h3 style="font-family:var(--font-heading);font-weight:700;font-size:var(--text-lg);margin-bottom:var(--space-6);">Profile Information</h3>
+          <div style="display:flex;align-items:center;gap:var(--space-6);margin-bottom:var(--space-6);">
+            <div class="profile-avatar-lg" data-user-avatar>${user.name.charAt(0)}</div>
+            <div>
+              <div style="font-family:var(--font-heading);font-size:var(--text-xl);font-weight:800;margin-bottom:var(--space-1);">${user.name}</div>
+              <div style="font-size:var(--text-sm);color:var(--text-muted);">${user.email}</div>
+              <div style="margin-top:var(--space-3);display:flex;gap:var(--space-3);">
+                <span class="badge badge-blue">${user.plan} Plan</span>
+                <span class="badge badge-green">Active</span>
+              </div>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);">
+            <div class="form-group">
+              <label class="form-label">Full Name</label>
+              <input type="text" class="form-input" id="settings-name" value="${user.name}">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-input" id="settings-email" value="${user.email}">
+            </div>
+          </div>
+          <button class="btn btn-primary btn-ripple" style="margin-top:var(--space-4);" onclick="
+            const name = document.getElementById('settings-name').value;
+            const email = document.getElementById('settings-email').value;
+            NexusStorage.user.update({name, email});
+            NexusApp.Toast.success('Saved!', 'Profile updated successfully.');
+            document.querySelectorAll('[data-user-name]').forEach(el=>el.textContent=name);
+            document.querySelectorAll('[data-user-email]').forEach(el=>el.textContent=email);
+          ">Save Changes</button>
+        </div>
+      </div>
+
+      <!-- Preferences -->
+      <div class="card">
+        <div class="card-body">
+          <h3 style="font-family:var(--font-heading);font-weight:700;margin-bottom:var(--space-5);">Preferences</h3>
+          <div style="display:flex;flex-direction:column;gap:var(--space-4);">
+            ${[
+              ['🌙', 'Dark Mode', 'Use dark theme across the platform'],
+              ['🔔', 'Email Notifications', 'Receive order and update emails'],
+              ['📧', 'Marketing Emails', 'Product updates and special offers'],
+              ['🔒', 'Two-Factor Auth', 'Extra security for your account'],
+            ].map(([icon, label, desc], i) => `
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:var(--space-4);background:var(--bg-secondary);border-radius:var(--radius-lg);border:1px solid var(--border-color);">
+                <div style="display:flex;align-items:center;gap:var(--space-3);">
+                  <span style="font-size:1.1rem;">${icon}</span>
+                  <div>
+                    <div style="font-size:var(--text-sm);font-weight:600;">${label}</div>
+                    <div style="font-size:var(--text-xs);color:var(--text-muted);">${desc}</div>
+                  </div>
+                </div>
+                <div class="toggle-switch ${i<2?'on':''}" onclick="
+                  this.classList.toggle('on');
+                  NexusApp.Toast.info('Preference Updated', '${label} setting changed.');
+                "><div class="toggle-knob"></div></div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      </div>
+
+      <!-- Theme -->
+      <div class="card">
+        <div class="card-body">
+          <h3 style="font-family:var(--font-heading);font-weight:700;margin-bottom:var(--space-5);">Appearance</h3>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3);margin-bottom:var(--space-5);">
+            <div style="padding:var(--space-4);border:2px solid var(--navy-500);border-radius:var(--radius-xl);cursor:pointer;text-align:center;background:rgba(37,99,235,0.08);" onclick="NexusStorage.theme.set('dark');NexusApp.Toast.success('Dark Mode','Theme updated.');">
+              <div style="font-size:1.5rem;margin-bottom:var(--space-2);">🌙</div>
+              <div style="font-size:var(--text-sm);font-weight:700;">Dark</div>
+            </div>
+            <div style="padding:var(--space-4);border:2px solid var(--border-color);border-radius:var(--radius-xl);cursor:pointer;text-align:center;" onclick="NexusStorage.theme.set('light');NexusApp.Toast.success('Light Mode','Theme updated.');">
+              <div style="font-size:1.5rem;margin-bottom:var(--space-2);">☀</div>
+              <div style="font-size:var(--text-sm);font-weight:700;">Light</div>
+            </div>
+          </div>
+
+          <h4 style="font-family:var(--font-heading);font-weight:700;font-size:var(--text-sm);margin-bottom:var(--space-3);">Subscription</h4>
+          <div style="background:linear-gradient(135deg,var(--navy-800),var(--navy-700));border:1px solid rgba(59,130,246,0.2);border-radius:var(--radius-xl);padding:var(--space-5);">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--space-3);">
+              <span style="font-family:var(--font-heading);font-weight:800;color:white;">Pro Plan</span>
+              <span class="badge badge-blue">Active</span>
+            </div>
+            <div style="font-size:var(--text-xs);color:rgba(255,255,255,0.5);margin-bottom:var(--space-4);">Renews Dec 31, 2025 · $79/mo</div>
+            <a href="/#pricing" class="btn btn-secondary btn-sm" style="font-size:var(--text-xs);">Upgrade to Enterprise</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Danger zone -->
+      <div class="card" style="grid-column:1/-1;border-color:rgba(239,68,68,0.2);">
+        <div class="card-body">
+          <h3 style="font-family:var(--font-heading);font-weight:700;color:var(--error);margin-bottom:var(--space-4);">⚠ Danger Zone</h3>
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--space-4);">
+            <div>
+              <div style="font-weight:600;font-size:var(--text-sm);">Delete Account</div>
+              <div style="font-size:var(--text-xs);color:var(--text-muted);">Permanently delete your account and all associated data. This action cannot be undone.</div>
+            </div>
+            <button class="btn btn-danger btn-sm" onclick="NexusApp.Toast.warning('Are you sure?','This action cannot be undone. Please contact support to delete your account.')">Delete Account</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+// ── Init Dashboard ──
+document.addEventListener('DOMContentLoaded', () => {
+  // Load the dashboard overview
+  if (typeof NexusDashboard !== 'undefined') {
+    NexusDashboard.initDashboard();
+  }
+  updateNotifCount();
+
+  // Pre-load orders badge
+  const ordersCount = NexusStorage.orders.get().length;
+  const ordersBadge = document.getElementById('orders-badge');
+  if (ordersBadge) ordersBadge.textContent = ordersCount;
+});
+
+// Expose NexusProducts stub for wishlist addToCart
+const NexusProducts = {
+  addToCart: (id) => {
+    const product = PRODUCTS.find(p => p.id === id);
+    if (product) {
+      NexusStorage.cart.add(product);
+      NexusApp.Toast.success('Added to Cart!', product.name);
+      NexusApp.updateCartCount();
+    }
+  }
+};
+</script>
+
+<!-- Dashboard engine -->
+<script src="../js/dashboard.js" onerror=""></script>
+<script>
+// Inline dashboard init since we merged services.js with dashboard
+if (typeof NexusDashboard === 'undefined') {
+  // Fallback inline
+  document.addEventListener('DOMContentLoaded', () => {
+    const root = document.getElementById('dashboard-root');
+    if (!root) return;
+    const user = NexusStorage.user.get();
+    const orders = NexusStorage.orders.get();
+    const wishlistCount = NexusStorage.wishlist.count();
+    const cartCount = NexusStorage.cart.count();
+    const statusBadgeClass = { completed:'badge-green', processing:'badge-yellow', cancelled:'badge-red' };
+
+    root.innerHTML = `
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--space-8);flex-wrap:wrap;gap:var(--space-4);">
+        <div>
+          <h1 style="font-family:var(--font-heading);font-size:var(--text-3xl);font-weight:900;margin-bottom:var(--space-2);">Welcome back, ${user.name.split(' ')[0]} 👋</h1>
+          <p style="color:var(--text-secondary);">Here's what's happening with your account today.</p>
+        </div>
+        <span class="badge badge-blue" style="padding:var(--space-2) var(--space-4);">⭐ ${user.plan} Plan</span>
+      </div>
+
+      <div class="dash-stats-grid" style="grid-template-columns:repeat(4,1fr);">
+        ${[
+          {label:'Total Orders',value:orders.length,icon:'📦',color:'rgba(37,99,235,0.12)',change:'+2'},
+          {label:'Wishlist Items',value:wishlistCount,icon:'♥',color:'rgba(239,68,68,0.12)',change:'Saved'},
+          {label:'Cart Items',value:cartCount,icon:'🛒',color:'rgba(16,185,129,0.12)',change:cartCount?'+'+cartCount:'—'},
+          {label:'Total Spent',value:'$'+orders.reduce((s,o)=>s+o.total,0),icon:'💰',color:'rgba(245,158,11,0.12)',change:'+$149'},
+        ].map(s=>`
+          <div class="dash-stat-card reveal-scale" style="cursor:default;">
+            <div class="dash-stat-header">
+              <div class="dash-stat-icon" style="background:${s.color};">${s.icon}</div>
+              <span class="dash-stat-change up">${s.change}</span>
+            </div>
+            <div class="dash-stat-value">${s.value}</div>
+            <div class="dash-stat-label">${s.label}</div>
+          </div>
+        `).join('')}
+      </div>
+
+      <div class="card reveal" style="margin-bottom:var(--space-6);margin-top:var(--space-8);">
+        <div class="card-body">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--space-6);">
+            <h2 style="font-family:var(--font-heading);font-size:var(--text-xl);font-weight:700;">Recent Orders</h2>
+            <button class="btn btn-ghost btn-sm" onclick="switchTab('orders')">View All →</button>
+          </div>
+          <div style="overflow-x:auto;">
+            <table style="width:100%;border-collapse:collapse;">
+              <thead><tr style="border-bottom:1px solid var(--border-color);">
+                ${['Order ID','Date','Total','Status'].map(h=>`<th style="text-align:left;padding:var(--space-3) var(--space-4);font-size:var(--text-xs);font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;">${h}</th>`).join('')}
+              </tr></thead>
+              <tbody>
+                ${orders.slice(0,5).map(o=>`
+                  <tr style="border-bottom:1px solid var(--border-color);transition:background var(--transition-fast);" onmouseenter="this.style.background='var(--bg-secondary)'" onmouseleave="this.style.background='transparent'">
+                    <td style="padding:var(--space-4);font-weight:700;font-size:var(--text-sm);font-family:var(--font-mono);">${o.id}</td>
+                    <td style="padding:var(--space-4);font-size:var(--text-sm);color:var(--text-secondary);">${new Date(o.date).toLocaleDateString()}</td>
+                    <td style="padding:var(--space-4);font-family:var(--font-heading);font-weight:800;">$${o.total}</td>
+                    <td style="padding:var(--space-4);"><span class="badge ${statusBadgeClass[o.status]||'badge-gray'}" style="text-transform:capitalize;">${o.status}</span></td>
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-6);">
+        <div class="card reveal-left">
+          <div class="card-body">
+            <h3 style="font-family:var(--font-heading);font-weight:700;margin-bottom:var(--space-5);">Quick Actions</h3>
+            <div style="display:flex;flex-direction:column;gap:var(--space-3);">
+              ${[
+                ['🛒','Browse Products','products.html'],
+                ['⚙️','Explore Services','services.html'],
+                ['📦','View Cart','cart.html'],
+                ['💳','Upgrade Plan','pricing.html'],
+              ].map(([icon,label,href])=>`
+                <a href="${href}" style="display:flex;align-items:center;gap:var(--space-4);padding:var(--space-4);background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:var(--radius-lg);transition:all var(--transition-fast);color:var(--text-primary);" onmouseenter="this.style.borderColor='rgba(37,99,235,0.3)'" onmouseleave="this.style.borderColor='var(--border-color)'">
+                  <span style="font-size:1.15rem;">${icon}</span>
+                  <span style="font-size:var(--text-sm);font-weight:600;">${label}</span>
+                  <span style="margin-left:auto;color:var(--text-muted);">→</span>
+                </a>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+        <div class="card reveal-right">
+          <div class="card-body">
+            <h3 style="font-family:var(--font-heading);font-weight:700;margin-bottom:var(--space-5);">Activity Timeline</h3>
+            <div style="display:flex;flex-direction:column;gap:0;">
+              ${[
+                {icon:'✅',text:'Order ORD-7X9K2M completed',time:'7 days ago',color:'var(--success)'},
+                {icon:'📦',text:'Enterprise Dashboard downloaded',time:'7 days ago',color:'var(--info)'},
+                {icon:'✅',text:'Order ORD-3P8F4N completed',time:'14 days ago',color:'var(--success)'},
+                {icon:'🛒',text:'SaaS Landing Template purchased',time:'14 days ago',color:'var(--navy-400)'},
+                {icon:'👤',text:'Account created',time:'3 months ago',color:'var(--accent-teal)'},
+              ].map((item,i,arr)=>`
+                <div style="display:flex;gap:var(--space-3);padding-bottom:var(--space-4);${i<arr.length-1?'border-left:2px solid var(--border-color);margin-left:var(--space-3);padding-left:var(--space-4);':'padding-left:var(--space-4);margin-left:var(--space-3);'}position:relative;">
+                  <div style="position:absolute;left:-9px;top:0;width:16px;height:16px;background:${item.color};border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;">${item.icon}</div>
+                  <div>
+                    <div style="font-size:var(--text-sm);font-weight:500;">${item.text}</div>
+                    <div style="font-size:var(--text-xs);color:var(--text-muted);margin-top:2px;">${item.time}</div>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+    NexusAnimations.initScrollReveal();
+  });
+}
+</script>
+</body>
+</html>

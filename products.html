@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products — Nexus Platform</title>
+  <meta name="description" content="Browse 200+ premium digital products — templates, UI kits, SaaS starters, and more.">
+  <link rel="stylesheet" href="themes.css">
+  <link rel="stylesheet" href="animations.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .products-layout {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: var(--space-8);
+      padding: var(--space-10) 0 var(--space-20);
+    }
+    .sidebar-filter {
+      position: sticky;
+      top: calc(68px + var(--space-6));
+      height: fit-content;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      padding: var(--space-5);
+    }
+    .filter-section-title {
+      font-size: var(--text-xs);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: var(--space-3);
+      padding-bottom: var(--space-3);
+      border-bottom: 1px solid var(--border-color);
+    }
+    .sidebar-chip {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      padding: var(--space-2) var(--space-3);
+      border-radius: var(--radius-md);
+      font-size: var(--text-sm);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      user-select: none;
+    }
+    .sidebar-chip:hover { background: var(--bg-secondary); color: var(--text-primary); }
+    .sidebar-chip.active { background: rgba(37,99,235,0.1); color: var(--navy-400); font-weight: 600; }
+    .sidebar-chip-count {
+      margin-left: auto;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    .products-grid-area {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-5);
+      align-content: start;
+    }
+    .view-toggle-btn {
+      padding: var(--space-2);
+      border-radius: var(--radius-md);
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+    .view-toggle-btn.active { background: var(--navy-600); border-color: var(--navy-500); color: white; }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--space-5);
+      flex-wrap: wrap;
+      gap: var(--space-3);
+    }
+    @media (max-width: 1024px) {
+      .products-layout { grid-template-columns: 1fr; }
+      .sidebar-filter { position: static; display: none; }
+      .sidebar-filter.mobile-open { display: block; }
+      .products-grid-area { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .products-grid-area { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="container">
+    <div class="navbar-inner">
+      <a href="/" class="navbar-logo">
+        <div class="logo-mark">NX</div>
+        <span class="logo-text">Nexus</span>
+      </a>
+      <nav class="navbar-nav">
+        <a href="/" class="nav-link">Home</a>
+        <a href="products.html" class="nav-link active">Products</a>
+        <a href="services.html" class="nav-link">Services</a>
+        <a href="pricing.html" class="nav-link">Pricing</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+      <div class="navbar-actions">
+        <button class="theme-toggle" data-theme-toggle title="Toggle Theme">☀</button>
+        <button class="cart-btn" data-cart-toggle title="Cart">
+          🛒<span class="cart-count hidden">0</span>
+        </button>
+        <a href="dashboard.html" class="btn btn-secondary btn-sm">Dashboard</a>
+      </div>
+      <button class="menu-toggle" id="menu-toggle"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="/" class="mobile-nav-link">Home</a>
+    <a href="products.html" class="mobile-nav-link">Products</a>
+    <a href="services.html" class="mobile-nav-link">Services</a>
+    <a href="pricing.html" class="mobile-nav-link">Pricing</a>
+    <a href="contact.html" class="mobile-nav-link">Contact</a>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header" style="padding-top:calc(68px + var(--space-12));">
+  <div class="container">
+    <div class="page-header-content">
+      <div class="breadcrumb" style="margin-bottom:var(--space-4);">
+        <a href="/">Home</a>
+        <span class="breadcrumb-sep">›</span>
+        <span class="breadcrumb-current">Products</span>
+      </div>
+      <h1 class="page-header-title reveal">Premium Digital Products</h1>
+      <p class="page-header-subtitle reveal delay-100">200+ production-ready templates, UI kits, and tools for modern developers and designers.</p>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="container">
+  <div class="products-layout">
+
+    <!-- ── Sidebar Filter ── -->
+    <aside>
+      <div class="sidebar-filter" id="sidebar-filter">
+        <!-- Category -->
+        <div style="margin-bottom:var(--space-5);">
+          <div class="filter-section-title">Category</div>
+          <div class="sidebar-chip active" data-category="all">
+            <span>🏠</span> All Products
+            <span class="sidebar-chip-count">8</span>
+          </div>
+          <div class="sidebar-chip" data-category="Templates">
+            <span>📄</span> Templates
+            <span class="sidebar-chip-count">4</span>
+          </div>
+          <div class="sidebar-chip" data-category="UI Kits">
+            <span>🎨</span> UI Kits
+            <span class="sidebar-chip-count">3</span>
+          </div>
+          <div class="sidebar-chip" data-category="Bundles">
+            <span>📦</span> Bundles
+            <span class="sidebar-chip-count">1</span>
+          </div>
+        </div>
+
+        <!-- Price Range -->
+        <div style="margin-bottom:var(--space-5);">
+          <div class="filter-section-title">Price Range</div>
+          <div class="sidebar-chip active" data-price="all">
+            <span>💰</span> All Prices
+          </div>
+          <div class="sidebar-chip" data-price="0-79">
+            <span>💵</span> Under $80
+          </div>
+          <div class="sidebar-chip" data-price="80-149">
+            <span>💳</span> $80 – $149
+          </div>
+          <div class="sidebar-chip" data-price="150-999">
+            <span>💎</span> $150+
+          </div>
+        </div>
+
+        <!-- Sort -->
+        <div style="margin-bottom:var(--space-5);">
+          <div class="filter-section-title">Sort By</div>
+          <select class="form-input form-select" id="sort-select" style="font-size:var(--text-sm);">
+            <option value="featured">Featured</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+            <option value="rating">Highest Rated</option>
+            <option value="newest">Newest First</option>
+          </select>
+        </div>
+
+        <!-- Badges -->
+        <div>
+          <div class="filter-section-title">Special</div>
+          <div class="sidebar-chip" data-badge="bestseller"><span>🏆</span> Best Sellers</div>
+          <div class="sidebar-chip" data-badge="new"><span>✨</span> New Arrivals</div>
+          <div class="sidebar-chip" data-badge="sale"><span>🔥</span> On Sale</div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ── Products Area ── -->
+    <main>
+      <!-- Search & top bar -->
+      <div class="top-bar">
+        <div class="search-wrap" style="flex:1;max-width:360px;">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="product-search" class="form-input search-input" placeholder="Search products…">
+        </div>
+        <div style="display:flex;align-items:center;gap:var(--space-3);">
+          <span id="product-count" style="font-size:var(--text-sm);color:var(--text-muted);white-space:nowrap;">8 products</span>
+          <button class="view-toggle-btn active" id="grid-view-btn" title="Grid View">▦</button>
+          <button class="view-toggle-btn" id="list-view-btn" title="List View">☰</button>
+          <!-- Mobile filter toggle -->
+          <button class="btn btn-secondary btn-sm" id="mobile-filter-btn" style="display:none;">⚙ Filters</button>
+        </div>
+      </div>
+
+      <!-- Filter chips (mobile/top) -->
+      <div class="filter-bar" style="display:none;" id="top-filter-bar">
+        <div class="filter-chips">
+          <div class="filter-chip active" data-category="all">All</div>
+          <div class="filter-chip" data-category="Templates">Templates</div>
+          <div class="filter-chip" data-category="UI Kits">UI Kits</div>
+          <div class="filter-chip" data-category="Bundles">Bundles</div>
+        </div>
+      </div>
+
+      <!-- Grid -->
+      <div class="products-grid-area" id="products-grid">
+        <!-- Populated by JS -->
+        <div class="card skeleton" style="height:380px;"></div>
+        <div class="card skeleton" style="height:380px;"></div>
+        <div class="card skeleton" style="height:380px;"></div>
+        <div class="card skeleton" style="height:380px;"></div>
+        <div class="card skeleton" style="height:380px;"></div>
+        <div class="card skeleton" style="height:380px;"></div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- RECENTLY VIEWED -->
+<section style="padding:var(--space-16) 0;background:var(--bg-secondary);border-top:1px solid var(--border-color);" data-recently-section>
+  <div class="container">
+    <h2 style="font-family:var(--font-heading);font-size:var(--text-2xl);font-weight:700;margin-bottom:var(--space-8);">Recently Viewed</h2>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-5);" id="recently-viewed-grid"></div>
+  </div>
+</section>
+
+<!-- FOOTER MINI -->
+<footer style="background:var(--navy-900);border-top:1px solid rgba(59,130,246,0.1);padding:var(--space-6) 0;">
+  <div class="container">
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--space-4);">
+      <a href="/" class="navbar-logo"><div class="logo-mark">NX</div><span style="color:white;font-family:var(--font-heading);font-weight:800;margin-left:var(--space-3);">Nexus</span></a>
+      <p style="font-size:var(--text-sm);color:rgba(255,255,255,0.35);">© 2025 Nexus Platform · All rights reserved</p>
+      <div style="display:flex;gap:var(--space-5);">
+        <a href="pricing.html" style="font-size:var(--text-sm);color:rgba(255,255,255,0.45);">Pricing</a>
+        <a href="services.html" style="font-size:var(--text-sm);color:rgba(255,255,255,0.45);">Services</a>
+        <a href="dashboard.html" style="font-size:var(--text-sm);color:rgba(255,255,255,0.45);">Dashboard</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Cart Drawer -->
+<div class="cart-overlay" id="cart-overlay"></div>
+<div class="cart-drawer" id="cart-drawer">
+  <div class="cart-drawer-header">
+    <h3 class="cart-drawer-title">🛒 Your Cart</h3>
+    <button class="btn btn-ghost btn-icon" data-cart-close>✕</button>
+  </div>
+  <div class="cart-drawer-body" id="cart-drawer-body"></div>
+  <div class="cart-drawer-footer" id="cart-footer"></div>
+</div>
+<div class="toast-container" id="toast-container"></div>
+
+<script src="storage.js"></script>
+<script src="app.js"></script>
+<script src="animations.js"></script>
+<script src="products.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Sidebar category clicks
+  document.querySelectorAll('.sidebar-chip[data-category]').forEach(chip => {
+    chip.addEventListener('click', () => {
+      document.querySelectorAll('.sidebar-chip[data-category]').forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      // Trigger filter chip too
+      const productSearch = document.getElementById('product-search');
+      const sortSelect = document.getElementById('sort-select');
+      const result = NexusProducts.filterAndSort({
+        products: PRODUCTS,
+        category: chip.dataset.category,
+        sort: sortSelect?.value || 'featured',
+        search: productSearch?.value || '',
+      });
+      const count = document.getElementById('product-count');
+      if (count) count.textContent = `${result.length} products`;
+      NexusProducts.renderGrid(result, document.getElementById('products-grid'));
+      NexusProducts.initWishlistButtons();
+    });
+  });
+
+  // View toggle
+  document.getElementById('grid-view-btn')?.addEventListener('click', function() {
+    this.classList.add('active');
+    document.getElementById('list-view-btn')?.classList.remove('active');
+    document.getElementById('products-grid').style.gridTemplateColumns = 'repeat(3,1fr)';
+  });
+
+  document.getElementById('list-view-btn')?.addEventListener('click', function() {
+    this.classList.add('active');
+    document.getElementById('grid-view-btn')?.classList.remove('active');
+    document.getElementById('products-grid').style.gridTemplateColumns = '1fr';
+  });
+
+  // Mobile filter
+  const mobileFilterBtn = document.getElementById('mobile-filter-btn');
+  const sidebarFilter = document.getElementById('sidebar-filter');
+  if (window.innerWidth <= 1024) {
+    mobileFilterBtn.style.display = 'flex';
+    mobileFilterBtn?.addEventListener('click', () => {
+      sidebarFilter?.classList.toggle('mobile-open');
+    });
+  }
+
+  // Recently viewed
+  NexusProducts.renderRecentlyViewed('recently-viewed-grid');
+});
+</script>
+</body>
+</html>

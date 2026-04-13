@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing — Nexus Platform</title>
+  <meta name="description" content="Simple, transparent pricing for every stage. Starter, Pro, and Enterprise plans with a 14-day free trial.">
+  <link rel="stylesheet" href="themes.css">
+  <link rel="stylesheet" href="animations.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="pages.css">
+</head>
+<body class="page-wrapper">
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="container">
+    <div class="navbar-inner">
+      <a href="/" class="navbar-logo"><div class="logo-mark">NX</div><span class="logo-text">Nexus</span></a>
+      <nav class="navbar-nav">
+        <a href="/" class="nav-link">Home</a>
+        <a href="products.html" class="nav-link">Products</a>
+        <a href="services.html" class="nav-link">Services</a>
+        <a href="pricing.html" class="nav-link active">Pricing</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+      <div class="navbar-actions">
+        <button class="theme-toggle" data-theme-toggle>☀</button>
+        <button class="cart-btn" data-cart-toggle>🛒<span class="cart-count hidden">0</span></button>
+        <a href="dashboard.html" class="btn btn-primary btn-sm btn-ripple">Dashboard</a>
+      </div>
+      <button class="menu-toggle" id="menu-toggle"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="/" class="mobile-nav-link">Home</a>
+    <a href="products.html" class="mobile-nav-link">Products</a>
+    <a href="services.html" class="mobile-nav-link">Services</a>
+    <a href="pricing.html" class="mobile-nav-link">Pricing</a>
+    <a href="about.html" class="mobile-nav-link">About</a>
+    <a href="contact.html" class="mobile-nav-link">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="inner-hero">
+  <div class="inner-hero-glow"></div>
+  <div class="container">
+    <div class="inner-hero-content">
+      <div class="inner-hero-badge">💳 Pricing Plans</div>
+      <h1 class="inner-hero-title reveal">Simple Pricing,<br><span style="background:linear-gradient(135deg,#93C5FD,#0EA5E9);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">No Surprises</span></h1>
+      <p class="inner-hero-sub reveal delay-100">Start free. Scale as you grow. Every plan includes a 14-day trial with full access — no credit card required.</p>
+    </div>
+  </div>
+</div>
+
+<!-- BILLING TOGGLE -->
+<section style="padding:var(--space-12) 0 0;">
+  <div class="container">
+    <div class="pricing-toggle-wrap">
+      <span class="billing-label active" id="billing-monthly">Monthly</span>
+      <div class="billing-toggle" id="billing-toggle">
+        <div class="billing-toggle-knob"></div>
+      </div>
+      <span class="billing-label" id="billing-annual">Annual</span>
+      <span class="annual-badge" style="display:none;">Save up to 25%</span>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING CARDS -->
+<section style="padding:0 0 var(--space-16);">
+  <div class="container">
+    <div class="pricing-grid">
+
+      <!-- Starter -->
+      <div class="pricing-card reveal-scale">
+        <div class="pricing-tier">Starter</div>
+        <div class="pricing-price"><sup>$</sup><span id="price-starter">29</span></div>
+        <div class="price-period pricing-period">/ month</div>
+        <p class="pricing-desc">Perfect for freelancers and indie developers getting started with premium digital tools.</p>
+        <div class="pricing-divider"></div>
+        <div class="pricing-features">
+          <div class="pricing-feature"><div class="pricing-feature-icon included">✓</div> 5 product downloads/month</div>
+          <div class="pricing-feature"><div class="pricing-feature-icon included">✓</div> Access to Starter templates</div>
+          <div class="pricing-feature"><div class="pricing-feature-icon included">✓</div> Community support (48h SLA)</div>
+          <div class="pricing-feature"><div class="pricing-feature-icon included">✓</div> Basic dashboard access</div>
+          <div class="pricing-feature"><div class="pricing-feature-icon included">✓</div> Commercial use license</div>
+          <div class="pricing-feature"><div class="pricing-feature-icon excluded">–</div> Priority support</div>
+          <div class="pricing-feature"><div class="pricing-feature-icon excluded">–</div> Source files included</div>
+          <div class="pricing-feature"><div class="pricing-feature-icon excluded">–</div> Service discounts</div>
+          <div class="pricing-feature"><div class="pricing-feature-icon excluded">–</div> Team seats</div>
+        </div>
+        <a href="/pages/checkout.html" class="btn btn-secondary btn-ripple" style="width:100%;justify-content:center;">
+          Start Free Trial
+        </a>
+        <p style="text-align:center;font-size:11px;color:var(--text-muted);margin-top:var(--space-3);">No credit card required</p>
+      </div>
+
+      <!-- Pro (Featured) -->
+      <div class="pricing-card featured reveal-scale delay-200">
+        <div class="pricing-popular-badge">Most Popular</div>
+        <div class="pricing-tier">Pro</div>
+        <div class="pricing-price"><sup>$</sup><span id="price-pro">79</span></div>
+        <div class="price-period pricing-period">/ month</div>
+        <div class="annual-savings-badge" style="display:none;width:fit-content;margin-bottom:var(--space-3);">🎉 Save $240/year</div>
+        <p class="pricing-desc">For growing teams and agencies who need unlimited access to all products and services.</p>
+        <div class="pricing-divider"></div>
+        <div class="pricing-features">
+          <div class="pricing-feature"><div class="pricing-feature-icon included">✓</div> Unlimited product downloads</div>
+          <div class="pricing-feature"><div class="pricing-feature-icon included">✓</div> All templates & UI kits</div>
+          <div class="pricing-feature"><div class="pricing-feature-icon included">✓</div> Priority support (4h SLA)</div>
+          <div class="pricing-feature"><div class="pricing-feature-icon included">✓</div> Full dashboard features</div>
+          <div class="pricing-feature"><div class="pricing-feature-icon included">✓</div> Source files included</div>
+          <div class="pricing-feature"><div class="pricing-feature-icon included">✓</div> 20% off all services</div>
+          <div class="pricing-feature"><div class="pricing-feature-icon included">✓</div> Early access releases</div>
+          <div class="pricing-feature"><div class="pricing-feature-icon included">✓</div> 3 team seats</div>
+          <div class="pricing-feature"><div class="pricing-feature-icon excluded">–</div> Dedicated account manager</div>
+        </div>
+        <a href="/pages/checkout.html" class="btn btn-primary btn-ripple" style="width:100%;justify-content:center;background:linear-gradient(135deg,#1E4D8C,#3B82F6);">
+          Start Free Trial
+        </a>
+        <p style="text-align:center;font-size:11px;color:rgba(255,255,255,0.4);margin-top:var(--space-3);">No credit card required</p>
+      </div>
+
+      <!-- Enterprise -->
+      <div class="pricing-card reveal-scale delay-400">
+        <div class="pricing-tier">Enterprise</div>
+        <div class="pricing-price"><sup>$</sup><span id="price-enterprise">199</span></div>
+        <div class="price-period pricing-period">/ month</div>
+        <div class="annual-savings-badge" style="display:none;width:fit-content;margin-bottom:var(--space-3);">🎉 Save $600/year</div>
+        <p class="pricing-desc">For large teams and organizations requiring custom solutions, SLAs, and dedicated support.</p>
+        <div class="pricing-divider"></div>
+        <div class="pricing-features">
+          <div class="pricing-feature"><div class="pricing-feature-icon included">✓</div> Everything in Pro</div>
+          <div class="pricing-feature"><div class="pricing-feature-icon included">✓</div> Dedicated account manager</div>
+          <div class="pricing-feature"><div class="pricing-feature-icon included">✓</div> 1h SLA support guarantee</div>
+          <div class="pricing-feature"><div class="pricing-feature-icon included">✓</div> Custom contracts & NDAs</div>
+          <div class="pricing-feature"><div class="pricing-feature-icon included">✓</div> 10 team seats</div>
+          <div class="pricing-feature"><div class="pricing-feature-icon included">✓</div> Custom integrations</div>
+          <div class="pricing-feature"><div class="pricing-feature-icon included">✓</div> SSO & SAML support</div>
+          <div class="pricing-feature"><div class="pricing-feature-icon included">✓</div> Quarterly business reviews</div>
+          <div class="pricing-feature"><div class="pricing-feature-icon included">✓</div> Volume service discounts</div>
+        </div>
+        <a href="/pages/contact.html" class="btn btn-secondary btn-ripple" style="width:100%;justify-content:center;">
+          Contact Sales
+        </a>
+        <p style="text-align:center;font-size:11px;color:var(--text-muted);margin-top:var(--space-3);">Custom invoicing available</p>
+      </div>
+    </div>
+
+    <!-- Trust indicators -->
+    <div style="display:flex;align-items:center;justify-content:center;gap:var(--space-8);margin-top:var(--space-10);flex-wrap:wrap;">
+      <div style="display:flex;align-items:center;gap:var(--space-2);font-size:var(--text-sm);color:var(--text-muted);">✓ 14-day free trial</div>
+      <div style="display:flex;align-items:center;gap:var(--space-2);font-size:var(--text-sm);color:var(--text-muted);">✓ Cancel anytime</div>
+      <div style="display:flex;align-items:center;gap:var(--space-2);font-size:var(--text-sm);color:var(--text-muted);">✓ No hidden fees</div>
+      <div style="display:flex;align-items:center;gap:var(--space-2);font-size:var(--text-sm);color:var(--text-muted);">✓ Secure payments</div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON TABLE -->
+<section class="section" style="background:var(--bg-secondary);">
+  <div class="container">
+    <div class="text-center" style="margin-bottom:var(--space-12);">
+      <div class="section-badge reveal"><span class="badge-dot"></span> Compare Plans</div>
+      <h2 class="section-title reveal delay-100">Full Feature <span class="gradient-text">Comparison</span></h2>
+    </div>
+    <div class="reveal" style="overflow-x:auto;border-radius:var(--radius-xl);border:1px solid var(--border-color);">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th style="min-width:220px;">Feature</th>
+            <th><div class="compare-plan-header"><div class="compare-plan-name">Starter</div><div class="compare-plan-price" style="font-size:var(--text-base);">$29/mo</div></div></th>
+            <th style="background:rgba(37,99,235,0.06);"><div class="compare-plan-header"><div class="compare-plan-name" style="color:var(--navy-400);">Pro ⭐</div><div class="compare-plan-price" style="color:var(--navy-400);font-size:var(--text-base);">$79/mo</div></div></th>
+            <th><div class="compare-plan-header"><div class="compare-plan-name">Enterprise</div><div class="compare-plan-price" style="font-size:var(--text-base);">$199/mo</div></div></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td colspan="4" style="background:var(--bg-secondary);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-muted);padding:var(--space-3) var(--space-6);">Products & Downloads</td></tr>
+          <tr><td>Monthly Downloads</td><td>5</td><td style="background:rgba(37,99,235,0.04);">Unlimited</td><td>Unlimited</td></tr>
+          <tr><td>Template Library Access</td><td>Starter only</td><td style="background:rgba(37,99,235,0.04);">All templates</td><td>All templates</td></tr>
+          <tr><td>UI Kit Access</td><td class="compare-dash">–</td><td style="background:rgba(37,99,235,0.04);"><span class="compare-check">✓</span></td><td><span class="compare-check">✓</span></td></tr>
+          <tr><td>Source Files (Figma/etc.)</td><td class="compare-dash">–</td><td style="background:rgba(37,99,235,0.04);"><span class="compare-check">✓</span></td><td><span class="compare-check">✓</span></td></tr>
+          <tr><td>Early Access Releases</td><td class="compare-dash">–</td><td style="background:rgba(37,99,235,0.04);"><span class="compare-check">✓</span></td><td><span class="compare-check">✓</span></td></tr>
+          <tr><td colspan="4" style="background:var(--bg-secondary);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-muted);padding:var(--space-3) var(--space-6);">Support</td></tr>
+          <tr><td>Support Channel</td><td>Community</td><td style="background:rgba(37,99,235,0.04);">Priority Email</td><td>Dedicated Manager</td></tr>
+          <tr><td>Response SLA</td><td>48 hours</td><td style="background:rgba(37,99,235,0.04);">4 hours</td><td>1 hour</td></tr>
+          <tr><td>Onboarding Session</td><td class="compare-dash">–</td><td style="background:rgba(37,99,235,0.04);"><span class="compare-check">✓</span></td><td><span class="compare-check">✓</span></td></tr>
+          <tr><td>Quarterly Reviews</td><td class="compare-dash">–</td><td style="background:rgba(37,99,235,0.04);" class="compare-dash">–</td><td><span class="compare-check">✓</span></td></tr>
+          <tr><td colspan="4" style="background:var(--bg-secondary);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-muted);padding:var(--space-3) var(--space-6);">Services</td></tr>
+          <tr><td>Service Marketplace Access</td><td><span class="compare-check">✓</span></td><td style="background:rgba(37,99,235,0.04);"><span class="compare-check">✓</span></td><td><span class="compare-check">✓</span></td></tr>
+          <tr><td>Service Discount</td><td class="compare-dash">–</td><td style="background:rgba(37,99,235,0.04);">20%</td><td>35%</td></tr>
+          <tr><td>Custom Service Quotes</td><td class="compare-dash">–</td><td style="background:rgba(37,99,235,0.04);" class="compare-dash">–</td><td><span class="compare-check">✓</span></td></tr>
+          <tr><td colspan="4" style="background:var(--bg-secondary);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-muted);padding:var(--space-3) var(--space-6);">Team & Security</td></tr>
+          <tr><td>Team Seats</td><td>1</td><td style="background:rgba(37,99,235,0.04);">3</td><td>10</td></tr>
+          <tr><td>SSO / SAML</td><td class="compare-dash">–</td><td style="background:rgba(37,99,235,0.04);" class="compare-dash">–</td><td><span class="compare-check">✓</span></td></tr>
+          <tr><td>Custom Contracts / NDAs</td><td class="compare-dash">–</td><td style="background:rgba(37,99,235,0.04);" class="compare-dash">–</td><td><span class="compare-check">✓</span></td></tr>
+          <tr><td>Audit Logs</td><td class="compare-dash">–</td><td style="background:rgba(37,99,235,0.04);" class="compare-dash">–</td><td><span class="compare-check">✓</span></td></tr>
+          <tr>
+            <td></td>
+            <td style="padding:var(--space-5) var(--space-6);"><a href="/pages/checkout.html" class="btn btn-secondary btn-sm" style="width:100%;justify-content:center;">Get Started</a></td>
+            <td style="background:rgba(37,99,235,0.04);padding:var(--space-5) var(--space-6);"><a href="/pages/checkout.html" class="btn btn-primary btn-sm btn-ripple" style="width:100%;justify-content:center;">Get Started</a></td>
+            <td style="padding:var(--space-5) var(--space-6);"><a href="/pages/contact.html" class="btn btn-secondary btn-sm" style="width:100%;justify-content:center;">Contact Sales</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS STRIP -->
+<section class="section">
+  <div class="container">
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal-scale">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"We upgraded to Pro on day one and never looked back. The unlimited downloads alone paid for itself in the first week."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar" style="background:linear-gradient(135deg,#1B3A6B,#2563EB);">AK</div>
+          <div><div class="author-name">Amir Khan</div><div class="author-role">Freelance Developer</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal-scale delay-150">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"The annual plan discount sealed the deal. We're saving $960/year compared to monthly billing and getting everything we need."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar" style="background:linear-gradient(135deg,#0D9488,#059669);">JL</div>
+          <div><div class="author-name">Julia Lee</div><div class="author-role">Agency Owner</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal-scale delay-300">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"Enterprise support is worth every penny. Our dedicated account manager knows our stack and our goals — it feels like an extension of our team."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar" style="background:linear-gradient(135deg,#7C3AED,#6366F1);">DS</div>
+          <div><div class="author-name">Daniel Steele</div><div class="author-role">CTO, FinTech Startup</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" style="background:var(--bg-secondary);">
+  <div class="container">
+    <div class="text-center" style="margin-bottom:var(--space-12);">
+      <div class="section-badge reveal"><span class="badge-dot"></span> FAQ</div>
+      <h2 class="section-title reveal delay-100">Pricing <span class="gradient-text">Questions Answered</span></h2>
+    </div>
+    <div class="pricing-faq" data-accordion-group>
+      <div class="faq-item" data-pricing-faq data-accordion-item>
+        <div class="faq-question" data-accordion-trigger data-faq-q>Can I switch plans at any time?<div class="faq-icon accordion-icon">▼</div></div>
+        <div class="faq-answer accordion-content" data-accordion-content>Yes! You can upgrade, downgrade, or cancel your plan at any time from your dashboard. Upgrades take effect immediately and you'll be billed the prorated difference. Downgrades take effect at the end of your current billing period.</div>
+      </div>
+      <div class="faq-item" data-pricing-faq data-accordion-item>
+        <div class="faq-question" data-accordion-trigger data-faq-q>What happens after my free trial?<div class="faq-icon accordion-icon">▼</div></div>
+        <div class="faq-answer accordion-content" data-accordion-content>After your 14-day trial, you'll be prompted to enter payment details to continue. We'll never charge you without warning. If you don't subscribe, your account will be downgraded to read-only access — your downloaded products remain yours forever.</div>
+      </div>
+      <div class="faq-item" data-pricing-faq data-accordion-item>
+        <div class="faq-question" data-accordion-trigger data-faq-q>Do I own the products I download?<div class="faq-icon accordion-icon">▼</div></div>
+        <div class="faq-answer accordion-content" data-accordion-content>Yes. Once downloaded, products are yours permanently — even if you cancel your subscription. Products downloaded under a Pro or Enterprise plan include the source files and extended commercial license. You can use them in unlimited client projects.</div>
+      </div>
+      <div class="faq-item" data-pricing-faq data-accordion-item>
+        <div class="faq-question" data-accordion-trigger data-faq-q>Is there a one-time purchase option?<div class="faq-icon accordion-icon">▼</div></div>
+        <div class="faq-answer accordion-content" data-accordion-content>Absolutely. You can purchase individual products from our marketplace without a subscription. Individual product prices range from $49 to $299. A subscription makes sense if you plan to download 3+ products, as it's more cost-effective.</div>
+      </div>
+      <div class="faq-item" data-pricing-faq data-accordion-item>
+        <div class="faq-question" data-accordion-trigger data-faq-q>Do you offer non-profit or student discounts?<div class="faq-icon accordion-icon">▼</div></div>
+        <div class="faq-answer accordion-content" data-accordion-content>Yes! We offer 50% off for verified students and 30% off for registered non-profits. Contact us at hello@nexusplatform.io with proof of eligibility to receive your discount code. Open source maintainers also qualify for our free developer plan.</div>
+      </div>
+      <div class="faq-item" data-pricing-faq data-accordion-item>
+        <div class="faq-question" data-accordion-trigger data-faq-q>What's included in Enterprise support?<div class="faq-icon accordion-icon">▼</div></div>
+        <div class="faq-answer accordion-content" data-accordion-content>Enterprise includes a dedicated account manager who knows your team and tech stack, a 1-hour response SLA (24/7 for critical issues), private Slack channel access, quarterly business reviews, custom onboarding sessions, and priority feature requests.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOTTOM CTA -->
+<section class="section">
+  <div class="container">
+    <div style="background:linear-gradient(135deg,var(--navy-800),var(--navy-700));border:1px solid rgba(59,130,246,0.2);border-radius:var(--radius-2xl);padding:var(--space-16) var(--space-12);text-align:center;position:relative;overflow:hidden;" class="reveal-scale">
+      <div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(37,99,235,0.18),transparent 65%);pointer-events:none;"></div>
+      <div style="position:relative;z-index:1;">
+        <h2 style="font-size:clamp(1.75rem,4vw,3rem);font-weight:900;color:white;margin-bottom:var(--space-5);">Start Your Free Trial Today</h2>
+        <p style="font-size:var(--text-lg);color:rgba(255,255,255,0.6);max-width:480px;margin:0 auto var(--space-8);">No credit card needed. Full Pro access for 14 days. Cancel in one click.</p>
+        <div style="display:flex;gap:var(--space-4);justify-content:center;flex-wrap:wrap;">
+          <a href="/pages/checkout.html" class="btn btn-primary btn-lg btn-ripple" style="background:linear-gradient(135deg,#1E4D8C,#3B82F6);">Start Free Trial →</a>
+          <a href="/pages/contact.html" class="btn btn-secondary btn-lg" style="border-color:rgba(255,255,255,0.2);color:white;">Talk to Sales</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="full-footer">
+  <div class="container">
+    <div class="full-footer-grid">
+      <div>
+        <a href="/" class="navbar-logo" style="margin-bottom:var(--space-5);display:inline-flex;"><div class="logo-mark">NX</div><span style="color:white;font-family:var(--font-heading);font-weight:800;font-size:var(--text-xl);margin-left:var(--space-3);">Nexus</span></a>
+        <p style="font-size:var(--text-sm);color:rgba(255,255,255,0.45);max-width:260px;line-height:1.75;">The premium platform for digital products and professional services.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Product</div>
+        <div class="footer-links">
+          <a href="/pages/products.html" class="footer-link">Templates</a>
+          <a href="/pages/services.html" class="footer-link">Services</a>
+          <a href="/pages/pricing.html" class="footer-link">Pricing</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Company</div>
+        <div class="footer-links">
+          <a href="/pages/about.html" class="footer-link">About</a>
+          <a href="/pages/careers.html" class="footer-link">Careers</a>
+          <a href="/pages/contact.html" class="footer-link">Contact</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Legal</div>
+        <div class="footer-links">
+          <a href="/pages/privacy-policy.html" class="footer-link">Privacy Policy</a>
+          <a href="/pages/terms-of-service.html" class="footer-link">Terms of Service</a>
+          <a href="/pages/cookie-policy.html" class="footer-link">Cookie Policy</a>
+        </div>
+      </div>
+    </div>
+    <div style="padding-top:var(--space-8);border-top:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--space-4);">
+      <p style="font-size:var(--text-sm);color:rgba(255,255,255,0.3);">© 2025 Nexus Platform, Inc.</p>
+      <div style="display:flex;gap:var(--space-6);">
+        <a href="/pages/privacy-policy.html" class="footer-link" style="font-size:var(--text-sm);">Privacy</a>
+        <a href="/pages/terms-of-service.html" class="footer-link" style="font-size:var(--text-sm);">Terms</a>
+        <a href="/pages/cookie-policy.html" class="footer-link" style="font-size:var(--text-sm);">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="cart-overlay" id="cart-overlay"></div>
+<div class="cart-drawer" id="cart-drawer">
+  <div class="cart-drawer-header"><h3 class="cart-drawer-title">🛒 Cart</h3><button class="btn btn-ghost btn-icon" data-cart-close>✕</button></div>
+  <div class="cart-drawer-body" id="cart-drawer-body"></div>
+  <div class="cart-drawer-footer" id="cart-footer"></div>
+</div>
+<div class="toast-container" id="toast-container"></div>
+<div class="cookie-banner hidden" id="cookie-banner">
+  <div style="font-size:1.5rem;">🍪</div>
+  <div class="cookie-banner-text">We use cookies to enhance your experience. <a href="/pages/cookie-policy.html" style="color:var(--text-brand);">Learn more</a></div>
+  <div class="cookie-banner-actions">
+    <button class="btn btn-ghost btn-sm" id="cookie-manage">Manage</button>
+    <button class="btn btn-secondary btn-sm" id="cookie-accept-essential">Essential Only</button>
+    <button class="btn btn-primary btn-sm btn-ripple" id="cookie-accept-all">Accept All</button>
+  </div>
+</div>
+
+<script src="storage.js"></script>
+<script src="app.js"></script>
+<script src="animations.js"></script>
+<script src="pages.js"></script>
+</body>
+</html>

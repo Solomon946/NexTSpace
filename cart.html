@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart — Nexus Platform</title>
+  <link rel="stylesheet" href="themes.css">
+  <link rel="stylesheet" href="animations.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="container">
+    <div class="navbar-inner">
+      <a href="/" class="navbar-logo"><div class="logo-mark">NX</div><span class="logo-text">Nexus</span></a>
+      <nav class="navbar-nav">
+        <a href="/" class="nav-link">Home</a>
+        <a href="products.html" class="nav-link">Products</a>
+        <a href="services.html" class="nav-link">Services</a>
+        <a href="pricing" class="nav-link">Pricing</a>
+        <a href="contact" class="nav-link">Contact</a>
+      </nav>
+      <div class="navbar-actions">
+        <button class="theme-toggle" data-theme-toggle>☀</button>
+        <button class="cart-btn" data-cart-toggle>🛒<span class="cart-count hidden">0</span></button>
+        <a href="dashboard.html" class="btn btn-secondary btn-sm">Dashboard</a>
+      </div>
+      <button class="menu-toggle" id="menu-toggle"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="/" class="mobile-nav-link">Home</a>
+    <a href="products.html" class="mobile-nav-link">Products</a>
+    <a href="services.html" class="mobile-nav-link">Services</a>
+    <a href="pricing" class="mobile-nav-link">Pricing</a>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header" style="padding-top:calc(68px + var(--space-12));">
+  <div class="container">
+    <div class="page-header-content">
+      <div class="breadcrumb" style="margin-bottom:var(--space-4);">
+        <a href="/">Home</a><span class="breadcrumb-sep">›</span>
+        <a href="products.html">Products</a><span class="breadcrumb-sep">›</span>
+        <span class="breadcrumb-current">Cart</span>
+      </div>
+      <h1 class="page-header-title reveal">Shopping Cart</h1>
+      <p class="page-header-subtitle reveal delay-100">Review your items and proceed to secure checkout.</p>
+    </div>
+  </div>
+</div>
+
+<!-- CART CONTENT -->
+<div class="container" style="padding:var(--space-10) var(--space-6) var(--space-20);">
+  <div id="cart-page-root">
+    <div style="display:grid;grid-template-columns:1fr 360px;gap:var(--space-10);align-items:start;">
+      <div>
+        <div class="skeleton" style="height:120px;border-radius:var(--radius-xl);margin-bottom:var(--space-4);"></div>
+        <div class="skeleton" style="height:120px;border-radius:var(--radius-xl);margin-bottom:var(--space-4);"></div>
+        <div class="skeleton" style="height:120px;border-radius:var(--radius-xl);"></div>
+      </div>
+      <div class="skeleton" style="height:400px;border-radius:var(--radius-2xl);"></div>
+    </div>
+  </div>
+</div>
+
+<!-- TRUST BADGES -->
+<section style="padding:var(--space-12) 0;border-top:1px solid var(--border-color);background:var(--bg-secondary);">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-6);text-align:center;">
+      <div class="reveal-scale">
+        <div style="font-size:2rem;margin-bottom:var(--space-3);">🔒</div>
+        <div style="font-family:var(--font-heading);font-weight:700;font-size:var(--text-sm);margin-bottom:var(--space-2);">Secure Checkout</div>
+        <p style="font-size:var(--text-xs);color:var(--text-muted);">256-bit SSL encrypted transactions</p>
+      </div>
+      <div class="reveal-scale delay-100">
+        <div style="font-size:2rem;margin-bottom:var(--space-3);">⚡</div>
+        <div style="font-family:var(--font-heading);font-weight:700;font-size:var(--text-sm);margin-bottom:var(--space-2);">Instant Access</div>
+        <p style="font-size:var(--text-xs);color:var(--text-muted);">Download immediately after payment</p>
+      </div>
+      <div class="reveal-scale delay-200">
+        <div style="font-size:2rem;margin-bottom:var(--space-3);">♾</div>
+        <div style="font-family:var(--font-heading);font-weight:700;font-size:var(--text-sm);margin-bottom:var(--space-2);">Lifetime Updates</div>
+        <p style="font-size:var(--text-xs);color:var(--text-muted);">All future updates included free</p>
+      </div>
+      <div class="reveal-scale delay-300">
+        <div style="font-size:2rem;margin-bottom:var(--space-3);">💬</div>
+        <div style="font-family:var(--font-heading);font-weight:700;font-size:var(--text-sm);margin-bottom:var(--space-2);">12-Month Support</div>
+        <p style="font-size:var(--text-xs);color:var(--text-muted);">Priority support included with purchase</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MINI FOOTER -->
+<footer style="background:var(--navy-900);border-top:1px solid rgba(59,130,246,0.1);padding:var(--space-6) 0;">
+  <div class="container">
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--space-4);">
+      <a href="/" class="navbar-logo"><div class="logo-mark">NX</div><span style="color:white;font-family:var(--font-heading);font-weight:800;margin-left:var(--space-3);">Nexus</span></a>
+      <p style="font-size:var(--text-sm);color:rgba(255,255,255,0.35);">© 2025 Nexus Platform</p>
+      <div style="display:flex;gap:var(--space-5);">
+        <a href="/#" style="font-size:var(--text-sm);color:rgba(255,255,255,0.45);">Privacy</a>
+        <a href="/#" style="font-size:var(--text-sm);color:rgba(255,255,255,0.45);">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Cart Drawer -->
+<div class="cart-overlay" id="cart-overlay"></div>
+<div class="cart-drawer" id="cart-drawer">
+  <div class="cart-drawer-header">
+    <h3 class="cart-drawer-title">🛒 Your Cart</h3>
+    <button class="btn btn-ghost btn-icon" data-cart-close>✕</button>
+  </div>
+  <div class="cart-drawer-body" id="cart-drawer-body"></div>
+  <div class="cart-drawer-footer" id="cart-footer"></div>
+</div>
+<div class="toast-container" id="toast-container"></div>
+
+<script src="storage.js"></script>
+<script src="app.js"></script>
+<script src="animations.js"></script>
+<script src="cart.js"></script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Detail — Nexus Platform</title>
+  <link rel="stylesheet" href="themes.css">
+  <link rel="stylesheet" href="animations.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .detail-layout {
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: var(--space-12);
+      align-items: start;
+      padding: var(--space-10) 0 var(--space-20);
+    }
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-5);
+    }
+    .tab-bar {
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: var(--space-6);
+    }
+    .tab-trigger {
+      padding: var(--space-3) var(--space-6);
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      transition: all var(--transition-fast);
+      background: transparent;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+    }
+    .tab-trigger.active {
+      color: var(--text-brand);
+      border-bottom-color: var(--navy-500);
+    }
+    .tab-trigger:hover { color: var(--text-primary); }
+    @media (max-width: 1024px) {
+      .detail-layout { grid-template-columns: 1fr; }
+      .related-grid { grid-template-columns: repeat(2,1fr); }
+    }
+    @media (max-width: 640px) {
+      .related-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="container">
+    <div class="navbar-inner">
+      <a href="/" class="navbar-logo"><div class="logo-mark">NX</div><span class="logo-text">Nexus</span></a>
+      <nav class="navbar-nav">
+        <a href="/" class="nav-link">Home</a>
+        <a href="products.html" class="nav-link active">Products</a>
+        <a href="services.html" class="nav-link">Services</a>
+        <a href="pricing.html" class="nav-link">Pricing</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+      <div class="navbar-actions">
+        <button class="theme-toggle" data-theme-toggle>☀</button>
+        <button class="cart-btn" data-cart-toggle>🛒<span class="cart-count hidden">0</span></button>
+        <a href="dashboard.html" class="btn btn-secondary btn-sm">Dashboard</a>
+      </div>
+      <button class="menu-toggle" id="menu-toggle"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="/" class="mobile-nav-link">Home</a>
+    <a href="products.html" class="mobile-nav-link">Products</a>
+    <a href="services.html" class="mobile-nav-link">Services</a>
+    <a href="pricing.html" class="mobile-nav-link">Pricing</a>
+  </div>
+</nav>
+
+<!-- DETAIL ROOT -->
+<div style="padding-top:68px;">
+  <div id="product-detail">
+    <!-- Skeleton while loading -->
+    <div class="container">
+      <div class="detail-layout">
+        <div>
+          <div class="skeleton" style="height:400px;border-radius:var(--radius-2xl);margin-bottom:var(--space-8);"></div>
+          <div class="skeleton" style="height:24px;width:40%;border-radius:6px;margin-bottom:var(--space-4);"></div>
+          <div class="skeleton" style="height:40px;width:70%;border-radius:6px;margin-bottom:var(--space-4);"></div>
+          <div class="skeleton" style="height:16px;width:90%;border-radius:4px;margin-bottom:var(--space-3);"></div>
+          <div class="skeleton" style="height:16px;width:80%;border-radius:4px;margin-bottom:var(--space-3);"></div>
+          <div class="skeleton" style="height:16px;width:60%;border-radius:4px;"></div>
+        </div>
+        <div>
+          <div class="skeleton" style="height:480px;border-radius:var(--radius-2xl);"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Cart Drawer -->
+<div class="cart-overlay" id="cart-overlay"></div>
+<div class="cart-drawer" id="cart-drawer">
+  <div class="cart-drawer-header">
+    <h3 class="cart-drawer-title">🛒 Your Cart</h3>
+    <button class="btn btn-ghost btn-icon" data-cart-close>✕</button>
+  </div>
+  <div class="cart-drawer-body" id="cart-drawer-body"></div>
+  <div class="cart-drawer-footer" id="cart-footer"></div>
+</div>
+<div class="toast-container" id="toast-container"></div>
+
+<script src="storage.js"></script>
+<script src="app.js"></script>
+<script src="animations.js"></script>
+<script src="products.js"></script>
+</body>
+</html>

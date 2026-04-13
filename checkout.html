@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout — Nexus Platform</title>
+  <link rel="stylesheet" href="themes.css">
+  <link rel="stylesheet" href="animations.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .checkout-steps {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-bottom: var(--space-10);
+    }
+    .checkout-step {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+    .checkout-step.active { color: var(--text-brand); }
+    .checkout-step.done { color: var(--success); }
+    .step-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 2px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      flex-shrink: 0;
+      transition: all var(--transition-base);
+    }
+    .checkout-step.active .step-num {
+      background: var(--navy-500);
+      border-color: var(--navy-500);
+      color: white;
+    }
+    .checkout-step.done .step-num {
+      background: var(--success);
+      border-color: var(--success);
+      color: white;
+    }
+    .step-divider {
+      flex: 1;
+      height: 1px;
+      background: var(--border-color);
+      margin: 0 var(--space-3);
+      max-width: 80px;
+    }
+    .payment-method-tabs {
+      display: flex;
+      gap: var(--space-3);
+      margin-bottom: var(--space-5);
+    }
+    .pay-tab {
+      flex: 1;
+      padding: var(--space-3) var(--space-4);
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      text-align: center;
+      cursor: pointer;
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--text-secondary);
+      transition: all var(--transition-fast);
+      background: var(--bg-secondary);
+    }
+    .pay-tab.active {
+      border-color: var(--navy-500);
+      background: rgba(37,99,235,0.08);
+      color: var(--navy-400);
+    }
+    .pay-tab:hover { border-color: var(--border-strong); color: var(--text-primary); }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR (minimal) -->
+<nav class="navbar">
+  <div class="container">
+    <div class="navbar-inner">
+      <a href="/" class="navbar-logo"><div class="logo-mark">NX</div><span class="logo-text">Nexus</span></a>
+      <div style="flex:1;text-align:center;font-size:var(--text-sm);color:var(--text-muted);">
+        🔒 Secure Checkout
+      </div>
+      <div class="navbar-actions">
+        <button class="theme-toggle" data-theme-toggle>☀</button>
+        <a href="cart.html" class="btn btn-ghost btn-sm">← Back to Cart</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header" style="padding-top:calc(68px + var(--space-10));padding-bottom:var(--space-10);">
+  <div class="container">
+    <div class="page-header-content">
+      <div class="breadcrumb" style="margin-bottom:var(--space-4);">
+        <a href="/">Home</a><span class="breadcrumb-sep">›</span>
+        <a href="cart.html">Cart</a><span class="breadcrumb-sep">›</span>
+        <span class="breadcrumb-current">Checkout</span>
+      </div>
+      <div class="checkout-steps">
+        <div class="checkout-step done">
+          <div class="step-num">✓</div> Cart
+        </div>
+        <div class="step-divider"></div>
+        <div class="checkout-step active">
+          <div class="step-num">2</div> Payment
+        </div>
+        <div class="step-divider"></div>
+        <div class="checkout-step">
+          <div class="step-num">3</div> Confirmation
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CHECKOUT CONTENT -->
+<div class="container" style="padding:var(--space-10) var(--space-6) var(--space-20);">
+  <div id="checkout-root">
+    <!-- Skeleton -->
+    <div style="display:grid;grid-template-columns:1fr 380px;gap:var(--space-10);">
+      <div style="display:flex;flex-direction:column;gap:var(--space-5);">
+        <div class="skeleton" style="height:200px;border-radius:var(--radius-xl);"></div>
+        <div class="skeleton" style="height:260px;border-radius:var(--radius-xl);"></div>
+        <div class="skeleton" style="height:60px;border-radius:var(--radius-xl);"></div>
+      </div>
+      <div class="skeleton" style="height:460px;border-radius:var(--radius-2xl);"></div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER MINI -->
+<footer style="background:var(--navy-900);border-top:1px solid rgba(59,130,246,0.1);padding:var(--space-6) 0;">
+  <div class="container">
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--space-4);">
+      <div style="display:flex;align-items:center;gap:var(--space-3);">
+        <span style="font-size:var(--text-xs);color:rgba(255,255,255,0.3);">🔒 256-bit SSL</span>
+        <span style="font-size:var(--text-xs);color:rgba(255,255,255,0.3);">💳 PCI Compliant</span>
+        <span style="font-size:var(--text-xs);color:rgba(255,255,255,0.3);">⚡ Instant Delivery</span>
+      </div>
+      <p style="font-size:var(--text-sm);color:rgba(255,255,255,0.35);">© 2025 Nexus Platform · <a href="#" style="color:rgba(255,255,255,0.35);">Privacy</a> · <a href="#" style="color:rgba(255,255,255,0.35);">Terms</a></p>
+    </div>
+  </div>
+</footer>
+
+<div class="toast-container" id="toast-container"></div>
+
+<script src="storage.js"></script>
+<script src="app.js"></script>
+<script src="animations.js"></script>
+<script src="cart.js"></script>
+</body>
+</html>
