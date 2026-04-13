@@ -318,8 +318,8 @@ const PRODUCTS = [
     longDesc: 'Launch your online store instantly with this complete e-commerce frontend. Features product catalog, filters, cart drawer, checkout flow, and order tracking — all simulated client-side.',
     features: ['Product Catalog', 'Cart System', 'Checkout Flow', 'Filter & Search', 'Mobile Optimized', 'localStorage Integration'],
     tags: ['ecommerce', 'store', 'shop'],
-    color: 'from-teal-800 to-emerald-700',
-    image: '/images/e-commerce.png',
+    // color: 'from-teal-800 to-emerald-700',
+    image: './images/ecommerce.png',
     // emoji: '<i class="fa-solid fa-cart-shopping"></i>',
   },
   {
