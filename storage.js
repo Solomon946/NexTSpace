@@ -6,14 +6,14 @@
 const NexusStorage = (() => {
   const PREFIX = 'nexus_';
   const KEYS = {
-    CART:       'cart',
-    WISHLIST:   'wishlist',
-    ORDERS:     'orders',
-    USER:       'user',
-    RECENTLY:   'recently_viewed',
-    THEME:      'theme',
-    NOTIFS:     'notifications',
-    SETTINGS:   'settings',
+    CART: 'cart',
+    WISHLIST: 'wishlist',
+    ORDERS: 'orders',
+    USER: 'user',
+    RECENTLY: 'recently_viewed',
+    THEME: 'theme',
+    NOTIFS: 'notifications',
+    SETTINGS: 'settings',
   };
 
   // ── Core Helpers ──
@@ -225,9 +225,9 @@ const NexusStorage = (() => {
 
   function _defaultNotifs() {
     return [
-      { id: 1, read: false, type: 'order', title: 'Order Confirmed', message: 'Your order ORD-ABC123 has been confirmed.', date: new Date(Date.now()-3600000).toISOString() },
-      { id: 2, read: false, type: 'system', title: 'Welcome to Nexus!', message: 'Thanks for joining. Explore our premium products.', date: new Date(Date.now()-86400000).toISOString() },
-      { id: 3, read: true, type: 'promo', title: 'Special Offer', message: 'Get 20% off Pro plan this week only.', date: new Date(Date.now()-172800000).toISOString() },
+      { id: 1, read: false, type: 'order', title: 'Order Confirmed', message: 'Your order ORD-ABC123 has been confirmed.', date: new Date(Date.now() - 3600000).toISOString() },
+      { id: 2, read: false, type: 'system', title: 'Welcome to Nexus!', message: 'Thanks for joining. Explore our premium products.', date: new Date(Date.now() - 86400000).toISOString() },
+      { id: 3, read: true, type: 'promo', title: 'Special Offer', message: 'Get 20% off Pro plan this week only.', date: new Date(Date.now() - 172800000).toISOString() },
     ];
   }
 
@@ -235,21 +235,21 @@ const NexusStorage = (() => {
     const seed = [
       {
         id: 'ORD-7X9K2M',
-        date: new Date(Date.now() - 7*86400000).toISOString(),
+        date: new Date(Date.now() - 7 * 86400000).toISOString(),
         status: 'completed',
         total: 149,
         items: [{ name: 'Enterprise Dashboard Kit', qty: 1, price: 149 }],
       },
       {
         id: 'ORD-3P8F4N',
-        date: new Date(Date.now() - 14*86400000).toISOString(),
+        date: new Date(Date.now() - 14 * 86400000).toISOString(),
         status: 'completed',
         total: 79,
         items: [{ name: 'SaaS Landing Template', qty: 1, price: 79 }],
       },
       {
         id: 'ORD-5W2D9Q',
-        date: new Date(Date.now() - 30*86400000).toISOString(),
+        date: new Date(Date.now() - 30 * 86400000).toISOString(),
         status: 'processing',
         total: 299,
         items: [{ name: 'Full-Stack Web App', qty: 1, price: 299 }],
@@ -319,7 +319,8 @@ const PRODUCTS = [
     features: ['Product Catalog', 'Cart System', 'Checkout Flow', 'Filter & Search', 'Mobile Optimized', 'localStorage Integration'],
     tags: ['ecommerce', 'store', 'shop'],
     color: 'from-teal-800 to-emerald-700',
-    emoji: '🛒',
+    image: './images/e-commerce.png',
+    emoji: '<i class="fa-solid fa-cart-shopping"></i>',
   },
   {
     id: 'prod_004',
