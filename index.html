@@ -353,7 +353,24 @@
               <div style="font-size:11px;color:rgba(255,255,255,0.5);margin-bottom:var(--space-2);">
                 Recent Orders
               </div>
+
               <div id="recent-orders"></div>
+
+              <!-- ${[
+               {name:'Enterprise Dashboard Kit', price:'$149', status:'✅'},
+              {name:'SaaS Landing Page Pro', price:'$79', status:'⏳'},
+              {name:'UI Component Library', price:'$199', status:'✅'},
+              ].map(o=>`
+              <div
+                style="display:flex;align-items:center;justify-content:space-between;padding:var(--space-2) 0;border-bottom:1px solid rgba(59,130,246,0.1);">
+                <span
+                  style="font-size:11px;color:rgba(255,255,255,0.7);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:160px;">${o.name}</span>
+                <div style="display:flex;align-items:center;gap:var(--space-2);">
+                  <span style="font-size:11px;font-weight:700;color:white;">${o.price}</span>
+                  <span style="font-size:11px;">${o.status}</span>
+                </div>
+              </div>
+              `).join('')}  -->
             </div>
           </div>
 
@@ -568,12 +585,12 @@
 ═══════════════════════════════════════ -->
   <section class="section">
     <div class="container">
-      <div class="text-center" style="margin-bottom:var(--space-16);">
+      <div class="text-center" style="margin-bottom:var(--space-10);">
         <div class="section-badge reveal"><span class="badge-dot"></span> How It Works</div>
         <h2 class="section-title reveal delay-100">Get Started in<br><span class="gradient-text">Three Simple
             Steps</span></h2>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-8);position:relative;">
+      <div style="display:grid;grid-template-columns:1fr;gap:var(--space-8);position:relative;">
         <!-- Connecting line -->
         <div
           style="position:absolute;top:28px;left:calc(16.67% + 20px);right:calc(16.67% + 20px);height:2px;background:linear-gradient(90deg,var(--navy-600),var(--navy-400));border-radius:2px;"
@@ -905,7 +922,7 @@
 ═══════════════════════════════════════ -->
   <section class="section" id="contact" style="background:var(--bg-secondary);">
     <div class="container">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-16);align-items:start;">
+      <div style="display:grid;grid-template-columns:1fr;gap:var(--space-8);align-items:start;">
         <div>
           <div class="section-badge reveal"><span class="badge-dot"></span> Get In Touch</div>
           <h2 class="section-title reveal delay-100" style="text-align:left;max-width:none;">Have Questions?<br><span
@@ -1129,6 +1146,11 @@
 `).join('');
 
     document.getElementById('contact-info').innerHTML = html;
+
+
+
+
+
 
     document.addEventListener("DOMContentLoaded", () => {
 
