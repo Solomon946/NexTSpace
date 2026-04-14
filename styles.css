@@ -34,12 +34,16 @@ body {
 
 /* ── Grid Background ── */
 body::before {
-   background-color: var(--bg-primary);
+  content: '';
+  position: fixed;
+  inset: 0;
   background-image:
     linear-gradient(var(--grid-color) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
   background-size: 48px 48px;
-  background-attachment: fixed; /* stays fixed while scrolling */
+  pointer-events: none;
+  z-index: var(--z-behind);
+  opacity: 1;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -2115,7 +2119,7 @@ ul { list-style: none; }
 }
 
 @media (max-width: 480px) {
-  .container { padding: 0 var(--space-4); }
+  /* .container { padding: 0 var(--space-4); } */
   .section-title { font-size: var(--text-2xl); }
   .hero-title { font-size: 2.25rem; }
   .stats-section { grid-template-columns: 1fr; }
