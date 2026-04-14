@@ -34,16 +34,12 @@ body {
 
 /* ── Grid Background ── */
 body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
+   background-color: var(--bg-primary);
   background-image:
     linear-gradient(var(--grid-color) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
   background-size: 48px 48px;
-  pointer-events: none;
-  z-index: var(--z-behind);
-  opacity: 1;
+  background-attachment: fixed; /* stays fixed while scrolling */
 }
 
 h1, h2, h3, h4, h5, h6 {
