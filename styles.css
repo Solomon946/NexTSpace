@@ -34,8 +34,6 @@ body {
 
 /* ── Grid Background ── */
 body::before {
-  width: 100vw;
-  height: 100vh;
   content: '';
   position: fixed;
   inset: 0;
@@ -45,9 +43,7 @@ body::before {
   background-size: 48px 48px;
   pointer-events: none;
   z-index: var(--z-behind);
-  top: 0;
-  left: 0;
-  /* opacity: 1; */
+  opacity: 1;
 }
 
 h1, h2, h3, h4, h5, h6 {
