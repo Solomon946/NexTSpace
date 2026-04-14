@@ -32,7 +32,7 @@ body {
   min-height: 100vh;
 }
 
-/* ── Grid Background ── */
+/* ── Grid Background ──
 body::before {
   content: '';
   position: fixed;
@@ -44,7 +44,7 @@ body::before {
   pointer-events: none;
   z-index: var(--z-behind);
   opacity: 1;
-}
+} */
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
@@ -2148,64 +2148,4 @@ ul { list-style: none; }
 ::selection {
   background: rgba(37,99,235,0.2);
   color: var(--text-primary);
-}
-/* ===== RESPONSIVE NAVBAR FIX ===== */
-
-/* Show hamburger menu on tablet & mobile */
-@media (max-width: 1024px) {
-  .menu-toggle {
-    display: flex;
-  }
-
-  /* Hide desktop buttons */
-  .navbar-actions a.btn {
-    display: none;
-  }
-}
-
-/* Tablet & Mobile adjustments */
-@media (max-width: 768px) {
-
-  /* Resize icons */
-  .cart-btn,
-  .theme-toggle {
-    width: 34px;
-    height: 34px;
-    font-size: 0.9rem;
-  }
-
-  /* Cart badge */
-  .cart-count {
-    min-width: 16px;
-    height: 16px;
-    font-size: 9px;
-  }
-
-  /* Reduce spacing */
-  .navbar-actions {
-    gap: 8px;
-  }
-}
-
-/* Small mobile devices */
-@media (max-width: 480px) {
-  .cart-btn,
-  .theme-toggle {
-    width: 32px;
-    height: 32px;
-  }
-
-  .navbar-actions {
-    gap: 6px;
-  }
-}
-
-/* Prevent overflow issues */
-.navbar {
-  overflow-x: hidden;
-}
-
-.navbar-actions {
-  flex-wrap: nowrap;
-  gap: var(--space-2);
 }
