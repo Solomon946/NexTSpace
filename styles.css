@@ -32,7 +32,7 @@ body {
   min-height: 100vh;
 }
 
-/* ── Grid Background ──
+/* ── Grid Background ── */
 body::before {
   content: '';
   position: fixed;
@@ -40,11 +40,11 @@ body::before {
   background-image:
     linear-gradient(var(--grid-color) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
-  background-size: 48px 48px;
+  background-size: 32px 32px;
   pointer-events: none;
   z-index: var(--z-behind);
   opacity: 1;
-} */
+} 
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
