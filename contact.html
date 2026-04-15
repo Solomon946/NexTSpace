@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
+
 <head>
-    <meta charset="UTF-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description"
     content="The premium SaaS platform for digital products, templates, and professional services. Build faster, ship smarter.">
@@ -20,10 +21,284 @@
   <link rel="stylesheet" href="themes.css">
   <link rel="stylesheet" href="animations.css">
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="pages.css">
-</head>
-<body class="page-wrapper">
+  <!-- <link rel="stylesheet" href="responsive.css"> -->
+  <style>
+    /* ── Index-specific styles ── */
+    .hero-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-16);
+      align-items: center;
+      min-height: calc(100vh - 68px);
+      padding: var(--space-16) 0;
+    }
 
+    .trusted-bar {
+      padding: var(--space-8) 0;
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+      background: var(--bg-secondary);
+    }
+
+    .trusted-logos {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-10);
+      flex-wrap: wrap;
+    }
+
+    .trusted-logo {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: var(--text-sm);
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+      opacity: 0.6;
+      transition: opacity var(--transition-fast);
+    }
+
+    .trusted-logo:hover {
+      opacity: 1;
+    }
+
+    .products-showcase {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-5);
+    }
+
+    .cta-section {
+      background: linear-gradient(135deg, var(--navy-800) 0%, var(--navy-700) 50%, var(--navy-800) 100%);
+      border: 1px solid rgba(59, 130, 246, 0.2);
+      border-radius: var(--radius-2xl);
+      padding: var(--space-16) var(--space-12);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 0%, rgba(37, 99, 235, 0.2) 0%, transparent 60%);
+    }
+
+    .services-grid-home {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-6);
+    }
+
+    .service-card-home {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      padding: var(--space-6);
+      transition: all var(--transition-base);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card-home::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--navy-600), var(--navy-400));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--transition-base);
+    }
+
+    .service-card-home:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-xl);
+    }
+
+    .service-card-home:hover::after {
+      transform: scaleX(1);
+    }
+
+    .hero-dash-topbar {
+      background: rgba(10, 22, 40, 0.9);
+      padding: var(--space-3) var(--space-4);
+      border-bottom: 1px solid rgba(59, 130, 246, 0.15);
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+    }
+
+    .hero-dash-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .hero-dash-content {
+      padding: var(--space-5);
+    }
+
+    .hero-stat-mini {
+      background: rgba(37, 99, 235, 0.1);
+      border: 1px solid rgba(37, 99, 235, 0.2);
+      border-radius: var(--radius-lg);
+      padding: var(--space-4);
+      text-align: center;
+    }
+
+    @media (max-width: 1024px) {
+      .hero-split {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-visual {
+        display: none;
+      }
+
+      .products-showcase {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .services-grid-home {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .products-showcase {
+        grid-template-columns: 1fr;
+      }
+
+      .services-grid-home {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* GLOBAL FIX */
+    * {
+      box-sizing: border-box;
+      max-width: 100%;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 16px;
+    }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 60px 0;
+    }
+
+    .hero-split {
+      display: grid;
+      /* grid-template-columns: 1fr 1fr; */
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero-title {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 800;
+    }
+
+    .hero-subtitle {
+      margin-top: 16px;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .hero-actions {
+      margin-top: 20px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      /* padding: 12px 18px; */
+      /* border-radius: 8px; */
+      text-decoration: none;
+      /* display: inline-block; */
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--navy-600) 0%, var(--navy-500) 100%);
+      color: white;
+      box-shadow: 0 4px 16px rgba(37, 99, 235, 0.35);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-primary);
+      border: 1.5px solid var(--border-strong);
+      backdrop-filter: blur(8px);
+    }
+
+    /* DASHBOARD */
+    .hero-visual {
+      max-width: 100%;
+      /* overflow: hidden; */
+      position: relative;
+      z-index: 1;
+      animation: fadeInRight 0.9s ease 0.5s both;
+    }
+
+    .hero-dashboard {
+      background: rgba(13, 27, 53, 0.85);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(59, 130, 246, 0.2);
+      border-radius: var(--radius-2xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-xl), 0 0 80px rgba(37, 99, 235, 0.15);
+      animation: float 6s ease-in-out infinite;
+      padding: 20px;
+    }
+
+    .hero-dash-topbar {
+      background: rgba(10, 22, 40, 0.9);
+      padding: var(--space-3) var(--space-4);
+      border-bottom: 1px solid rgba(59, 130, 246, 0.15);
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+    }
+
+    .hero-dash-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .hero-dash-content {
+      padding: var(--space-5);
+    }
+
+    .hero-stat-mini {
+      background: rgba(37, 99, 235, 0.1);
+      border: 1px solid rgba(37, 99, 235, 0.2);
+      border-radius: var(--radius-lg);
+      padding: var(--space-4);
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
   <!-- ═══════════════════════════════════════
      NAVBAR
 ═══════════════════════════════════════ -->
@@ -36,12 +311,12 @@
         </a>
 
         <nav class="navbar-nav">
-          <a href="/" class="nav-link">Home</a>
+          <a href="/" class="nav-link active">Home</a>
           <a href="products.html" class="nav-link">Products</a>
           <a href="services.html" class="nav-link">Services</a>
           <a href="pricing.html" class="nav-link">Pricing</a>
           <a href="about.html" class="nav-link">About</a>
-          <a href="contact.html" class="nav-link active">Contact</a>
+          <a href="contact.html" class="nav-link">Contact</a>
         </nav>
 
         <div class="navbar-actions">
@@ -75,269 +350,786 @@
       </div>
     </div>
   </nav>
-<!-- HERO -->
-<div class="inner-hero">
-  <div class="inner-hero-glow"></div>
-  <div class="container">
-    <div class="inner-hero-content">
-      <div class="inner-hero-badge"><i class="fa-solid fa-envelope"></i> Contact Us</div>
-      <h1 class="inner-hero-title reveal">We'd Love to<br><span style="background:linear-gradient(135deg,#93C5FD,#0EA5E9);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Hear From You</span></h1>
-      <p class="inner-hero-sub reveal delay-100">Whether you have a question, a project idea, or just want to say hello — our team responds to every message within 24 hours.</p>
-    </div>
-  </div>
-</div>
 
-<!-- MAIN CONTACT GRID -->
-<div class="container">
-  <div class="contact-grid">
+  <!-- ═══════════════════════════════════════
+     HERO SECTION
+═══════════════════════════════════════ -->
+  <section class="hero" id="home">
+    <!-- <div class="hero-bg-grid"></div> -->
+    <div class="hero-blob-1"></div>
+    <div class="hero-blob-2"></div>
 
-    <!-- Left: Info + Map -->
-    <div>
-      <h2 style="font-family:var(--font-heading);font-size:var(--text-2xl);font-weight:800;margin-bottom:var(--space-6);" class="reveal">Contact Information</h2>
-
-      <div class="contact-info-card reveal">
-        <div class="contact-info-icon"><i class="fa-solid fa-envelope"></i></div>
-        <div>
-          <div class="contact-info-label">Email Address</div>
-          <div class="contact-info-value">hello@nextspaceplatform.io</div>
-          <div class="contact-info-note">We respond within 24 hours</div>
-        </div>
-      </div>
-
-      <div class="contact-info-card reveal delay-100">
-        <div class="contact-info-icon"><i class="fa-solid fa-message"></i></div>
-        <div>
-          <div class="contact-info-label">Live Chat</div>
-          <div class="contact-info-value">Available in your dashboard</div>
-          <div class="contact-info-note">Mon–Fri, 9am–6pm IST · Avg 4 min response</div>
-        </div>
-      </div>
-
-      <div class="contact-info-card reveal delay-200">
-        <div class="contact-info-icon"><i class="fa-solid fa-phone"></i></div>
-        <div>
-          <div class="contact-info-label">Phone (Enterprise)</div>
-          <div class="contact-info-value">+91 98321 45678</div>
-          <div class="contact-info-note">Enterprise plan customers only</div>
-        </div>
-      </div>
-
-      <div class="contact-info-card reveal delay-300">
-        <div class="contact-info-icon"><i class="fa-solid fa-building"></i></div>
-        <div>
-          <div class="contact-info-label">Headquarters</div>
-          <div class="contact-info-value">Candor Techspace, Newtwon</div>
-          <div class="contact-info-note">Kolkata, WB 700001, India</div>
-        </div>
-      </div>
-
-      <div class="contact-info-card reveal delay-400">
-        <div class="contact-info-icon"><i class="fa-solid fa-earth-asia"></i></div>
-        <div>
-          <div class="contact-info-label">NexT's Office</div>
-          <div class="contact-info-value">Techspace, Kolkata</div>
-          <div class="contact-info-note">Kolkata, WB 700001, India</div>
-        </div>
-      </div>
-
-      <!-- Social links -->
-      <div class="reveal delay-500" style="margin-top:var(--space-6);">
-        <div style="font-size:var(--text-xs);font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-muted);margin-bottom:var(--space-4);">Follow Us</div>
-        <div style="display:flex;gap:var(--space-3);">
-          <button class="social-btn" style="width:44px;height:44px;" title="Twitter/X"><i class="fa-brands fa-twitter"></i></button>
-          <button class="social-btn" style="width:44px;height:44px;" title="GitHub"><i class="fa-brands fa-facebook"></i></button>
-          <button class="social-btn" style="width:44px;height:44px;" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></button>
-          <button class="social-btn" style="width:44px;height:44px;" title="YouTube"><i class="fa-brands fa-youtube"></i></button>
-          <button class="social-btn" style="width:44px;height:44px;" title="Discord"><i class="fa-brands fa-instagram"></i></button>
-        </div>
-      </div>
-
-      <!-- Map placeholder -->
-    <!-- Map -->
-<div class="map-placeholder reveal delay-100">
-
-  <div class="map-box">
-    <iframe
-      src="https://www.google.com/maps?q=22.5731399,88.4785234&z=15&output=embed"
-      loading="lazy"
-      referrerpolicy="no-referrer-when-downgrade">
-    </iframe>
-  </div>
-
-  <!-- Info -->
-  <div class="map-info">
-    <div class="map-icon">
-      <i class="fa-solid fa-location-arrow"></i>
-    </div>
-
-    <div class="map-title">Kolkata, West Bengal</div>
-    <div class="map-subtitle">Techspace, Newtown</div>
-
-    <a href="https://www.google.com/maps?q=22.5731399,88.4785234"
-       target="_blank"
-       class="btn btn-secondary btn-sm">
-       Open in Maps →
-    </a>
-  </div>
-
-</div>
-    </div>
-
-    <!-- Right: Form -->
-    <div class="contact-form-card reveal-right">
-      <h2 style="font-family:var(--font-heading);font-size:var(--text-2xl);font-weight:800;margin-bottom:var(--space-2);">Send a Message</h2>
-      <p style="font-size:var(--text-sm);color:var(--text-secondary);margin-bottom:var(--space-6);">Fill out the form and we'll get back to you within one business day.</p>
-
-      <form id="main-contact-form" style="display:flex;flex-direction:column;gap:var(--space-5);">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);">
-          <div class="form-group">
-            <label class="form-label">First Name *</label>
-            <input type="text" class="form-input" data-validate="required" placeholder="Leo">
-            <span class="form-error">First name is required</span>
+    <div class="container">
+      <div class="hero-split">
+        <!-- Left content -->
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="hero-badge-dot"></span>
+            New — v2.0 just launched
           </div>
-          <div class="form-group">
-            <label class="form-label">Last Name *</label>
-            <input type="text" class="form-input" data-validate="required" placeholder="Mondal">
-            <span class="form-error">Last name is required</span>
+
+          <h1 class="hero-title">
+            <span class="line-1">Build Better.</span><br>
+            <span class="line-2">Ship <span class="highlight">Faster.</span></span><br>
+            <span class="line-3">Grow Smarter.</span>
+          </h1>
+
+          <p class="hero-subtitle">
+            The all-in-one platform for premium digital products, professional services, and SaaS tools. Trusted by
+            12,000+ developers and agencies worldwide.
+          </p>
+
+          <div class="hero-actions">
+            <a href="products.html" class="btn btn-primary btn-lg btn-ripple">
+              <i class="fa-solid fa-rocket"></i> Explore Products
+            </a>
+            <a href="services.html" class="btn btn-secondary btn-lg">
+              <i class="fa-solid fa-cog"></i> View Services
+            </a>
+          </div>
+
+          <div class="hero-stats">
+            <div>
+              <div class="hero-stat-value" data-counter data-target="1000" data-suffix="+">1,000+</div>
+              <div class="hero-stat-label">Happy Customers</div>
+            </div>
+            <div>
+              <div class="hero-stat-value" data-counter data-target="20" data-suffix="+">20+</div>
+              <div class="hero-stat-label">Premium Products</div>
+            </div>
+            <div>
+              <div class="hero-stat-value" data-counter data-target="92" data-suffix="%">92%</div>
+              <div class="hero-stat-label">Satisfaction Rate</div>
+            </div>
           </div>
         </div>
 
-        <div class="form-group">
-          <label class="form-label">Work Email *</label>
-          <input type="email" class="form-input" data-validate="required,email" placeholder="Leo@nextspace.com">
-          <span class="form-error">A valid email address is required</span>
-        </div>
+        <!-- Right: Dashboard mockup -->
+        <div class="hero-visual">
+          <div class="hero-dashboard">
+            <div class="hero-dash-topbar">
+              <div class="hero-dash-dot" style="background:#EF4444;"></div>
+              <div class="hero-dash-dot" style="background:#F59E0B;"></div>
+              <div class="hero-dash-dot" style="background:#10B981;"></div>
+              <span
+                style="font-family:var(--font-mono);font-size:11px;color:rgba(255,255,255,0.4);margin-left:auto;">nexus.dashboard</span>
+            </div>
+            <div class="hero-dash-content">
+              <div
+                style="display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-3);margin-bottom:var(--space-4);">
+                <div class="hero-stat-mini">
+                  <div style="font-size:var(--text-xs);color:rgba(255,255,255,0.5);margin-bottom:4px;">Revenue</div>
+                  <div style="font-family:var(--font-heading);font-size:var(--text-lg);font-weight:800;color:white;">
+                    $48.2k</div>
+                  <div style="font-size:10px;color:#10B981;margin-top:2px;">↑ +18%</div>
+                </div>
+                <div class="hero-stat-mini">
+                  <div style="font-size:var(--text-xs);color:rgba(255,255,255,0.5);margin-bottom:4px;">Orders</div>
+                  <div style="font-family:var(--font-heading);font-size:var(--text-lg);font-weight:800;color:white;">
+                    1,284</div>
+                  <div style="font-size:10px;color:#10B981;margin-top:2px;">↑ +24%</div>
+                </div>
+                <div class="hero-stat-mini">
+                  <div style="font-size:var(--text-xs);color:rgba(255,255,255,0.5);margin-bottom:4px;">Clients</div>
+                  <div style="font-family:var(--font-heading);font-size:var(--text-lg);font-weight:800;color:white;">892
+                  </div>
+                  <div style="font-size:10px;color:#10B981;margin-top:2px;">↑ +7%</div>
+                </div>
+              </div>
+              <!-- Mini chart bars -->
+              <div
+                style="background:rgba(37,99,235,0.08);border:1px solid rgba(37,99,235,0.15);border-radius:var(--radius-lg);padding:var(--space-4);margin-bottom:var(--space-3);">
+                <div style="font-size:11px;color:rgba(255,255,255,0.5);margin-bottom:var(--space-3);">Monthly Revenue
+                </div>
+                <div style="display:flex;align-items:flex-end;gap:var(--space-2);height:60px;">
+                  <div style="width:14px;background:rgba(37,99,235,0.4);border-radius:3px 3px 0 0;height:40%;"></div>
+                  <div style="width:14px;background:rgba(37,99,235,0.4);border-radius:3px 3px 0 0;height:55%;"></div>
+                  <div style="width:14px;background:rgba(37,99,235,0.4);border-radius:3px 3px 0 0;height:45%;"></div>
+                  <div style="width:14px;background:rgba(37,99,235,0.5);border-radius:3px 3px 0 0;height:70%;"></div>
+                  <div style="width:14px;background:rgba(37,99,235,0.5);border-radius:3px 3px 0 0;height:60%;"></div>
+                  <div style="width:14px;background:rgba(37,99,235,0.5);border-radius:3px 3px 0 0;height:80%;"></div>
+                  <div style="width:14px;background:#2563EB;border-radius:3px 3px 0 0;height:75%;"></div>
+                  <div style="width:14px;background:#3B82F6;border-radius:3px 3px 0 0;height:90%;"></div>
+                  <div
+                    style="width:14px;background:#3B82F6;border-radius:3px 3px 0 0;height:100%;box-shadow:0 0 8px rgba(59,130,246,0.5);">
+                  </div>
+                </div>
+              </div>
+              <!-- Recent orders mini -->
+              <!-- Recent orders mini -->
+              <div style="font-size:11px;color:rgba(255,255,255,0.5);margin-bottom:var(--space-2);">
+                Recent Orders
+              </div>
 
-        <div class="form-group">
-          <label class="form-label">Company / Organization</label>
-          <input type="text" class="form-input" placeholder="NexTSpace Corporation. (optional)">
-        </div>
+              <div id="recent-orders"></div>
 
-        <div class="form-group">
-          <label class="form-label">Phone Number</label>
-          <input type="tel" class="form-input" placeholder="+91 98321 45678 (optional)">
-        </div>
+              <!-- ${[
+               {name:'Enterprise Dashboard Kit', price:'$149', status:'✅'},
+              {name:'SaaS Landing Page Pro', price:'$79', status:'⏳'},
+              {name:'UI Component Library', price:'$199', status:'✅'},
+              ].map(o=>`
+              <div
+                style="display:flex;align-items:center;justify-content:space-between;padding:var(--space-2) 0;border-bottom:1px solid rgba(59,130,246,0.1);">
+                <span
+                  style="font-size:11px;color:rgba(255,255,255,0.7);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:160px;">${o.name}</span>
+                <div style="display:flex;align-items:center;gap:var(--space-2);">
+                  <span style="font-size:11px;font-weight:700;color:white;">${o.price}</span>
+                  <span style="font-size:11px;">${o.status}</span>
+                </div>
+              </div>
+              `).join('')}  -->
+            </div>
+          </div>
 
-        <div class="form-group">
-          <label class="form-label">Topic *</label>
-          <select class="form-input form-select" data-validate="required">
-            <option value="">Select a topic…</option>
-            <option>Product Inquiry</option>
-            <option>Custom Development Service</option>
-            <option>Enterprise Pricing</option>
-            <option>Technical Support</option>
-            <option>Partnership / Collab</option>
-            <option>Press / Media</option>
-            <option>Other</option>
-          </select>
-          <span class="form-error">Please select a topic</span>
+          <!-- Floating badge 1 -->
+          <div
+            style="position:absolute;top:-20px;right:-20px;background:rgba(16,185,129,0.15);border:1px solid rgba(16,185,129,0.3);border-radius:var(--radius-xl);padding:var(--space-3) var(--space-4);backdrop-filter:blur(12px);animation:floatSlow 5s ease-in-out 0.5s infinite;">
+            <div style="font-size:11px;color:#10B981;font-weight:700;">✓ New order received</div>
+            <div style="font-size:10px;color:rgba(255,255,255,0.5);margin-top:2px;">Enterprise Dashboard Kit · $149
+            </div>
+          </div>
+          <!-- Floating badge 2 -->
+          <div
+            style="position:absolute;bottom:-15px;left:-25px;background:rgba(37,99,235,0.15);border:1px solid rgba(37,99,235,0.3);border-radius:var(--radius-xl);padding:var(--space-3) var(--space-4);backdrop-filter:blur(12px);animation:floatSlow 6s ease-in-out 1.5s infinite;">
+            <div style="font-size:11px;color:var(--navy-300);font-weight:700;">⭐ 4.9/5 · 1,200+ Reviews</div>
+          </div>
         </div>
-
-        <div class="form-group">
-          <label class="form-label">Message *</label>
-          <textarea class="form-input form-textarea" data-validate="required" placeholder="Tell us how we can help. Include any relevant details about your project, timeline, or budget…" style="min-height:140px;"></textarea>
-          <span class="form-error">Please enter your message</span>
-        </div>
-
-        <!-- Budget (optional) -->
-        <div class="form-group">
-          <label class="form-label">Budget Range (if applicable)</label>
-          <select class="form-input form-select">
-            <option value="">Not applicable</option>
-            <option>Under $1,000</option>
-            <option>$1,000 – $5,000</option>
-            <option>$5,000 – $15,000</option>
-            <option>$15,000 – $50,000</option>
-            <option>$50,000+</option>
-          </select>
-        </div>
-
-        <!-- Consent -->
-        <div style="display:flex;align-items:flex-start;gap:var(--space-3);">
-          <input type="checkbox" id="contact-consent" required style="margin-top:3px;accent-color:var(--navy-500);cursor:pointer;">
-          <label for="contact-consent" style="font-size:var(--text-xs);color:var(--text-secondary);line-height:1.6;cursor:pointer;">
-            I agree to Nexus's <a href="/pages/privacy-policy.html" style="color:var(--text-brand);">Privacy Policy</a> and consent to being contacted about my inquiry. I understand my data will be handled securely.
-          </label>
-        </div>
-
-        <button type="submit" class="btn btn-primary btn-lg btn-ripple" style="justify-content:center;width:100%;">
-          Send Message →
-        </button>
-
-        <div style="display:flex;align-items:center;justify-content:center;gap:var(--space-3);font-size:var(--text-xs);color:var(--text-muted);">
-          <span>🔒 SSL Encrypted</span>
-          <span>·</span>
-          <span>⏱ Response within 24h</span>
-          <span>·</span>
-          <span>🚫 No spam, ever</span>
-        </div>
-      </form>
+      </div>
     </div>
-  </div>
-</div>
+  </section>
 
-<!-- ALTERNATIVES STRIP -->
-<section class="connect-section">
+  <!-- ═══════════════════════════════════════
+     TRUSTED BY
+═══════════════════════════════════════ -->
+  <section class="trusted-bar">
+    <div class="container">
+      <p
+        style="text-align:center;font-size:var(--text-xs);color:var(--text-muted);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:var(--space-5);">
+        Trusted by teams at</p>
+      <div class="trusted-logos">
+        <span class="trusted-logo">TECHFLOW</span>
+        <span class="trusted-logo">BUILDCRAFT</span>
+        <span class="trusted-logo">DEVSTUDIO</span>
+        <span class="trusted-logo">PIXELWORKS</span>
+        <span class="trusted-logo">CLOUDNINE</span>
+        <span class="trusted-logo">STACKHUB</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+     FEATURES
+═══════════════════════════════════════ -->
+  <section class="section" id="features">
+    <div class="container">
+      <div class="text-center" style="margin-bottom:var(--space-16);">
+        <div class="section-badge reveal"><span class="badge-dot"></span> Features</div>
+        <h2 class="section-title reveal delay-100">Everything You Need to<br><span class="gradient-text">Build &
+            Scale</span></h2>
+        <p class="section-subtitle reveal delay-200">A complete ecosystem of tools, templates, and services designed for
+          modern development teams and digital creators.</p>
+      </div>
+
+      <div class="features-grid" data-stagger="100">
+        <div class="feature-card reveal-scale">
+          <div class="feature-icon"><i class="fa-solid fa-bolt"></i></div>
+          <h3 class="feature-title">Instant Delivery</h3>
+          <p class="feature-desc">Download your digital products instantly after purchase. No waiting, no friction —
+            just immediate access to premium assets.</p>
+        </div>
+        <div class="feature-card reveal-scale">
+          <div class="feature-icon"><i class="fa-solid fa-paint-brush"></i></div>
+          <h3 class="feature-title">Premium Design</h3>
+          <p class="feature-desc">Every product is crafted with pixel-perfect precision. Professional-grade UI
+            components and templates that stand out.</p>
+        </div>
+        <div class="feature-card reveal-scale">
+          <div class="feature-icon"><i class="fa-solid fa-sync"></i></div>
+          <h3 class="feature-title">Lifetime Updates</h3>
+          <p class="feature-desc">Pay once, benefit forever. All products include lifetime access and continuous updates
+            as web standards evolve.</p>
+        </div>
+        <div class="feature-card reveal-scale">
+          <div class="feature-icon"><i class="fa-solid fa-lock"></i></div>
+          <h3 class="feature-title">Secure Payments</h3>
+          <p class="feature-desc">Industry-standard 256-bit SSL encryption. Your transactions are protected with
+            enterprise-grade security protocols.</p>
+        </div>
+        <div class="feature-card reveal-scale">
+          <div class="feature-icon"><i class="fa-solid fa-comment"></i></div>
+          <h3 class="feature-title">Expert Support</h3>
+          <p class="feature-desc">Access our team of professional developers and designers. Priority support tickets
+            answered within 4 hours.</p>
+        </div>
+        <div class="feature-card reveal-scale">
+          <div class="feature-icon"><i class="fa-solid fa-chart-bar"></i></div>
+          <h3 class="feature-title">Analytics Dashboard</h3>
+          <p class="feature-desc">Track your purchases, monitor service progress, and manage all orders through a
+            beautiful unified dashboard.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+     STATS
+═══════════════════════════════════════ -->
+  <section class="section-sm">
+    <div class="container">
+      <div class="stats-section reveal">
+        <div class="stat-item">
+          <div class="stat-item-value" data-counter data-target="1000" data-suffix="+">1,000+</div>
+          <div class="stat-item-label">Happy Customers</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-item-value" data-counter data-target="20" data-suffix="+">20+</div>
+          <div class="stat-item-label">Products & Templates</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-item-value" data-counter data-target="8" data-suffix="+">8+</div>
+          <div class="stat-item-label">Professional Services</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-item-value" data-counter data-target="92" data-suffix="%">92%</div>
+          <div class="stat-item-label">Satisfaction Rate</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+     FEATURED PRODUCTS
+═══════════════════════════════════════ -->
+  <section class="section" id="products">
+    <div class="container">
+      <div
+        style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:var(--space-12);flex-wrap:wrap;gap:var(--space-4);">
+        <div>
+          <div class="section-badge reveal"><span class="badge-dot"></span> Featured Products</div>
+          <h2 class="section-title reveal delay-100" style="margin-bottom:0;">Our Best-Selling<br><span
+              class="gradient-text">Digital Products</span></h2>
+        </div>
+        <a href="products.html" class="btn btn-secondary reveal delay-200">View All Products →</a>
+      </div>
+
+      <div class="products-showcase" id="home-products-grid">
+        <!-- Filled by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+     SERVICES SECTION
+═══════════════════════════════════════ -->
+  <section class="section" id="services" style="background:var(--bg-secondary);">
+    <div class="container">
+      <div class="text-center" style="margin-bottom:var(--space-16);">
+        <div class="section-badge reveal"><span class="badge-dot"></span> Professional Services</div>
+        <h2 class="section-title reveal delay-100">Expert Services to<br><span class="gradient-text">Accelerate Your
+            Vision</span></h2>
+        <p class="section-subtitle reveal delay-200">From custom development to ongoing maintenance, our expert team
+          delivers results that exceed expectations.</p>
+      </div>
+
+      <div class="services-grid-home">
+        <div class="service-card-home reveal-scale">
+          <div style="font-size:2.5rem;margin-bottom:var(--space-4);"><i class="fa-solid fa-gear"></i></div>
+          <h3
+            style="font-family:var(--font-heading);font-weight:700;font-size:var(--text-lg);margin-bottom:var(--space-3);">
+            Custom Development</h3>
+          <p style="font-size:var(--text-sm);color:var(--text-secondary);line-height:1.7;margin-bottom:var(--space-5);">
+            Full-stack applications built with modern frameworks. From MVPs to enterprise platforms.</p>
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span style="font-family:var(--font-heading);font-size:var(--text-xl);font-weight:800;">From $1,500</span>
+            <a href="services.html?id=svc_001" class="btn btn-primary btn-sm btn-ripple">Get Started</a>
+          </div>
+        </div>
+        <div class="service-card-home reveal-scale delay-100">
+          <div style="font-size:2.5rem;margin-bottom:var(--space-4);"><i class="fa-solid fa-palette"></i></div>
+          <h3
+            style="font-family:var(--font-heading);font-weight:700;font-size:var(--text-lg);margin-bottom:var(--space-3);">
+            UI/UX Design</h3>
+          <p style="font-size:var(--text-sm);color:var(--text-secondary);line-height:1.7;margin-bottom:var(--space-5);">
+            Design systems, brand identity, and component libraries that convert visitors into customers.</p>
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span style="font-family:var(--font-heading);font-size:var(--text-xl);font-weight:800;">From $800</span>
+            <a href="services.html?id=svc_002" class="btn btn-primary btn-sm btn-ripple">Get Started</a>
+          </div>
+        </div>
+        <div class="service-card-home reveal-scale delay-200">
+          <div style="font-size:2.5rem;margin-bottom:var(--space-4);"><i class="fa-solid fa-shield-alt"></i></div>
+          <h3
+            style="font-family:var(--font-heading);font-weight:700;font-size:var(--text-lg);margin-bottom:var(--space-3);">
+            Maintenance Plans</h3>
+          <p style="font-size:var(--text-sm);color:var(--text-secondary);line-height:1.7;margin-bottom:var(--space-5);">
+            Monthly retainer plans for updates, security patches, monitoring, and priority support.</p>
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span style="font-family:var(--font-heading);font-size:var(--text-xl);font-weight:800;">$299/mo</span>
+            <a href="services.html?id=svc_004" class="btn btn-primary btn-sm btn-ripple">Get Started</a>
+          </div>
+        </div>
+        <!-- <div class="service-card-home reveal-scale delay-100">
+          <div style="font-size:2.5rem;margin-bottom:var(--space-4);"><i class="fa-brands fa-hubspot"></i></div>
+          <h3
+            style="font-family:var(--font-heading);font-weight:700;font-size:var(--text-lg);margin-bottom:var(--space-3);">
+            Automation Softwares</h3>
+          <p style="font-size:var(--text-sm);color:var(--text-secondary);line-height:1.7;margin-bottom:var(--space-5);">
+            Streamline your workflow with our automation solutions. Reduce manual tasks and increase productivity.</p>
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span style="font-family:var(--font-heading);font-size:var(--text-xl);font-weight:800;">From $999</span>
+            <a href="services.html?id=svc_002" class="btn btn-primary btn-sm btn-ripple">Get Started</a>
+          </div>
+        </div> -->
+      </div>
+
+      <div class="text-center" style="margin-top:var(--space-10);">
+        <a href="services.html" class="btn btn-secondary btn-lg">View All Services →</a>
+      </div>
+    </div>
+  </section>
+  <!-- ═══════════════════════════════════════
+     HOW IT WORKS
+═══════════════════════════════════════ -->
+ <section class="section">
   <div class="container">
-
-    <div class="text-center connect-header">
-      <h2 class="connect-title reveal">Other Ways to Connect</h2>
-      <p class="connect-subtitle reveal delay-100">
-        Choose the channel that works best for you.
-      </p>
+    <div class="text-center" style="margin-bottom:var(--space-10);">
+      <div class="section-badge reveal">
+        <span class="badge-dot"></span> How It Works
+      </div>
+      <h2 class="section-title reveal delay-100">
+        Get Started in<br>
+        <span class="gradient-text">Three Simple Steps</span>
+      </h2>
     </div>
 
-    <div class="connect-grid">
+    <div class="steps-grid">
+      <!-- Connecting Line -->
+      <div class="step-line"></div>
 
-      <!-- CARD 1 -->
-      <div class="card connect-card reveal-scale"
-        onclick="NexusApp.Toast.info('Discord','Joining our Discord community…')">
-
-        <div class="connect-icon"><i class="fa-brands fa-discord"></i></div>
-        <h3 class="connect-card-title">Join Discord</h3>
-
-        <p class="connect-card-text">
-          Real-time chat with the NexTSpace team and 3,000+ community members.
-          Get help, share work, discuss ideas.
+      <!-- Step 1 -->
+      <div class="step-item text-center reveal-scale">
+        <div class="step-circle">1</div>
+        <h3 class="step-title">Browse & Choose</h3>
+        <p class="step-desc">
+          Explore 20+ premium products and services. Filter by category, price, or rating to find exactly what you need.
         </p>
-
-        <div class="btn btn-secondary btn-sm">Join Community →</div>
       </div>
 
-      <!-- CARD 2 -->
-      <div class="card connect-card reveal-scale delay-150"
-        onclick="NexusApp.Toast.info('Documentation','Opening docs…')">
-
-        <div class="connect-icon"><i class="fa-solid fa-file"></i></div>
-        <h3 class="connect-card-title">Browse Docs</h3>
-
-        <p class="connect-card-text">
-          Comprehensive documentation, guides, API references, and video tutorials
-          for every NexTSpace product.
+      <!-- Step 2 -->
+      <div class="step-item text-center reveal-scale delay-200">
+        <div class="step-circle">2</div>
+        <h3 class="step-title">Secure Checkout</h3>
+        <p class="step-desc">
+          Complete your purchase with encrypted checkout and multiple payment methods.
         </p>
-
-        <div class="btn btn-secondary btn-sm">Open Docs →</div>
       </div>
 
-      <!-- CARD 3 -->
-      <div class="card connect-card reveal-scale delay-300"
-        onclick="NexusApp.Toast.info('GitHub','Opening GitHub…')">
-
-        <div class="connect-icon"><i class="fa-brands fa-github"></i></div>
-        <h3 class="connect-card-title">GitHub Issues</h3>
-
-        <p class="connect-card-text">
-          Found a bug? Have a feature request? Open an issue on GitHub and our
-          engineering team will respond.
+      <!-- Step 3 -->
+      <div class="step-item text-center reveal-scale delay-400">
+        <div class="step-circle">3</div>
+        <h3 class="step-title">Download & Build</h3>
+        <p class="step-desc">
+          Access your products instantly with lifetime updates and support.
         </p>
-
-        <div class="btn btn-secondary btn-sm">GitHub →</div>
       </div>
-
     </div>
   </div>
 </section>
 
+  <!-- ═══════════════════════════════════════
+     TESTIMONIALS
+═══════════════════════════════════════ -->
+  <section class="section" style="background:var(--bg-secondary);">
+    <div class="container">
+      <div class="text-center" style="margin-bottom:var(--space-16);">
+        <div class="section-badge reveal"><span class="badge-dot"></span> Testimonials</div>
+        <h2 class="section-title reveal delay-100">Loved by <span class="gradient-text">12,000+</span> Customers</h2>
+        <p class="section-subtitle reveal delay-200">Don't just take our word for it — hear from the developers,
+          designers, and founders who build with Nexus every day.</p>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card reveal-scale">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"The Enterprise Dashboard Kit saved our team weeks of work. The code quality is
+            exceptional and the design system is exactly what we needed for our SaaS product."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" style="background:linear-gradient(135deg,#1B3A6B,#2563EB);">JK</div>
+            <div>
+              <div class="author-name">James Kim</div>
+              <div class="author-role">CTO at Cloudbase Inc</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal-scale delay-150">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"We used the custom development service to build our entire platform. The team
+            delivered ahead of schedule and the communication was fantastic throughout."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" style="background:linear-gradient(135deg,#0D9488,#059669);">SR</div>
+            <div>
+              <div class="author-name">Sophia Reynolds</div>
+              <div class="author-role">Founder, Launchpad Studio</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal-scale delay-300">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"The UI Component Library is insanely good. 200+ components, all production-ready
+            with perfect documentation. It's become a core part of our design workflow."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" style="background:linear-gradient(135deg,#7C3AED,#6366F1);">MP</div>
+            <div>
+              <div class="author-name">Marcus Patel</div>
+              <div class="author-role">Lead Designer, PixelCraft</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+     PRICING
+═══════════════════════════════════════ -->
+  <section class="section" id="pricing">
+    <div class="container">
+      <div class="text-center" style="margin-bottom:var(--space-16);">
+        <div class="section-badge reveal"><span class="badge-dot"></span> Pricing</div>
+        <h2 class="section-title reveal delay-100">Simple, Transparent<br><span class="gradient-text">Pricing</span>
+        </h2>
+        <p class="section-subtitle reveal delay-200">One-time purchases with no hidden fees. Upgrade your plan anytime
+          to unlock more features and services.</p>
+      </div>
+
+      <div class="pricing-grid">
+        <!-- Basic -->
+        <div class="pricing-card reveal-scale">
+          <div class="pricing-tier">Starter</div>
+          <div class="pricing-price"><sup>$</sup>29</div>
+          <div class="pricing-period">per month</div>
+          <p class="pricing-desc">Perfect for freelancers and indie developers getting started with premium tools.</p>
+          <div class="pricing-divider"></div>
+          <div class="pricing-features">
+            <div class="pricing-feature">
+              <div class="pricing-feature-icon included">✓</div> 5 product downloads/month
+            </div>
+            <div class="pricing-feature">
+              <div class="pricing-feature-icon included">✓</div> Basic templates access
+            </div>
+            <div class="pricing-feature">
+              <div class="pricing-feature-icon included">✓</div> Email support
+            </div>
+            <div class="pricing-feature">
+              <div class="pricing-feature-icon included">✓</div> Community access
+            </div>
+            <div class="pricing-feature">
+              <div class="pricing-feature-icon excluded">–</div> Priority support
+            </div>
+            <div class="pricing-feature">
+              <div class="pricing-feature-icon excluded">–</div> Source files included
+            </div>
+          </div>
+          <a href="products.html" class="btn btn-secondary btn-ripple" style="width:100%;justify-content:center;">Get
+            Started</a>
+        </div>
+
+        <!-- Pro (Featured) -->
+        <div class="pricing-card featured reveal-scale delay-200">
+          <div class="pricing-popular-badge">Most Popular</div>
+          <div class="pricing-tier">Pro</div>
+          <div class="pricing-price"><sup>$</sup>79</div>
+          <div class="pricing-period">per month</div>
+          <p class="pricing-desc">For growing teams and agencies who need unlimited access to all premium products and
+            services.</p>
+          <div class="pricing-divider"></div>
+          <div class="pricing-features">
+            <div class="pricing-feature">
+              <div class="pricing-feature-icon included">✓</div> Unlimited downloads
+            </div>
+            <div class="pricing-feature">
+              <div class="pricing-feature-icon included">✓</div> All products & templates
+            </div>
+            <div class="pricing-feature">
+              <div class="pricing-feature-icon included">✓</div> Priority support (4h)
+            </div>
+            <div class="pricing-feature">
+              <div class="pricing-feature-icon included">✓</div> Source files included
+            </div>
+            <div class="pricing-feature">
+              <div class="pricing-feature-icon included">✓</div> 20% service discount
+            </div>
+            <div class="pricing-feature">
+              <div class="pricing-feature-icon included">✓</div> Early access releases
+            </div>
+          </div>
+          <a href="checkout.html" class="btn btn-primary btn-ripple"
+            style="width:100%;justify-content:center;background:linear-gradient(135deg,#1E4D8C,#3B82F6);">Start Pro
+            Plan</a>
+        </div>
+
+        <!-- Enterprise -->
+        <div class="pricing-card reveal-scale delay-400">
+          <div class="pricing-tier">Enterprise</div>
+          <div class="pricing-price"><sup>$</sup>199</div>
+          <div class="pricing-period">per month</div>
+          <p class="pricing-desc">For large teams and enterprises requiring custom solutions, dedicated support, and
+            team management.</p>
+          <div class="pricing-divider"></div>
+          <div class="pricing-features">
+            <div class="pricing-feature">
+              <div class="pricing-feature-icon included">✓</div> Everything in Pro
+            </div>
+            <div class="pricing-feature">
+              <div class="pricing-feature-icon included">✓</div> Dedicated account manager
+            </div>
+            <div class="pricing-feature">
+              <div class="pricing-feature-icon included">✓</div> Custom contracts
+            </div>
+            <div class="pricing-feature">
+              <div class="pricing-feature-icon included">✓</div> Team seats (10 users)
+            </div>
+            <div class="pricing-feature">
+              <div class="pricing-feature-icon included">✓</div> SLA guarantee
+            </div>
+            <div class="pricing-feature">
+              <div class="pricing-feature-icon included">✓</div> Custom integrations
+            </div>
+          </div>
+          <a href="#contact" class="btn btn-secondary btn-ripple" style="width:100%;justify-content:center;">Contact
+            Sales</a>
+        </div>
+      </div>
+
+      <div class="text-center" style="margin-top:var(--space-10);">
+        <p style="font-size:var(--text-sm);color:var(--text-muted);">All plans include a 14-day free trial. No credit
+          card required. Cancel anytime.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+     FAQ
+═══════════════════════════════════════ -->
+  <section class="section" style="background:var(--bg-secondary);" id="faq">
+    <div class="container">
+      <div class="text-center" style="margin-bottom:var(--space-12);">
+        <div class="section-badge reveal"><span class="badge-dot"></span> FAQ</div>
+        <h2 class="section-title reveal delay-100">Frequently Asked <span class="gradient-text">Questions</span></h2>
+      </div>
+
+      <div class="faq-list" data-accordion-group>
+        <div class="faq-item" data-accordion-item>
+          <div class="faq-question" data-accordion-trigger>
+            What types of digital products do you sell?
+            <div class="faq-icon accordion-icon"><i class="fa-solid fa-angle-down"></i></div>
+          </div>
+          <div class="faq-answer accordion-content" data-accordion-content>
+            We sell a wide range of premium digital products including website templates, UI component libraries, SaaS
+            starter kits, admin dashboards, portfolio themes, e-commerce templates, and mobile app UI kits. All products
+            are production-ready and fully documented.
+          </div>
+        </div>
+        <div class="faq-item" data-accordion-item>
+          <div class="faq-question" data-accordion-trigger>
+            Do I get lifetime access after purchasing?
+            <div class="faq-icon accordion-icon"><i class="fa-solid fa-angle-down"></i></div>
+          </div>
+          <div class="faq-answer accordion-content" data-accordion-content>
+            Yes! All one-time purchases include lifetime access to the product and all future updates. We continuously
+            improve our products based on customer feedback and evolving web standards.
+          </div>
+        </div>
+        <div class="faq-item" data-accordion-item>
+          <div class="faq-question" data-accordion-trigger>
+            How does the service booking process work?
+            <div class="faq-icon accordion-icon"><i class="fa-solid fa-angle-down"></i></div>
+          </div>
+          <div class="faq-answer accordion-content" data-accordion-content>
+            After submitting a service request, our team reviews your requirements within 1 business day. We'll send a
+            detailed proposal with timeline and pricing. Once approved, we begin work immediately with regular progress
+            updates through your dashboard.
+          </div>
+        </div>
+        <div class="faq-item" data-accordion-item>
+          <div class="faq-question" data-accordion-trigger>
+            What payment methods do you accept?
+            <div class="faq-icon accordion-icon"><i class="fa-solid fa-angle-down"></i></div>
+          </div>
+          <div class="faq-answer accordion-content" data-accordion-content>
+            We accept all major credit cards (Visa, Mastercard, American Express), PayPal, and bank transfers for
+            enterprise orders. All transactions are secured with 256-bit SSL encryption.
+          </div>
+        </div>
+        <div class="faq-item" data-accordion-item>
+          <div class="faq-question" data-accordion-trigger>
+            Can I use the products for commercial projects?
+            <div class="faq-icon accordion-icon"><i class="fa-solid fa-angle-down"></i></div>
+          </div>
+          <div class="faq-answer accordion-content" data-accordion-content>
+            Absolutely. All products come with a commercial use license. You can use them in client projects, SaaS
+            products, or any commercial application. The Pro and Enterprise plans also include extended licensing for
+            large-scale deployment.
+          </div>
+        </div>
+        <div class="faq-item" data-accordion-item>
+          <div class="faq-question" data-accordion-trigger>
+            Do you offer refunds?
+            <div class="faq-icon accordion-icon"><i class="fa-solid fa-angle-down"></i></div>
+          </div>
+          <div class="faq-answer accordion-content" data-accordion-content>
+            Due to the digital nature of our products, we don't offer refunds after download. However, if you experience
+            any issues with a product not matching its description, please contact our support team and we'll work to
+            resolve it promptly.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+     CTA SECTION
+═══════════════════════════════════════ -->
+  <section class="section">
+    <div class="container">
+      <div class="cta-section reveal-scale">
+        <div style="position:relative;z-index:1;">
+          <div class="section-badge"
+            style="border-color:rgba(59,130,246,0.4);background:rgba(37,99,235,0.15);color:var(--navy-200);margin:0 auto var(--space-6);">
+            <span class="badge-dot"></span> Limited Time Offer
+          </div>
+          <h2
+            style="font-size:clamp(2rem,5vw,3.5rem);font-weight:900;color:white;margin-bottom:var(--space-5);letter-spacing:-0.02em;">
+            Ready to Build Your<br><span
+              style="background:linear-gradient(135deg,#93C5FD,#0EA5E9);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Next
+              Big Thing?</span>
+          </h2>
+          <p
+            style="font-size:var(--text-lg);color:rgba(255,255,255,0.65);max-width:520px;margin:0 auto var(--space-10);line-height:1.7;">
+            Join 12,000+ creators and developers who trust Nexus for their digital products and professional services.
+          </p>
+          <div style="display:flex;gap:var(--space-4);justify-content:center;flex-wrap:wrap;">
+            <a href="products.html" class="btn btn-primary btn-lg btn-ripple"
+              style="background:linear-gradient(135deg,#1E4D8C,#3B82F6);">
+              <i class="fa-solid fa-rocket"></i> Browse Products
+            </a>
+            <a href="#contact" class="btn btn-secondary btn-lg"
+              style="border-color:rgba(255,255,255,0.25);color:white;">
+              <i class="fa-solid fa-headset"></i> Talk to Sales
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+     CONTACT / ABOUT
+═══════════════════════════════════════ -->
+ <section class="section" id="contact" style="background:var(--bg-secondary);">
+  <div class="container">
+
+    <div class="contact-wrapper">
+      
+      <!-- LEFT: INFO -->
+      <div class="contact-left">
+        <div class="section-badge reveal">
+          <span class="badge-dot"></span> Get In Touch
+        </div>
+
+        <h2 class="section-title reveal delay-100" style="text-align:left;max-width:none;">
+          Have Questions?<br>
+          <span class="gradient-text">Let's Talk.</span>
+        </h2>
+
+        <p class="section-subtitle reveal delay-200" style="text-align:left;margin:0 0 var(--space-8);">
+          Whether you're exploring products, need a custom solution, or want to discuss enterprise pricing — our team is ready to help.
+        </p>
+
+        <div id="contact-info" class="reveal delay-300 contact-info"></div>
+      </div>
+
+      <!-- RIGHT: FORM -->
+      <div class="card reveal-right">
+        <div class="card-body">
+
+          <h3 class="form-title">Send a Message</h3>
+
+          <form data-form="contact" id="contact-form" class="contact-form">
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">First Name</label>
+                <input type="text" class="form-input" data-validate="required" placeholder="Sagnik">
+                <span class="form-error">Required</span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Last Name</label>
+                <input type="text" class="form-input" data-validate="required" placeholder="Mondal">
+                <span class="form-error">Required</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-input" data-validate="required,email" placeholder="example@email.com">
+              <span class="form-error">Valid email required</span>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Subject</label>
+              <select class="form-input form-select">
+                <option>Product Inquiry</option>
+                <option>Service Request</option>
+                <option>Enterprise Pricing</option>
+                <option>Technical Support</option>
+                <option>Partnership</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Message</label>
+              <textarea class="form-input form-textarea" data-validate="required" placeholder="Tell us how we can help…"></textarea>
+              <span class="form-error">Message is required</span>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-ripple form-submit">
+              Send Message →
+            </button>
+
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+  <!-- ═══════════════════════════════════════
+     NEWSLETTER
+═══════════════════════════════════════ -->
+  <section
+    style="padding:var(--space-12) 0;border-top:1px solid var(--border-color);border-bottom:1px solid var(--border-color);">
+    <div class="container">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:var(--space-8);flex-wrap:wrap;">
+        <div>
+          <h3
+            style="font-family:var(--font-heading);font-size:var(--text-xl);font-weight:700;margin-bottom:var(--space-2);">
+            Stay in the loop</h3>
+          <p style="font-size:var(--text-sm);color:var(--text-secondary);">Get notified about new products, exclusive
+            deals, and design tips.</p>
+        </div>
+        <form data-form="newsletter" style="display:flex;gap:var(--space-3);flex:1;max-width:420px;">
+          <input type="email" class="form-input" data-validate="required,email" placeholder="Enter your email"
+            style="flex:1;">
+          <button type="submit" class="btn btn-primary btn-ripple">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </section>
 
   <!-- ═══════════════════════════════════════
      FOOTER
@@ -406,26 +1198,126 @@
     </div>
   </footer>
 
-<div class="cart-overlay" id="cart-overlay"></div>
-<div class="cart-drawer" id="cart-drawer">
-  <div class="cart-drawer-header"><h3 class="cart-drawer-title"><i class="fa-solid fa-shopping-cart"></i> Cart</h3><button class="btn btn-ghost btn-icon" data-cart-close>✕</button></div>
-  <div class="cart-drawer-body" id="cart-drawer-body"></div>
-  <div class="cart-drawer-footer" id="cart-footer"></div>
-</div>
-<div class="toast-container" id="toast-container"></div>
-<div class="cookie-banner hidden" id="cookie-banner">
-  <div style="font-size:1.5rem;">🍪</div>
-  <div class="cookie-banner-text">We use cookies to enhance your experience. <a href="/pages/cookie-policy.html" style="color:var(--text-brand);">Learn more</a></div>
-  <div class="cookie-banner-actions">
-    <button class="btn btn-ghost btn-sm" id="cookie-manage">Manage</button>
-    <button class="btn btn-secondary btn-sm" id="cookie-accept-essential">Essential Only</button>
-    <button class="btn btn-primary btn-sm btn-ripple" id="cookie-accept-all">Accept All</button>
+  <!-- ═══════════════════════════════════════
+     CART DRAWER
+═══════════════════════════════════════ -->
+  <div class="cart-overlay" id="cart-overlay"></div>
+  <div class="cart-drawer" id="cart-drawer">
+    <div class="cart-drawer-header">
+      <h3 class="cart-drawer-title">🛒 Your Cart</h3>
+      <button class="btn btn-ghost btn-icon" data-cart-close aria-label="Close cart">✕</button>
+    </div>
+    <div class="cart-drawer-body" id="cart-drawer-body"></div>
+    <div class="cart-drawer-footer" id="cart-footer"></div>
   </div>
-</div>
 
-<script src="storage.js"></script>
-<script src="app.js"></script>
-<script src="animations.js"></script>
-<script src="pages.js"></script>
+  <!-- Toast Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="storage.js"></script>
+  <script src="app.js"></script>
+  <script src="animations.js"></script>
+  <script src="products.js"></script>
+  <script>
+    // Render featured products on home page
+    document.addEventListener('DOMContentLoaded', () => {
+      const grid = document.getElementById('home-products-grid');
+      if (grid) {
+        const featured = PRODUCTS.slice(0, 4);
+        grid.innerHTML = featured.map(p => NexusProducts.renderCard(p)).join('');
+        NexusAnimations.initScrollReveal();
+        featured.forEach((_, i) => {
+          const cards = grid.querySelectorAll('.product-card');
+          if (cards[i]) cards[i].style.transitionDelay = `${i * 100}ms`;
+        });
+        NexusProducts.initWishlistButtons();
+      }
+
+      // Contact form
+      document.getElementById('contact-form')?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (NexusApp.FormValidator.validate(e.target)) {
+          NexusApp.Toast.success('Message Sent!', "We'll respond within 24 hours.");
+          e.target.reset();
+        }
+      });
+    });
+    const data = [
+      ['<i class="fa-solid fa-envelope"></i>', 'Email', 'nextspace-IN@gmail.com'],
+      ['<i class="fa-solid fa-comment"></i>', 'Live Chat', 'Available 9am–6pm IST'],
+      ['<i class="fa-solid fa-phone"></i>', 'Phone', '+91 98321 45678'],
+      ['<i class="fa-solid fa-earth-asia"></i>', 'HQ', 'Kolkata, INDIA'],
+    ];
+
+    const html = data.map(([icon, label, val]) => `
+  <div style="display:flex;align-items:center;gap:var(--space-4);">
+    <div style="width:40px;height:40px;background:rgba(37,99,235,0.1);
+    border:1px solid rgba(37,99,235,0.2);border-radius:var(--radius-lg);
+    display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;">
+      ${icon}
+    </div>
+    <div>
+      <div style="font-size:var(--text-xs);color:var(--text-muted);font-weight:600;">
+        ${label}
+      </div>
+      <div style="font-size:var(--text-sm);font-weight:600;color:var(--text-primary);">
+        ${val}
+      </div>
+    </div>
+  </div>
+`).join('');
+
+    document.getElementById('contact-info').innerHTML = html;
+
+
+
+
+
+
+    document.addEventListener("DOMContentLoaded", () => {
+
+      const orders = [
+        { name: 'Enterprise Dashboard Kit', price: '$149', status: '<i class="fa-solid fa-circle-check" style="color:#10B981;"></i>' },
+        { name: 'SaaS Landing Page Pro', price: '$79', status: '<i class="fa-solid fa-hourglass-half" style="color:#F59E0B;"></i>' },
+        { name: 'UI Component Library', price: '$199', status: '<i class="fa-solid fa-circle-check" style="color:#10B981;"></i>' },
+      ];
+
+      const ordersContainer = document.getElementById('recent-orders');
+
+      ordersContainer.innerHTML = orders.map(o => `
+    <div style="
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:var(--space-2) 0;
+      border-bottom:1px solid rgba(59,130,246,0.1);
+    ">
+      <span style="
+        font-size:11px;
+        color:rgba(255,255,255,0.7);
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        max-width:160px;
+      ">
+        ${o.name}
+      </span>
+
+      <div style="display:flex;align-items:center;gap:var(--space-2);">
+        <span style="font-size:11px;font-weight:700;color:white;">
+          ${o.price}
+        </span>
+        <span style="font-size:11px;">
+          ${o.status}
+        </span>
+      </div>
+    </div>
+  `).join('');
+
+    });
+
+  </script>
 </body>
+
 </html>
