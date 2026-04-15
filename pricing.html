@@ -20,33 +20,48 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
   <link rel="stylesheet" href="themes.css">
   <link rel="stylesheet" href="animations.css">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="pages.css">
+  
 </head>
 
 <body class="page-wrapper">
 
-  <!-- NAVBAR -->
-  <nav class="navbar">
+  <!-- ═══════════════════════════════════════
+     NAVBAR
+═══════════════════════════════════════ -->
+  <nav class="navbar" id="navbar">
     <div class="container">
       <div class="navbar-inner">
         <a href="/" class="navbar-logo">
-          <div class="logo-mark">NX</div><span class="logo-text">Nexus</span>
+          <div class="logo-mark">✦</div>
+          <span class="logo-text">NexTS</span>
         </a>
+
         <nav class="navbar-nav">
-          <a href="/" class="nav-link">Home</a>
+          <a href="/" class="nav-link active">Home</a>
           <a href="products.html" class="nav-link">Products</a>
           <a href="services.html" class="nav-link">Services</a>
-          <a href="pricing.html" class="nav-link active">Pricing</a>
+          <a href="pricing.html" class="nav-link">Pricing</a>
           <a href="about.html" class="nav-link">About</a>
           <a href="contact.html" class="nav-link">Contact</a>
         </nav>
+
         <div class="navbar-actions">
-          <button class="theme-toggle" data-theme-toggle>☀</button>
-          <button class="cart-btn" data-cart-toggle>🛒<span class="cart-count hidden">0</span></button>
-          <a href="dashboard.html" class="btn btn-primary btn-sm btn-ripple">Dashboard</a>
+          <!-- <button class="btn btn-ghost btn-icon"
+            onclick="document.getElementById('search-expand-wrap').style.display=document.getElementById('search-expand-wrap').style.display==='none'?'flex':'none'"
+            title="Search"><i class="fa-solid fa-search"></i></button> -->
+          <button class="theme-toggle" data-theme-toggle title="Toggle Theme"></button>
+          <button class="cart-btn" data-cart-toggle title="Cart">
+            <i class="fa-solid fa-cart-arrow-down"></i> <span class="cart-count hidden" id="cart-badge">0</span>
+          </button>
+          <!-- <a href="dashboard.html" class="btn btn-secondary btn-sm">Dashboard</a>
+          <a href="products.html" class="btn btn-primary btn-sm btn-ripple">Shop Now</a> -->
         </div>
-        <button class="menu-toggle" id="menu-toggle"><span></span><span></span><span></span></button>
+
+        <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
       </div>
     </div>
     <div class="mobile-menu" id="mobile-menu">
@@ -56,9 +71,13 @@
       <a href="pricing.html" class="mobile-nav-link">Pricing</a>
       <a href="about.html" class="mobile-nav-link">About</a>
       <a href="contact.html" class="mobile-nav-link">Contact</a>
+      <div style="padding:var(--space-3) 0;display:flex;gap:var(--space-3);">
+        <a href="dashboard.html" class="btn btn-secondary btn-sm" style="flex:1;justify-content:center;">Dashboard</a>
+        <a href="products.html" class="btn btn-primary btn-sm btn-ripple" style="flex:1;justify-content:center;">Shop
+          Now</a>
+      </div>
     </div>
   </nav>
-
   <!-- HERO -->
   <div class="inner-hero">
     <div class="inner-hero-glow"></div>
