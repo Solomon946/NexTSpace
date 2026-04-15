@@ -123,20 +123,6 @@
       transform: scaleX(1);
     }
 
-   .hero-dashboard {
-  border-radius: 16px;
-  padding: 20px;
-  color: white;
-    background: rgba(13, 27, 53, 0.85);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(59, 130, 246, 0.2);
-    border-radius: var(--radius-2xl);
-    overflow: hidden;
-    box-shadow: var(--shadow-xl), 0 0 80px rgba(37, 99, 235, 0.15);
-    animation: float 6s ease-in-out infinite;
-}
-
-
     .hero-dash-topbar {
       background: rgba(10, 22, 40, 0.9);
       padding: var(--space-3) var(--space-4);
@@ -191,95 +177,122 @@
         grid-template-columns: 1fr;
       }
     }
-    
-/* GLOBAL FIX */
-* {
-  box-sizing: border-box;
-  max-width: 100%;
-}
 
-html, body {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-}
+    /* GLOBAL FIX */
+    * {
+      box-sizing: border-box;
+      max-width: 100%;
+    }
 
-.container {
-  width: 100%;
-  max-width: 1200px;
-  margin: auto;
-  padding: 0 16px;
-}
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
 
-/* HERO */
-.hero {
-  position: relative;
-  overflow: hidden;
-  padding: 60px 0;
-}
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 16px;
+    }
 
-.hero-split {
-  display: grid;
-  /* grid-template-columns: 1fr 1fr; */
-  gap: 40px;
-  align-items: center;
-}
+    /* HERO */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 60px 0;
+    }
 
-.hero-title {
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
-  font-weight: 800;
-}
+    .hero-split {
+      display: grid;
+      /* grid-template-columns: 1fr 1fr; */
+      gap: 40px;
+      align-items: center;
+    }
 
-.hero-subtitle {
-  margin-top: 16px;
-  color: rgba(255,255,255,0.7);
-}
+    .hero-title {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 800;
+    }
 
-.hero-actions {
-  margin-top: 20px;
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
+    .hero-subtitle {
+      margin-top: 16px;
+      color: rgba(255, 255, 255, 0.7);
+    }
 
-.btn {
-  /* padding: 12px 18px; */
-  /* border-radius: 8px; */
-  text-decoration: none;
-  /* display: inline-block; */
-}
+    .hero-actions {
+      margin-top: 20px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
 
-.btn-primary {
-  background: linear-gradient(135deg, var(--navy-600) 0%, var(--navy-500) 100%);
-  color: white;
-  box-shadow: 0 4px 16px rgba(37,99,235,0.35);
-}
+    .btn {
+      /* padding: 12px 18px; */
+      /* border-radius: 8px; */
+      text-decoration: none;
+      /* display: inline-block; */
+    }
 
-.btn-secondary {
-  background: transparent;
-  color: var(--text-primary);
-  border: 1.5px solid var(--border-strong);
-  backdrop-filter: blur(8px);
-}
+    .btn-primary {
+      background: linear-gradient(135deg, var(--navy-600) 0%, var(--navy-500) 100%);
+      color: white;
+      box-shadow: 0 4px 16px rgba(37, 99, 235, 0.35);
+    }
 
-/* DASHBOARD */
-.hero-visual {
-  max-width: 100%;
-  overflow: hidden;
-  position: relative;
-}
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-primary);
+      border: 1.5px solid var(--border-strong);
+      backdrop-filter: blur(8px);
+    }
 
-.hero-dashboard {
-  background: rgba(13, 27, 53, 0.85);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(59, 130, 246, 0.2);
-  border-radius: var(--radius-xl);
-  overflow: hidden;
-  box-shadow: var(--shadow-xl), 0 0 80px rgba(37, 99, 235, 0.15);
-  animation: float 6s ease-in-out infinite;
-  padding: 20px;
-}
+    /* DASHBOARD */
+    .hero-visual {
+      max-width: 100%;
+      overflow: hidden;
+      position: relative;
+    }
 
+    .hero-dashboard {
+      background: rgba(13, 27, 53, 0.85);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(59, 130, 246, 0.2);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-xl), 0 0 80px rgba(37, 99, 235, 0.15);
+      animation: float 6s ease-in-out infinite;
+      padding: 20px;
+    }
+
+    .hero-dash-topbar {
+      background: rgba(10, 22, 40, 0.9);
+      padding: var(--space-3) var(--space-4);
+      border-bottom: 1px solid rgba(59, 130, 246, 0.15);
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+    }
+
+    .hero-dash-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .hero-dash-content {
+      padding: var(--space-5);
+    }
+
+    .hero-stat-mini {
+      background: rgba(37, 99, 235, 0.1);
+      border: 1px solid rgba(37, 99, 235, 0.2);
+      border-radius: var(--radius-lg);
+      padding: var(--space-4);
+      text-align: center;
+    }
   </style>
 </head>
 
@@ -350,7 +363,7 @@ html, body {
         <div class="hero-content">
           <div class="hero-badge">
             <span class="hero-badge-dot"></span>
-            New — v2.0 just launched 
+            New — v2.0 just launched
           </div>
 
           <h1 class="hero-title">
