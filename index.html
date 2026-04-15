@@ -711,7 +711,7 @@
         <div class="step-circle">1</div>
         <h3 class="step-title">Browse & Choose</h3>
         <p class="step-desc">
-          Explore 200+ premium products and services. Filter by category, price, or rating to find exactly what you need.
+          Explore 20+ premium products and services. Filter by category, price, or rating to find exactly what you need.
         </p>
       </div>
 
@@ -1026,70 +1026,87 @@
   <!-- ═══════════════════════════════════════
      CONTACT / ABOUT
 ═══════════════════════════════════════ -->
-  <section class="section" id="contact" style="background:var(--bg-secondary);">
-    <div class="container">
-      <div style="display:grid;grid-template-columns:1fr;gap:var(--space-8);align-items:start;">
-        <div>
-          <div class="section-badge reveal"><span class="badge-dot"></span> Get In Touch</div>
-          <h2 class="section-title reveal delay-100" style="text-align:left;max-width:none;">Have Questions?<br><span
-              class="gradient-text">Let's Talk.</span></h2>
-          <p class="section-subtitle reveal delay-200" style="text-align:left;margin:0 0 var(--space-8);">Whether you're
-            exploring products, need a custom solution, or want to discuss enterprise pricing — our team is ready to
-            help.</p>
-          <div id="contact-info" class="reveal delay-300"
-            style="display:flex;flex-direction:column;gap:var(--space-4);">
-          </div>
+ <section class="section" id="contact" style="background:var(--bg-secondary);">
+  <div class="container">
+
+    <div class="contact-wrapper">
+      
+      <!-- LEFT: INFO -->
+      <div class="contact-left">
+        <div class="section-badge reveal">
+          <span class="badge-dot"></span> Get In Touch
         </div>
 
-        <div class="card reveal-right">
-          <div class="card-body">
-            <h3
-              style="font-family:var(--font-heading);font-size:var(--text-lg);font-weight:700;margin-bottom:var(--space-6);">
-              Send a Message</h3>
-            <form data-form="contact" id="contact-form" style="display:flex;flex-direction:column;gap:var(--space-4);">
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);">
-                <div class="form-group">
-                  <label class="form-label">First Name</label>
-                  <input type="text" class="form-input" data-validate="required" placeholder="Sagnik">
-                  <span class="form-error">Required</span>
-                </div>
-                <div class="form-group">
-                  <label class="form-label">Last Name</label>
-                  <input type="text" class="form-input" data-validate="required" placeholder="Mondal">
-                  <span class="form-error">Required</span>
-                </div>
-              </div>
+        <h2 class="section-title reveal delay-100" style="text-align:left;max-width:none;">
+          Have Questions?<br>
+          <span class="gradient-text">Let's Talk.</span>
+        </h2>
+
+        <p class="section-subtitle reveal delay-200" style="text-align:left;margin:0 0 var(--space-8);">
+          Whether you're exploring products, need a custom solution, or want to discuss enterprise pricing — our team is ready to help.
+        </p>
+
+        <div id="contact-info" class="reveal delay-300 contact-info"></div>
+      </div>
+
+      <!-- RIGHT: FORM -->
+      <div class="card reveal-right">
+        <div class="card-body">
+
+          <h3 class="form-title">Send a Message</h3>
+
+          <form data-form="contact" id="contact-form" class="contact-form">
+
+            <div class="form-row">
               <div class="form-group">
-                <label class="form-label">Email</label>
-                <input type="email" class="form-input" data-validate="required,email"
-                  placeholder="sagnikmondal@gmail.com">
-                <span class="form-error">Valid email required</span>
+                <label class="form-label">First Name</label>
+                <input type="text" class="form-input" data-validate="required" placeholder="Sagnik">
+                <span class="form-error">Required</span>
               </div>
+
               <div class="form-group">
-                <label class="form-label">Subject</label>
-                <select class="form-input form-select">
-                  <option>Product Inquiry</option>
-                  <option>Service Request</option>
-                  <option>Enterprise Pricing</option>
-                  <option>Technical Support</option>
-                  <option>Partnership</option>
-                </select>
+                <label class="form-label">Last Name</label>
+                <input type="text" class="form-input" data-validate="required" placeholder="Mondal">
+                <span class="form-error">Required</span>
               </div>
-              <div class="form-group">
-                <label class="form-label">Message</label>
-                <textarea class="form-input form-textarea" data-validate="required"
-                  placeholder="Tell us how we can help…" style="min-height:100px;"></textarea>
-                <span class="form-error">Message is required</span>
-              </div>
-              <button type="submit" class="btn btn-primary btn-ripple" style="justify-content:center;">
-                Send Message →
-              </button>
-            </form>
-          </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-input" data-validate="required,email" placeholder="example@email.com">
+              <span class="form-error">Valid email required</span>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Subject</label>
+              <select class="form-input form-select">
+                <option>Product Inquiry</option>
+                <option>Service Request</option>
+                <option>Enterprise Pricing</option>
+                <option>Technical Support</option>
+                <option>Partnership</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Message</label>
+              <textarea class="form-input form-textarea" data-validate="required" placeholder="Tell us how we can help…"></textarea>
+              <span class="form-error">Message is required</span>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-ripple form-submit">
+              Send Message →
+            </button>
+
+          </form>
+
         </div>
       </div>
+
     </div>
-  </section>
+
+  </div>
+</section>
 
   <!-- ═══════════════════════════════════════
      NEWSLETTER
