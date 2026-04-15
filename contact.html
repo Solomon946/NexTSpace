@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
   <link rel="stylesheet" href="themes.css">
   <link rel="stylesheet" href="animations.css">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="pages.css">
 </head>
 <body class="page-wrapper">
@@ -257,31 +257,63 @@
 </div>
 
 <!-- ALTERNATIVES STRIP -->
-<section style="padding:var(--space-16) 0;background:var(--bg-secondary);border-top:1px solid var(--border-color);border-bottom:1px solid var(--border-color);">
+<section class="connect-section">
   <div class="container">
-    <div class="text-center" style="margin-bottom:var(--space-10);">
-      <h2 style="font-family:var(--font-heading);font-size:var(--text-2xl);font-weight:800;margin-bottom:var(--space-3);" class="reveal">Other Ways to Connect</h2>
-      <p style="font-size:var(--text-sm);color:var(--text-secondary);" class="reveal delay-100">Choose the channel that works best for you.</p>
+
+    <div class="text-center connect-header">
+      <h2 class="connect-title reveal">Other Ways to Connect</h2>
+      <p class="connect-subtitle reveal delay-100">
+        Choose the channel that works best for you.
+      </p>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-6);">
-      <div class="card reveal-scale" style="padding:var(--space-6);text-align:center;cursor:pointer;" onclick="NexusApp.Toast.info('Discord','Joining our Discord community…')">
-        <div style="font-size:2.5rem;margin-bottom:var(--space-4);">◎</div>
-        <h3 style="font-family:var(--font-heading);font-weight:700;margin-bottom:var(--space-2);">Join Discord</h3>
-        <p style="font-size:var(--text-sm);color:var(--text-secondary);line-height:1.65;margin-bottom:var(--space-4);">Real-time chat with the Nexus team and 3,000+ community members. Get help, share work, discuss ideas.</p>
-        <div class="btn btn-secondary btn-sm" style="display:inline-flex;">Join Community →</div>
+
+    <div class="connect-grid">
+
+      <!-- CARD 1 -->
+      <div class="card connect-card reveal-scale"
+        onclick="NexusApp.Toast.info('Discord','Joining our Discord community…')">
+
+        <div class="connect-icon">◎</div>
+        <h3 class="connect-card-title">Join Discord</h3>
+
+        <p class="connect-card-text">
+          Real-time chat with the Nexus team and 3,000+ community members.
+          Get help, share work, discuss ideas.
+        </p>
+
+        <div class="btn btn-secondary btn-sm">Join Community →</div>
       </div>
-      <div class="card reveal-scale delay-150" style="padding:var(--space-6);text-align:center;cursor:pointer;" onclick="NexusApp.Toast.info('Documentation','Opening docs…')">
-        <div style="font-size:2.5rem;margin-bottom:var(--space-4);">📚</div>
-        <h3 style="font-family:var(--font-heading);font-weight:700;margin-bottom:var(--space-2);">Browse Docs</h3>
-        <p style="font-size:var(--text-sm);color:var(--text-secondary);line-height:1.65;margin-bottom:var(--space-4);">Comprehensive documentation, guides, API references, and video tutorials for every Nexus product.</p>
-        <div class="btn btn-secondary btn-sm" style="display:inline-flex;">Open Docs →</div>
+
+      <!-- CARD 2 -->
+      <div class="card connect-card reveal-scale delay-150"
+        onclick="NexusApp.Toast.info('Documentation','Opening docs…')">
+
+        <div class="connect-icon">📚</div>
+        <h3 class="connect-card-title">Browse Docs</h3>
+
+        <p class="connect-card-text">
+          Comprehensive documentation, guides, API references, and video tutorials
+          for every Nexus product.
+        </p>
+
+        <div class="btn btn-secondary btn-sm">Open Docs →</div>
       </div>
-      <div class="card reveal-scale delay-300" style="padding:var(--space-6);text-align:center;cursor:pointer;" onclick="NexusApp.Toast.info('GitHub','Opening GitHub…')">
-        <div style="font-size:2.5rem;margin-bottom:var(--space-4);">⌂</div>
-        <h3 style="font-family:var(--font-heading);font-weight:700;margin-bottom:var(--space-2);">GitHub Issues</h3>
-        <p style="font-size:var(--text-sm);color:var(--text-secondary);line-height:1.65;margin-bottom:var(--space-4);">Found a bug? Have a feature request? Open an issue on GitHub and our engineering team will respond.</p>
-        <div class="btn btn-secondary btn-sm" style="display:inline-flex;">GitHub →</div>
+
+      <!-- CARD 3 -->
+      <div class="card connect-card reveal-scale delay-300"
+        onclick="NexusApp.Toast.info('GitHub','Opening GitHub…')">
+
+        <div class="connect-icon">⌂</div>
+        <h3 class="connect-card-title">GitHub Issues</h3>
+
+        <p class="connect-card-text">
+          Found a bug? Have a feature request? Open an issue on GitHub and our
+          engineering team will respond.
+        </p>
+
+        <div class="btn btn-secondary btn-sm">GitHub →</div>
       </div>
+
     </div>
   </div>
 </section>
