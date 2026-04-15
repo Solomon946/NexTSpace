@@ -1,9 +1,9 @@
 /* ============================================
-   NEXUS PLATFORM — APP CONTROLLER
+   NexTspace PLATFORM — APP CONTROLLER
    Navbar, Toast, Cart Drawer, Theme, Search
    ============================================ */
 
-const NexusApp = (() => {
+const NexTApp = (() => {
 
   /* ══════════════════════════════════════════
      TOAST NOTIFICATION SYSTEM
@@ -95,15 +95,15 @@ const NexusApp = (() => {
 
     const render = () => {
       if (!cartBody) return;
-      const items = NexusStorage.cart.get();
+      const items = NexTStorage.cart.get();
 
       if (!items.length) {
         cartBody.innerHTML = `
           <div class="cart-empty">
-            <div class="cart-empty-icon">🛒</div>
+            <div class="cart-empty-icon"><i class="fa-solid fa-cart-shopping"></i></div>
             <h4 style="font-family:var(--font-heading);font-size:var(--text-lg);color:var(--text-primary);">Your cart is empty</h4>
             <p style="font-size:var(--text-sm);">Browse our products and add some to your cart.</p>
-            <a href="products.html" class="btn btn-primary btn-sm" onclick="NexusApp.CartDrawer.close()">Explore Products</a>
+            <a href="products.html" class="btn btn-primary btn-sm" onclick="NexTApp.CartDrawer.close()">Explore Products</a>
           </div>
         `;
         updateFooter(0);
@@ -133,7 +133,7 @@ const NexusApp = (() => {
         </div>
       `).join('');
 
-      updateFooter(NexusStorage.cart.total());
+      updateFooter(NexTStorage.cart.total());
     };
 
     const updateFooter = (total) => {
@@ -146,10 +146,10 @@ const NexusApp = (() => {
           <span style="font-weight:700;color:var(--text-primary);">Total</span>
           <span class="cart-summary-total">$${total.toFixed(2)}</span>
         </div>
-        <a href="checkout.html" class="btn btn-primary btn-ripple" style="width:100%;margin-top:var(--space-4);justify-content:center;" onclick="NexusApp.CartDrawer.close()">
+        <a href="checkout.html" class="btn btn-primary btn-ripple" style="width:100%;margin-top:var(--space-4);justify-content:center;" onclick="NexTApp.CartDrawer.close()">
           Proceed to Checkout →
         </a>
-        <a href="cart.html" class="btn btn-secondary" style="width:100%;margin-top:var(--space-2);justify-content:center;" onclick="NexusApp.CartDrawer.close()">
+        <a href="cart.html" class="btn btn-secondary" style="width:100%;margin-top:var(--space-2);justify-content:center;" onclick="NexTApp.CartDrawer.close()">
           View Cart
         </a>
       `;
@@ -188,16 +188,16 @@ const NexusApp = (() => {
         if (qtyBtn) {
           const id = qtyBtn.dataset.id;
           const action = qtyBtn.dataset.action;
-          const item = NexusStorage.cart.get().find(i => i.id === id);
+          const item = NexTStorage.cart.get().find(i => i.id === id);
           if (!item) return;
           const newQty = action === 'inc' ? item.qty + 1 : item.qty - 1;
-          NexusStorage.cart.updateQty(id, newQty);
+          NexTStorage.cart.updateQty(id, newQty);
           render();
           updateCartCount();
         }
 
         if (removeBtn) {
-          NexusStorage.cart.remove(removeBtn.dataset.remove);
+          NexTStorage.cart.remove(removeBtn.dataset.remove);
           render();
           updateCartCount();
           Toast.info('Item removed', 'Item removed from cart.');
@@ -205,7 +205,7 @@ const NexusApp = (() => {
       });
 
       // Listen for cart updates
-      NexusStorage.events.on('cartUpdated', () => {
+      NexTStorage.events.on('cartUpdated', () => {
         updateCartCount();
         if (drawer.classList.contains('open')) render();
       });
@@ -263,7 +263,7 @@ const NexusApp = (() => {
     const init = () => {
       document.querySelectorAll('[data-theme-toggle]').forEach(btn => {
         btn.addEventListener('click', () => {
-          const next = NexusStorage.theme.toggle();
+          const next = NexTStorage.theme.toggle();
           updateIcons(next);
           Toast.info(
             `${next === 'dark' ? 'Dark' : 'Light'} Mode`,
@@ -274,7 +274,7 @@ const NexusApp = (() => {
       });
 
       // Update icon on init
-      updateIcons(NexusStorage.theme.get());
+      updateIcons(NexTStorage.theme.get());
     };
 
     const updateIcons = (theme) => {
@@ -323,7 +323,7 @@ const NexusApp = (() => {
      USER STATE & NOTIFICATIONS
   ══════════════════════════════════════════ */
   const updateCartCount = () => {
-    const count = NexusStorage.cart.count();
+    const count = NexTStorage.cart.count();
     document.querySelectorAll('.cart-count').forEach(el => {
       el.textContent = count;
       el.classList.toggle('hidden', count === 0);
@@ -333,7 +333,7 @@ const NexusApp = (() => {
   };
 
   const updateUserUI = () => {
-    const user = NexusStorage.user.get();
+    const user = NexTStorage.user.get();
     document.querySelectorAll('[data-user-name]').forEach(el => {
       el.textContent = user.name;
     });
@@ -476,13 +476,13 @@ const NexusApp = (() => {
         e.preventDefault();
         if (FormValidator.validate(form)) {
           const onSubmit = form.dataset.form;
-          NexusApp.FormHandlers[onSubmit]?.(form);
+          NexTApp.FormHandlers[onSubmit]?.(form);
         }
       });
     });
 
-    console.log('%c⬛ NEXUS Platform', 'color:#3B82F6;font-size:14px;font-weight:700;');
-    console.log('%cBuilt with precision. Powered by Nexus.', 'color:#6B7280;font-size:11px;');
+    console.log('%c⬛ NEXTSPACE Platform', 'color:#3B82F6;font-size:14px;font-weight:700;');
+    console.log('%cBuilt with precision. Powered by NexTSpace.', 'color:#6B7280;font-size:11px;');
   };
 
   /* ── Form Handlers ── */
@@ -492,20 +492,20 @@ const NexusApp = (() => {
       form.reset();
     },
     newsletter: (form) => {
-      Toast.success('Subscribed!', 'Welcome to the Nexus community.');
+      Toast.success('Subscribed!', 'Welcome to the NexTSpace community.');
       form.reset();
     },
     checkout: (form) => {
-      const cartItems = NexusStorage.cart.get();
+      const cartItems = NexTStorage.cart.get();
       if (!cartItems.length) {
         Toast.warning('Cart Empty', 'Add products to cart before checkout.');
         return;
       }
-      const order = NexusStorage.orders.add({
+      const order = NexTStorage.orders.add({
         items: cartItems,
-        total: NexusStorage.cart.total(),
+        total: NexTStorage.cart.total(),
       });
-      NexusStorage.cart.clear();
+      NexTStorage.cart.clear();
       Toast.success('Order Placed!', `Order ${order.id} confirmed. Redirecting…`);
       setTimeout(() => {
         window.location.href = 'dashboard.html';
@@ -532,3 +532,866 @@ const NexusApp = (() => {
     updateCartCount,
   };
 })();
+
+/* ============================================
+   NexTSpace PLATFORM — STORAGE & DATA LAYER
+   localStorage Management + Simulated Data
+   ============================================ */
+
+const NexTStorage = (() => {
+  const PREFIX = 'nextspace_';
+  const KEYS = {
+    CART: 'cart',
+    WISHLIST: 'wishlist',
+    ORDERS: 'orders',
+    USER: 'user',
+    RECENTLY: 'recently_viewed',
+    THEME: 'theme',
+    NOTIFS: 'notifications',
+    SETTINGS: 'settings',
+  };
+
+  // ── Core Helpers ──
+  const get = (key) => {
+    try {
+      const val = localStorage.getItem(PREFIX + key);
+      return val ? JSON.parse(val) : null;
+    } catch { return null; }
+  };
+
+  const set = (key, value) => {
+    try {
+      localStorage.setItem(PREFIX + key, JSON.stringify(value));
+      return true;
+    } catch { return false; }
+  };
+
+  const remove = (key) => {
+    localStorage.removeItem(PREFIX + key);
+  };
+
+  // ── Cart ──
+  const cart = {
+    get: () => get(KEYS.CART) || [],
+
+    add: (product, qty = 1) => {
+      const items = cart.get();
+      const idx = items.findIndex(i => i.id === product.id);
+      if (idx > -1) {
+        items[idx].qty += qty;
+      } else {
+        items.push({ ...product, qty });
+      }
+      set(KEYS.CART, items);
+      NexTStorage.events.emit('cartUpdated', cart.get());
+      return items;
+    },
+
+    remove: (productId) => {
+      const items = cart.get().filter(i => i.id !== productId);
+      set(KEYS.CART, items);
+      NexTStorage.events.emit('cartUpdated', items);
+      return items;
+    },
+
+    updateQty: (productId, qty) => {
+      const items = cart.get();
+      const idx = items.findIndex(i => i.id === productId);
+      if (idx > -1) {
+        if (qty <= 0) return cart.remove(productId);
+        items[idx].qty = qty;
+        set(KEYS.CART, items);
+        NexTStorage.events.emit('cartUpdated', items);
+      }
+      return items;
+    },
+
+    clear: () => {
+      set(KEYS.CART, []);
+      NexTStorage.events.emit('cartUpdated', []);
+    },
+
+    total: () => {
+      return cart.get().reduce((sum, i) => sum + i.price * i.qty, 0);
+    },
+
+    count: () => {
+      return cart.get().reduce((sum, i) => sum + i.qty, 0);
+    },
+  };
+
+  // ── Wishlist ──
+  const wishlist = {
+    get: () => get(KEYS.WISHLIST) || [],
+
+    toggle: (product) => {
+      const list = wishlist.get();
+      const idx = list.findIndex(i => i.id === product.id);
+      if (idx > -1) {
+        list.splice(idx, 1);
+      } else {
+        list.push(product);
+      }
+      set(KEYS.WISHLIST, list);
+      NexTStorage.events.emit('wishlistUpdated', list);
+      return idx === -1; // returns true if added
+    },
+
+    has: (productId) => {
+      return wishlist.get().some(i => i.id === productId);
+    },
+
+    count: () => wishlist.get().length,
+  };
+
+  // ── Orders ──
+  const orders = {
+    get: () => get(KEYS.ORDERS) || _seedOrders(),
+
+    add: (order) => {
+      const list = orders.get();
+      const newOrder = {
+        ...order,
+        id: 'ORD-' + Date.now().toString(36).toUpperCase(),
+        date: new Date().toISOString(),
+        status: 'processing',
+      };
+      list.unshift(newOrder);
+      set(KEYS.ORDERS, list);
+      NexTStorage.events.emit('ordersUpdated', list);
+      return newOrder;
+    },
+
+    update: (orderId, updates) => {
+      const list = orders.get();
+      const idx = list.findIndex(o => o.id === orderId);
+      if (idx > -1) {
+        list[idx] = { ...list[idx], ...updates };
+        set(KEYS.ORDERS, list);
+      }
+      return list;
+    },
+  };
+
+  // ── Recently Viewed ──
+  const recently = {
+    get: () => get(KEYS.RECENTLY) || [],
+
+    add: (product) => {
+      let list = recently.get().filter(i => i.id !== product.id);
+      list.unshift(product);
+      list = list.slice(0, 10);
+      set(KEYS.RECENTLY, list);
+    },
+  };
+
+  // ── User ──
+  const user = {
+    get: () => get(KEYS.USER) || _defaultUser(),
+    set: (data) => set(KEYS.USER, data),
+    update: (updates) => {
+      const u = user.get();
+      set(KEYS.USER, { ...u, ...updates });
+    },
+  };
+
+  // ── Theme ──
+  const theme = {
+    get: () => get(KEYS.THEME) || 'dark',
+    set: (t) => {
+      set(KEYS.THEME, t);
+      document.documentElement.setAttribute('data-theme', t);
+      NexTStorage.events.emit('themeChanged', t);
+    },
+    toggle: () => {
+      const current = theme.get();
+      const next = current === 'dark' ? 'light' : 'dark';
+      theme.set(next);
+      return next;
+    },
+  };
+
+  // ── Notifications ──
+  const notifs = {
+    get: () => get(KEYS.NOTIFS) || _defaultNotifs(),
+    add: (notif) => {
+      const list = notifs.get();
+      list.unshift({ id: Date.now(), read: false, date: new Date().toISOString(), ...notif });
+      set(KEYS.NOTIFS, list);
+    },
+    markRead: (id) => {
+      const list = notifs.get().map(n => n.id === id ? { ...n, read: true } : n);
+      set(KEYS.NOTIFS, list);
+    },
+    unreadCount: () => notifs.get().filter(n => !n.read).length,
+  };
+
+  // ── Event Bus ──
+  const events = (() => {
+    const listeners = {};
+    return {
+      on: (event, cb) => {
+        if (!listeners[event]) listeners[event] = [];
+        listeners[event].push(cb);
+      },
+      off: (event, cb) => {
+        if (listeners[event]) {
+          listeners[event] = listeners[event].filter(fn => fn !== cb);
+        }
+      },
+      emit: (event, data) => {
+        (listeners[event] || []).forEach(cb => cb(data));
+      },
+    };
+  })();
+
+  // ── Seed Data ──
+  function _defaultUser() {
+    return {
+      id: 'user_001',
+      name: 'Alex Morrison',
+      email: 'alex@example.com',
+      plan: 'Pro',
+      avatar: null,
+      joined: '2024-01-15',
+      notifications: true,
+    };
+  }
+
+  function _defaultNotifs() {
+    return [
+      { id: 1, read: false, type: 'order', title: 'Order Confirmed', message: 'Your order ORD-ABC123 has been confirmed.', date: new Date(Date.now() - 3600000).toISOString() },
+      { id: 2, read: false, type: 'system', title: 'Welcome to NexTSpace!', message: 'Thanks for joining. Explore our premium products.', date: new Date(Date.now() - 86400000).toISOString() },
+      { id: 3, read: true, type: 'promo', title: 'Special Offer', message: 'Get 20% off Pro plan this week only.', date: new Date(Date.now() - 172800000).toISOString() },
+    ];
+  }
+
+  function _seedOrders() {
+    const seed = [
+      {
+        id: 'ORD-7X9K2M',
+        date: new Date(Date.now() - 7 * 86400000).toISOString(),
+        status: 'completed',
+        total: 149,
+        items: [{ name: 'Enterprise Dashboard Kit', qty: 1, price: 149 }],
+      },
+      {
+        id: 'ORD-3P8F4N',
+        date: new Date(Date.now() - 14 * 86400000).toISOString(),
+        status: 'completed',
+        total: 79,
+        items: [{ name: 'SaaS Landing Template', qty: 1, price: 79 }],
+      },
+      {
+        id: 'ORD-5W2D9Q',
+        date: new Date(Date.now() - 30 * 86400000).toISOString(),
+        status: 'processing',
+        total: 299,
+        items: [{ name: 'Full-Stack Web App', qty: 1, price: 299 }],
+      },
+    ];
+    set(KEYS.ORDERS, seed);
+    return seed;
+  }
+
+  return { cart, wishlist, orders, recently, user, theme, notifs, events, get, set };
+})();
+
+/* ============================================
+   PRODUCT DATA
+   ============================================ */
+
+const PRODUCTS = [
+  {
+    name: "Enterprise Dashboard Kit",
+    price: 149,
+    oldPrice: 199,
+    desc: "Enterprise admin dashboard UI",
+    image: "./images/dashboard.png"
+  },
+  {
+    name: "SaaS Landing Page",
+    price: 79,
+    oldPrice: 99,
+    desc: "High converting landing page",
+    image: "./images/saas.png"
+  },
+  {
+    name: "Ecommerce Template",
+    price: 119,
+    oldPrice: 159,
+    desc: "Complete ecommerce frontend",
+    image: "./images/ecommerce.png"
+  }
+];
+
+function renderProducts(products) {
+  const container = document.getElementById("home-products-grid");
+
+  container.innerHTML = products.map(product => `
+    <div class="product-card">
+
+      <div class="product-image">
+        <img src="${product.image}" 
+             onerror="this.src='https://via.placeholder.com/400x250'">
+      </div>
+
+      <div class="product-content">
+        <h3 class="product-title">${product.name}</h3>
+        <p class="product-desc">${product.desc}</p>
+
+        <div class="product-meta">
+          <span class="price">₹${product.price}</span>
+          <span class="old-price">₹${product.oldPrice}</span>
+        </div>
+
+        <button>View Details</button>
+      </div>
+
+    </div>
+  `).join('');
+}
+
+renderProducts(PRODUCTS);
+/* ============================================
+   SERVICES DATA
+   ============================================ */
+
+const SERVICES = [
+  {
+    id: 'svc_001',
+    name: 'Custom Web Development',
+    slug: 'custom-web-development',
+    category: 'Development',
+    price: 1500,
+    priceLabel: 'Starting at',
+    timeline: '2–4 weeks',
+    rating: 4.9,
+    reviews: 87,
+    desc: 'Full-stack custom web applications built with modern frameworks and best practices.',
+    features: ['Requirements Analysis', 'UI/UX Design', 'Frontend Development', 'Backend API', 'Database Design', 'Testing & QA', 'Deployment', '30-day Support'],
+    emoji: '⚙️',
+    color: 'from-blue-800 to-navy-700',
+    process: ['Discovery & Planning', 'Design Mockups', 'Development', 'Testing', 'Launch & Handoff'],
+  },
+  {
+    id: 'svc_002',
+    name: 'UI/UX Design System',
+    slug: 'ui-ux-design-system',
+    category: 'Design',
+    price: 800,
+    priceLabel: 'Starting at',
+    timeline: '1–2 weeks',
+    rating: 5.0,
+    reviews: 54,
+    desc: 'Comprehensive design systems with brand guidelines, component library, and Figma files.',
+    features: ['Brand Identity', 'Color System', 'Typography Scale', 'Component Library', 'Figma Source Files', 'Style Guide', 'Icon Library', 'Dark Mode'],
+    emoji: '🎨',
+    color: 'from-teal-800 to-emerald-700',
+    process: ['Brand Discovery', 'Concept Design', 'System Architecture', 'Component Build', 'Delivery'],
+  },
+  {
+    id: 'svc_003',
+    name: 'SaaS Platform Setup',
+    slug: 'saas-platform-setup',
+    category: 'Development',
+    price: 3000,
+    priceLabel: 'Starting at',
+    timeline: '4–8 weeks',
+    rating: 4.8,
+    reviews: 32,
+    desc: 'Complete SaaS MVP with auth, billing, dashboard, and infrastructure setup.',
+    features: ['Auth System', 'Stripe Billing', 'User Dashboard', 'Admin Panel', 'Email System', 'Analytics', 'CI/CD Pipeline', 'Documentation'],
+    emoji: '🏗️',
+    color: 'from-indigo-800 to-blue-700',
+    process: ['Architecture', 'Core Features', 'Integrations', 'Testing', 'Launch'],
+  },
+  {
+    id: 'svc_004',
+    name: 'Website Maintenance',
+    slug: 'website-maintenance',
+    category: 'Maintenance',
+    price: 299,
+    priceLabel: '/month',
+    timeline: 'Ongoing',
+    rating: 4.9,
+    reviews: 143,
+    desc: 'Monthly retainer for updates, security patches, performance monitoring, and support.',
+    features: ['Security Updates', 'Performance Monitoring', 'Backup Management', 'Bug Fixes', 'Content Updates', 'Uptime Monitoring', 'Monthly Reports', 'Priority Support'],
+    emoji: '🛡️',
+    color: 'from-slate-800 to-gray-700',
+    process: ['Onboarding', 'Audit', 'Ongoing Monitoring', 'Monthly Reviews'],
+  },
+  {
+    id: 'svc_005',
+    name: 'SEO & Performance',
+    slug: 'seo-performance',
+    category: 'Marketing',
+    price: 600,
+    priceLabel: 'Starting at',
+    timeline: '2–3 weeks',
+    rating: 4.7,
+    reviews: 76,
+    desc: 'Technical SEO audit, Core Web Vitals optimization, and performance improvements.',
+    features: ['Technical SEO Audit', 'Core Web Vitals', 'Image Optimization', 'Code Splitting', 'CDN Setup', 'Schema Markup', 'Sitemap', 'Analytics Setup'],
+    emoji: '🔍',
+    color: 'from-amber-900 to-orange-800',
+    process: ['Audit', 'Strategy', 'Implementation', 'Testing', 'Reporting'],
+  },
+  {
+    id: 'svc_006',
+    name: 'API Integration',
+    slug: 'api-integration',
+    category: 'Development',
+    price: 500,
+    priceLabel: 'Starting at',
+    timeline: '1 week',
+    rating: 4.8,
+    reviews: 98,
+    desc: 'Third-party API integration including payment, CRM, marketing, and communication tools.',
+    features: ['API Assessment', 'Stripe/PayPal', 'Mailchimp/SendGrid', 'Slack/Discord', 'CRM Integration', 'Webhooks', 'Error Handling', 'Documentation'],
+    emoji: '🔌',
+    color: 'from-cyan-800 to-blue-700',
+    process: ['API Review', 'Architecture', 'Implementation', 'Testing', 'Docs'],
+  },
+];
+
+// Initialize theme on load
+(function initTheme() {
+  const saved = NexTStorage.theme.get();
+  document.documentElement.setAttribute('data-theme', saved || 'dark');
+})();
+
+/* ============================================
+   NexTspace PLATFORM — ANIMATION ENGINE
+   Scroll-reveal, Tilt, Ripple, Counters
+   ============================================ */
+
+const NexTAnimations = (() => {
+
+  /* ── Scroll Reveal (Intersection Observer) ── */
+  const initScrollReveal = () => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          // Don't unobserve so re-entry works on revisit
+        }
+      });
+    }, {
+      threshold: 0.12,
+      rootMargin: '0px 0px -40px 0px',
+    });
+
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale')
+      .forEach(el => observer.observe(el));
+
+    return observer;
+  };
+
+  /* ── Stagger Children ── */
+  const staggerChildren = (parent, selector = '.reveal', baseDelay = 100) => {
+    const children = parent.querySelectorAll(selector);
+    children.forEach((child, i) => {
+      child.style.transitionDelay = `${i * baseDelay}ms`;
+    });
+  };
+
+  /* ── Ripple Effect ── */
+  const initRipple = () => {
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('.btn-ripple');
+      if (!btn) return;
+
+      const rect = btn.getBoundingClientRect();
+      const ripple = document.createElement('span');
+      const size = Math.max(rect.width, rect.height) * 2;
+
+      ripple.classList.add('ripple-effect');
+      Object.assign(ripple.style, {
+        width:  `${size}px`,
+        height: `${size}px`,
+        top:    `${e.clientY - rect.top - size / 2}px`,
+        left:   `${e.clientX - rect.left - size / 2}px`,
+      });
+
+      btn.appendChild(ripple);
+      setTimeout(() => ripple.remove(), 700);
+    });
+  };
+
+  /* ── 3D Tilt on Cards ── */
+  const initTilt = () => {
+    const cards = document.querySelectorAll('.tilt-card');
+    cards.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const cx = rect.width / 2;
+        const cy = rect.height / 2;
+        const rotateX = ((y - cy) / cy) * -6;
+        const rotateY = ((x - cx) / cx) * 6;
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0)';
+      });
+    });
+  };
+
+  /* ── Animated Number Counter ── */
+  const animateCounter = (el, target, duration = 1800, prefix = '', suffix = '') => {
+    const start = performance.now();
+    const startVal = 0;
+
+    const update = (now) => {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      // Ease out cubic
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = Math.round(startVal + (target - startVal) * eased);
+      el.textContent = prefix + current.toLocaleString() + suffix;
+      if (progress < 1) requestAnimationFrame(update);
+    };
+
+    requestAnimationFrame(update);
+  };
+
+  const initCounters = () => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !entry.target.dataset.counted) {
+          entry.target.dataset.counted = 'true';
+          const target = parseFloat(entry.target.dataset.target || 0);
+          const prefix = entry.target.dataset.prefix || '';
+          const suffix = entry.target.dataset.suffix || '';
+          animateCounter(entry.target, target, 1800, prefix, suffix);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('[data-counter]').forEach(el => observer.observe(el));
+  };
+
+  /* ── Parallax on Hero ── */
+  const initParallax = () => {
+    const hero = document.querySelector('.hero');
+    if (!hero) return;
+
+    const blobs = hero.querySelectorAll('.hero-blob-1, .hero-blob-2');
+
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (ticking) return;
+      requestAnimationFrame(() => {
+        const scrolled = window.pageYOffset;
+        blobs.forEach((blob, i) => {
+          const speed = i === 0 ? 0.35 : 0.2;
+          blob.style.transform = `translateY(${scrolled * speed}px)`;
+        });
+        ticking = false;
+      });
+      ticking = true;
+    }, { passive: true });
+  };
+
+  /* ── Navbar scroll effect ── */
+  const initNavbar = () => {
+    const navbar = document.querySelector('.navbar');
+    if (!navbar) return;
+
+    let lastScroll = 0;
+    window.addEventListener('scroll', () => {
+      const scroll = window.pageYOffset;
+      if (scroll > 20) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+      lastScroll = scroll;
+    }, { passive: true });
+  };
+
+  /* ── Skeleton Loader ── */
+  const showSkeleton = (container, count = 4) => {
+    const html = Array.from({ length: count }, () => `
+      <div class="card">
+        <div class="skeleton" style="height:200px;border-radius:12px 12px 0 0;"></div>
+        <div class="card-body" style="display:flex;flex-direction:column;gap:10px;">
+          <div class="skeleton" style="height:14px;width:60%;border-radius:6px;"></div>
+          <div class="skeleton" style="height:20px;width:90%;border-radius:6px;"></div>
+          <div class="skeleton" style="height:14px;width:80%;border-radius:6px;"></div>
+          <div class="skeleton" style="height:14px;width:45%;border-radius:6px;"></div>
+        </div>
+      </div>
+    `).join('');
+    container.innerHTML = html;
+  };
+
+  /* ── Page Transition ── */
+  const pageTransition = (href) => {
+    const overlay = document.createElement('div');
+    Object.assign(overlay.style, {
+      position: 'fixed',
+      inset: '0',
+      background: 'var(--navy-900)',
+      zIndex: '9999',
+      opacity: '0',
+      transition: 'opacity 0.25s ease',
+      pointerEvents: 'none',
+    });
+    document.body.appendChild(overlay);
+
+    requestAnimationFrame(() => {
+      overlay.style.opacity = '1';
+      setTimeout(() => {
+        window.location.href = href;
+      }, 260);
+    });
+  };
+
+  /* ── Smooth link transitions ── */
+  const initPageTransitions = () => {
+    document.addEventListener('click', (e) => {
+      const link = e.target.closest('a[data-transition]');
+      if (!link || link.target === '_blank') return;
+      e.preventDefault();
+      pageTransition(link.href);
+    });
+  };
+
+  /* ── Accordion ── */
+  const initAccordions = () => {
+    document.addEventListener('click', (e) => {
+      const trigger = e.target.closest('[data-accordion-trigger]');
+      if (!trigger) return;
+
+      const item = trigger.closest('[data-accordion-item]');
+      const content = item?.querySelector('[data-accordion-content]');
+      if (!item || !content) return;
+
+      const isOpen = item.classList.contains('accordion-open');
+
+      // Close siblings in same group
+      const group = item.closest('[data-accordion-group]');
+      if (group) {
+        group.querySelectorAll('[data-accordion-item].accordion-open').forEach(sibling => {
+          if (sibling !== item) {
+            sibling.classList.remove('accordion-open');
+            sibling.querySelector('[data-accordion-content]')?.classList.remove('open');
+          }
+        });
+      }
+
+      item.classList.toggle('accordion-open', !isOpen);
+      content.classList.toggle('open', !isOpen);
+    });
+  };
+
+  /* ── Tabs ── */
+  const initTabs = (container) => {
+    if (!container) return;
+
+    const triggers = container.querySelectorAll('[data-tab]');
+    const contents = container.querySelectorAll('[data-tab-content]');
+
+    triggers.forEach(trigger => {
+      trigger.addEventListener('click', () => {
+        const target = trigger.dataset.tab;
+
+        triggers.forEach(t => t.classList.remove('active'));
+        trigger.classList.add('active');
+
+        contents.forEach(c => {
+          c.classList.remove('active');
+          if (c.dataset.tabContent === target) {
+            setTimeout(() => c.classList.add('active'), 10);
+          }
+        });
+      });
+    });
+  };
+
+  /* ── Typing Effect ── */
+  const typeEffect = (el, texts, speed = 100, pause = 2000) => {
+    let textIdx = 0;
+    let charIdx = 0;
+    let isDeleting = false;
+
+    const type = () => {
+      const text = texts[textIdx];
+      const displayed = isDeleting
+        ? text.substring(0, charIdx - 1)
+        : text.substring(0, charIdx + 1);
+
+      el.textContent = displayed;
+
+      if (!isDeleting && charIdx === text.length - 1) {
+        isDeleting = true;
+        setTimeout(type, pause);
+        return;
+      }
+
+      if (isDeleting && charIdx === 0) {
+        isDeleting = false;
+        textIdx = (textIdx + 1) % texts.length;
+      }
+
+      charIdx = isDeleting ? charIdx - 1 : charIdx + 1;
+      setTimeout(type, isDeleting ? speed / 2 : speed);
+    };
+
+    type();
+  };
+
+  /* ── Cursor Effect (subtle blue dot) ── */
+  const initCursor = () => {
+    if (window.matchMedia('(pointer:coarse)').matches) return; // skip on touch
+
+    const cursor = document.createElement('div');
+    cursor.id = 'nextspace-cursor';
+    Object.assign(cursor.style, {
+      position: 'fixed',
+      width: '12px',
+      height: '12px',
+      borderRadius: '50%',
+      background: 'rgba(37,99,235,0.6)',
+      pointerEvents: 'none',
+      zIndex: '9999',
+      transition: 'transform 0.1s ease, opacity 0.3s ease',
+      transform: 'translate(-50%, -50%)',
+      mixBlendMode: 'screen',
+    });
+    document.body.appendChild(cursor);
+
+    let cx = -100, cy = -100;
+    document.addEventListener('mousemove', (e) => {
+      cx = e.clientX;
+      cy = e.clientY;
+      cursor.style.left = cx + 'px';
+      cursor.style.top  = cy + 'px';
+    });
+
+    document.addEventListener('mousedown', () => {
+      cursor.style.transform = 'translate(-50%, -50%) scale(1.8)';
+    });
+
+    document.addEventListener('mouseup', () => {
+      cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+    });
+
+    document.querySelectorAll('a, button, .btn, .card-hover').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursor.style.transform = 'translate(-50%, -50%) scale(2.5)';
+        cursor.style.background = 'rgba(37,99,235,0.4)';
+      });
+      el.addEventListener('mouseleave', () => {
+        cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+        cursor.style.background = 'rgba(37,99,235,0.6)';
+      });
+    });
+  };
+
+  /* ── Progress Bar (top of page) ── */
+  const initPageProgress = () => {
+    const bar = document.createElement('div');
+    Object.assign(bar.style, {
+      position: 'fixed',
+      top: '0',
+      left: '0',
+      height: '3px',
+      background: 'linear-gradient(90deg, #1E4D8C, #2563EB, #3B82F6)',
+      width: '0%',
+      zIndex: '9999',
+      transition: 'width 0.1s linear',
+      borderRadius: '0 3px 3px 0',
+    });
+    document.body.appendChild(bar);
+
+    window.addEventListener('scroll', () => {
+      const scrolled = window.scrollY;
+      const total = document.body.scrollHeight - window.innerHeight;
+      const pct = total > 0 ? (scrolled / total) * 100 : 0;
+      bar.style.width = pct + '%';
+    }, { passive: true });
+  };
+
+  /* ── Fade-in page on load ── */
+  const initPageLoad = () => {
+    document.body.style.opacity = '0';
+    document.body.style.transition = 'opacity 0.4s ease';
+    window.addEventListener('load', () => {
+      requestAnimationFrame(() => {
+        document.body.style.opacity = '1';
+      });
+    });
+    // Fallback
+    setTimeout(() => { document.body.style.opacity = '1'; }, 300);
+  };
+
+  /* ── Initialize All ── */
+  const init = () => {
+    initScrollReveal();
+    initRipple();
+    initAccordions();
+    initNavbar();
+    initCounters();
+    initPageProgress();
+
+    // Stagger card children
+    document.querySelectorAll('[data-stagger]').forEach(parent => {
+      const delay = parseInt(parent.dataset.stagger) || 100;
+      staggerChildren(parent, '.reveal, .reveal-scale', delay);
+      // Re-run observer for newly staggered items
+      initScrollReveal();
+    });
+
+    // Init tabs
+    document.querySelectorAll('[data-tabs]').forEach(initTabs);
+
+    // Parallax
+    if (document.querySelector('.hero')) {
+      initParallax();
+    }
+
+    // Tilt on desktop only
+    if (!window.matchMedia('(pointer:coarse)').matches) {
+      initTilt();
+    }
+
+    // Page transitions
+    initPageTransitions();
+
+    // Typing effect
+    const typer = document.querySelector('[data-typing]');
+    if (typer) {
+      const texts = JSON.parse(typer.dataset.typing || '[]');
+      if (texts.length) typeEffect(typer, texts);
+    }
+
+    // Cursor
+    // initCursor(); // Uncomment to enable custom cursor
+  };
+
+  // Public API
+  return {
+    init,
+    initScrollReveal,
+    initTilt,
+    initAccordions,
+    initTabs,
+    animateCounter,
+    showSkeleton,
+    typeEffect,
+    pageTransition,
+  };
+})();
+
+// Auto-init
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', NexTAnimations.init);
+} else {
+  NexTAnimations.init();
+}
