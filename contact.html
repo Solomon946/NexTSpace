@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
   <link rel="stylesheet" href="themes.css">
   <link rel="stylesheet" href="animations.css">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="pages.css">
 </head>
 <body class="page-wrapper">
@@ -153,14 +153,34 @@
       </div>
 
       <!-- Map placeholder -->
-      <div class="map-placeholder reveal delay-100" style="margin-top:var(--space-8);">
-        <div style="position:relative;z-index:1;text-align:center;">
-          <div style="font-size:3rem;margin-bottom:var(--space-3);">📍</div>
-          <div style="font-family:var(--font-heading);font-weight:700;font-size:var(--text-base);color:var(--text-secondary);margin-bottom:var(--space-2);">San Francisco, CA</div>
-          <div style="font-size:var(--text-xs);color:var(--text-muted);">548 Market St, Suite 1200</div>
-          <button class="btn btn-secondary btn-sm" style="margin-top:var(--space-4);" onclick="NexusApp.Toast.info('Maps','Opening in Google Maps…')">Open in Maps →</button>
-        </div>
-      </div>
+    <!-- Map -->
+<div class="map-placeholder reveal delay-100">
+
+  <div class="map-box">
+    <iframe
+      src="https://www.google.com/maps?q=22.5731399,88.4785234&z=15&output=embed"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </div>
+
+  <!-- Info -->
+  <div class="map-info">
+    <div class="map-icon">
+      <i class="fa-solid fa-location-arrow"></i>
+    </div>
+
+    <div class="map-title">Kolkata, West Bengal</div>
+    <div class="map-subtitle">Techspace, Newtown</div>
+
+    <a href="https://www.google.com/maps?q=22.5731399,88.4785234"
+       target="_blank"
+       class="btn btn-secondary btn-sm">
+       Open in Maps →
+    </a>
+  </div>
+
+</div>
     </div>
 
     <!-- Right: Form -->
@@ -172,30 +192,30 @@
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4);">
           <div class="form-group">
             <label class="form-label">First Name *</label>
-            <input type="text" class="form-input" data-validate="required" placeholder="Alex">
+            <input type="text" class="form-input" data-validate="required" placeholder="Leo">
             <span class="form-error">First name is required</span>
           </div>
           <div class="form-group">
             <label class="form-label">Last Name *</label>
-            <input type="text" class="form-input" data-validate="required" placeholder="Morrison">
+            <input type="text" class="form-input" data-validate="required" placeholder="Mondal">
             <span class="form-error">Last name is required</span>
           </div>
         </div>
 
         <div class="form-group">
           <label class="form-label">Work Email *</label>
-          <input type="email" class="form-input" data-validate="required,email" placeholder="alex@company.com">
+          <input type="email" class="form-input" data-validate="required,email" placeholder="Leo@nextspace.com">
           <span class="form-error">A valid email address is required</span>
         </div>
 
         <div class="form-group">
           <label class="form-label">Company / Organization</label>
-          <input type="text" class="form-input" placeholder="Acme Inc. (optional)">
+          <input type="text" class="form-input" placeholder="NexTSpace Corporation. (optional)">
         </div>
 
         <div class="form-group">
           <label class="form-label">Phone Number</label>
-          <input type="tel" class="form-input" placeholder="+1 (555) 000-0000 (optional)">
+          <input type="tel" class="form-input" placeholder="+91 98321 45678 (optional)">
         </div>
 
         <div class="form-group">
@@ -273,11 +293,11 @@
       <div class="card connect-card reveal-scale"
         onclick="NexusApp.Toast.info('Discord','Joining our Discord community…')">
 
-        <div class="connect-icon">◎</div>
+        <div class="connect-icon"><i class="fa-brands fa-discord"></i></div>
         <h3 class="connect-card-title">Join Discord</h3>
 
         <p class="connect-card-text">
-          Real-time chat with the Nexus team and 3,000+ community members.
+          Real-time chat with the NexTSpace team and 3,000+ community members.
           Get help, share work, discuss ideas.
         </p>
 
@@ -288,12 +308,12 @@
       <div class="card connect-card reveal-scale delay-150"
         onclick="NexusApp.Toast.info('Documentation','Opening docs…')">
 
-        <div class="connect-icon">📚</div>
+        <div class="connect-icon"><i class="fa-solid fa-file"></i></div>
         <h3 class="connect-card-title">Browse Docs</h3>
 
         <p class="connect-card-text">
           Comprehensive documentation, guides, API references, and video tutorials
-          for every Nexus product.
+          for every NexTSpace product.
         </p>
 
         <div class="btn btn-secondary btn-sm">Open Docs →</div>
@@ -303,7 +323,7 @@
       <div class="card connect-card reveal-scale delay-300"
         onclick="NexusApp.Toast.info('GitHub','Opening GitHub…')">
 
-        <div class="connect-icon">⌂</div>
+        <div class="connect-icon"><i class="fa-brands fa-github"></i></div>
         <h3 class="connect-card-title">GitHub Issues</h3>
 
         <p class="connect-card-text">
@@ -388,7 +408,7 @@
 
 <div class="cart-overlay" id="cart-overlay"></div>
 <div class="cart-drawer" id="cart-drawer">
-  <div class="cart-drawer-header"><h3 class="cart-drawer-title">🛒 Cart</h3><button class="btn btn-ghost btn-icon" data-cart-close>✕</button></div>
+  <div class="cart-drawer-header"><h3 class="cart-drawer-title"><i class="fa-solid fa-shopping-cart"></i> Cart</h3><button class="btn btn-ghost btn-icon" data-cart-close>✕</button></div>
   <div class="cart-drawer-body" id="cart-drawer-body"></div>
   <div class="cart-drawer-footer" id="cart-footer"></div>
 </div>
