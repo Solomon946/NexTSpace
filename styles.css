@@ -1489,6 +1489,11 @@ ul { list-style: none; }
   font-weight: 800;
   color: var(--text-primary);
 }
+
+
+
+
+
 /* ===== STEPS SECTION ===== */
 
 .steps-grid {
@@ -1568,6 +1573,94 @@ ul { list-style: none; }
 .steps-grid > * {
   min-width: 0;
 }
+
+/* ===== CONTACT SECTION ===== */
+
+.contact-wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
+  align-items: start;
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  .contact-wrapper {
+    grid-template-columns: 1.2fr 1fr;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .contact-wrapper {
+    grid-template-columns: 1.5fr 1fr;
+  }
+}
+
+/* Prevent overflow */
+.contact-wrapper > * {
+  min-width: 0;
+}
+
+/* Contact info */
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* Form */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* Form row (First + Last name) */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+}
+
+@media (min-width: 480px) {
+  .form-row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Inputs */
+.form-input,
+.form-textarea,
+.form-select {
+  width: 100%;
+}
+
+/* Textarea fix */
+.form-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* Title */
+.form-title {
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  margin-bottom: var(--space-6);
+}
+
+/* Button */
+.form-submit {
+  justify-content: center;
+}
+
+/* Optional polish */
+.card {
+  max-width: 100%;
+  overflow: hidden;
+}
+
 /* ══════════════════════════════════════════
    TOAST NOTIFICATIONS
 ══════════════════════════════════════════ */
