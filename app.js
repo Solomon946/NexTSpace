@@ -803,56 +803,152 @@ const NexTStorage = (() => {
 
 const PRODUCTS = [
   {
-    name: "Enterprise Dashboard Kit",
+    id: 'prod_001',
+    name: 'Enterprise Dashboard Kit',
+    slug: 'enterprise-dashboard-kit',
+    category: 'Templates',
     price: 149,
     oldPrice: 199,
-    desc: "Enterprise admin dashboard UI",
-    image: "./images/dashboard.png"
+    rating: 4.9,
+    reviews: 238,
+    badge: 'bestseller',
+    badgeLabel: 'Best Seller',
+    desc: 'A complete enterprise-grade admin dashboard with 60+ components, analytics, and dark/light modes.',
+    longDesc: 'The Enterprise Dashboard Kit is a comprehensive UI solution for SaaS and enterprise applications. Includes 60+ pre-built components, responsive layout, charts, tables, and full theme customization. Built with modern HTML, CSS, and vanilla JS.',
+    features: ['60+ UI Components', 'Dark & Light Mode', 'Responsive Design', 'Chart Integration', 'Authentication UI', 'Lifetime Updates'],
+    tags: ['dashboard', 'admin', 'template', 'ui-kit'],
+    color: 'from-blue-800 to-blue-600',
+    emoji: '📊',
   },
   {
-    name: "SaaS Landing Page",
+    id: 'prod_002',
+    name: 'SaaS Landing Page Pro',
+    slug: 'saas-landing-page-pro',
+    category: 'Templates',
     price: 79,
     oldPrice: 99,
-    desc: "High converting landing page",
-    image: "./images/saas.png"
+    rating: 4.8,
+    reviews: 194,
+    badge: 'new',
+    badgeLabel: 'New',
+    desc: 'High-converting SaaS landing page with animations, pricing tables, and testimonials.',
+    longDesc: 'Convert visitors into customers with this stunning SaaS landing page. Includes hero section, features, pricing, testimonials, FAQ, and CTA sections — all fully animated and production-ready.',
+    features: ['10+ Sections', 'Animated Components', 'SEO Optimized', 'Fast Load', 'Contact Form', '1-Year Support'],
+    tags: ['landing', 'saas', 'marketing'],
+    color: 'from-cyan-800 to-blue-700',
+    emoji: '🚀',
   },
   {
-    name: "Ecommerce Template",
+    id: 'prod_003',
+    name: 'E-Commerce Store Template',
+    slug: 'ecommerce-store-template',
+    category: 'Templates',
     price: 119,
     oldPrice: 159,
-    desc: "Complete ecommerce frontend",
-    image: "./images/ecommerce.png"
-  }
+    rating: 4.7,
+    reviews: 156,
+    badge: 'sale',
+    badgeLabel: 'Sale',
+    desc: 'Complete e-commerce storefront with product listings, cart, and checkout — no backend needed.',
+    longDesc: 'Launch your online store instantly with this complete e-commerce frontend. Features product catalog, filters, cart drawer, checkout flow, and order tracking — all simulated client-side.',
+    features: ['Product Catalog', 'Cart System', 'Checkout Flow', 'Filter & Search', 'Mobile Optimized', 'localStorage Integration'],
+    tags: ['ecommerce', 'store', 'shop'],
+    // color: 'from-teal-800 to-emerald-700',
+    image: './images/ecommerce.png',
+    // emoji: '<i class="fa-solid fa-cart-shopping"></i>',
+  },
+  {
+    id: 'prod_004',
+    name: 'DevPortfolio Theme',
+    slug: 'devportfolio-theme',
+    category: 'Templates',
+    price: 49,
+    oldPrice: null,
+    rating: 4.9,
+    reviews: 312,
+    badge: 'hot',
+    badgeLabel: 'Hot',
+    desc: 'Minimal developer portfolio with project showcase, blog, and dark/light theme.',
+    longDesc: 'Stand out from the crowd with this polished developer portfolio. Features animated hero, project grid, skills section, and blog — optimized for GitHub Pages and Netlify deployment.',
+    features: ['Project Showcase', 'Blog Ready', 'Dark/Light Mode', 'GitHub Integration', 'Netlify Ready', '100/100 Lighthouse'],
+    tags: ['portfolio', 'developer', 'minimal'],
+    color: 'from-slate-800 to-slate-600',
+    emoji: '👨‍💻',
+  },
+  {
+    id: 'prod_005',
+    name: 'Analytics Dashboard UI',
+    slug: 'analytics-dashboard-ui',
+    category: 'UI Kits',
+    price: 89,
+    oldPrice: 119,
+    rating: 4.8,
+    reviews: 87,
+    badge: null,
+    badgeLabel: null,
+    desc: 'Data-rich analytics dashboard with 30+ chart types and real-time data simulation.',
+    longDesc: 'Visualize data beautifully with this analytics dashboard. Includes line, bar, pie, area charts, KPI cards, and data tables — all with smooth animations and responsive design.',
+    features: ['30+ Chart Types', 'KPI Cards', 'Data Tables', 'Real-Time Simulation', 'Export Features', 'PDF Reports'],
+    tags: ['analytics', 'charts', 'data'],
+    color: 'from-indigo-800 to-blue-700',
+    emoji: '📈',
+  },
+  {
+    id: 'prod_006',
+    name: 'UI Component Library',
+    slug: 'ui-component-library',
+    category: 'UI Kits',
+    price: 199,
+    oldPrice: 249,
+    rating: 4.9,
+    reviews: 432,
+    badge: 'bestseller',
+    badgeLabel: 'Best Seller',
+    desc: '200+ production-ready UI components with variants, states, and documentation.',
+    longDesc: 'The most comprehensive UI component library for web projects. Includes buttons, forms, modals, drawers, toasts, cards, tables, navbars, and more — all fully documented and customizable.',
+    features: ['200+ Components', 'Full Documentation', 'Figma Source Files', 'Copy-paste Ready', 'Accessibility', 'Regular Updates'],
+    tags: ['components', 'library', 'ui-kit'],
+    color: 'from-violet-800 to-blue-700',
+    emoji: '🧩',
+  },
+  {
+    id: 'prod_007',
+    name: 'SaaS Startup Kit',
+    slug: 'saas-startup-kit',
+    category: 'Bundles',
+    price: 299,
+    oldPrice: 499,
+    rating: 5.0,
+    reviews: 64,
+    badge: 'new',
+    badgeLabel: 'New',
+    desc: 'Everything you need to launch a SaaS product: landing, dashboard, docs, and blog.',
+    longDesc: 'The ultimate SaaS starter kit. Includes landing page, dashboard, documentation site, blog, authentication pages, pricing, and admin panel — all production-ready and fully customizable.',
+    features: ['Landing Page', 'Admin Dashboard', 'Documentation', 'Blog Template', 'Auth Pages', 'Stripe-Ready UI'],
+    tags: ['saas', 'startup', 'bundle', 'all-in-one'],
+    color: 'from-blue-900 to-navy-700',
+    emoji: '🏢',
+  },
+  {
+    id: 'prod_008',
+    name: 'Mobile App UI Kit',
+    slug: 'mobile-app-ui-kit',
+    category: 'UI Kits',
+    price: 69,
+    oldPrice: null,
+    rating: 4.6,
+    reviews: 118,
+    badge: null,
+    badgeLabel: null,
+    desc: 'Cross-platform mobile UI kit with iOS and Android design patterns.',
+    longDesc: 'Design beautiful mobile apps with this comprehensive UI kit. Includes onboarding, home, profile, settings, and e-commerce screens — all following platform-specific design guidelines.',
+    features: ['iOS & Android', 'Onboarding Screens', 'Profile UI', 'E-Commerce Screens', 'Settings Panel', 'Dark Mode'],
+    tags: ['mobile', 'ios', 'android', 'ui-kit'],
+    color: 'from-rose-900 to-pink-800',
+    emoji: '📱',
+  },
 ];
 
-function renderProducts(products) {
-  const container = document.getElementById("home-products-grid");
-
-  container.innerHTML = products.map(product => `
-    <div class="product-card">
-
-      <div class="product-image">
-        <img src="${product.image}" 
-             onerror="this.src='https://via.placeholder.com/400x250'">
-      </div>
-
-      <div class="product-content">
-        <h3 class="product-title">${product.name}</h3>
-        <p class="product-desc">${product.desc}</p>
-
-        <div class="product-meta">
-          <span class="price">₹${product.price}</span>
-          <span class="old-price">₹${product.oldPrice}</span>
-        </div>
-
-        <button>View Details</button>
-      </div>
-
-    </div>
-  `).join('');
-}
-
-renderProducts(PRODUCTS);
 /* ============================================
    SERVICES DATA
    ============================================ */
