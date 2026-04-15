@@ -23,6 +23,24 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="responsive.css">
   <style>
+    *{
+      box-sizing: border-box;
+      max-width: 100%;
+    }
+
+    .container{
+      width: 100%;
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 16px;
+    }
+
+    .hero{
+      position: relative;
+      overflow: hidden;
+      padding: 60px 0;
+    }
+
     /* ── Index-specific styles ── */
     .hero-split {
       display: grid;
@@ -188,89 +206,15 @@
         grid-template-columns: 1fr;
       }
     }
-    
-/* GLOBAL FIX */
-* {
-  box-sizing: border-box;
-  max-width: 100%;
-}
 
-html, body {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  font-family: Poppins, sans-serif;
-}
-
-.container {
-  width: 100%;
-  max-width: 1200px;
-  margin: auto;
-  padding: 0 16px;
-}
-
-/* HERO */
-.hero {
-  position: relative;
-  overflow: hidden;
-  padding: 60px 0;
-}
-
-.hero-split {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  align-items: center;
-}
-
-.hero-title {
-  font-size: 42px;
-  font-weight: 800;
-}
-
-.hero-subtitle {
-  margin-top: 16px;
-  color: #666;
-}
-
-.hero-actions {
-  margin-top: 20px;
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.btn {
-  padding: 12px 18px;
-  border-radius: 8px;
-  text-decoration: none;
-  display: inline-block;
-}
-
-.btn-primary {
-  background: #2563eb;
-  color: white;
-}
-
-.btn-secondary {
-  border: 1px solid #ccc;
-  color: #333;
-}
-
-/* DASHBOARD */
-.hero-visual {
-  max-width: 100%;
-  overflow: hidden;
-  position: relative;
-}
-
-.hero-dashboard {
-  background: #0d1b35;
-  border-radius: 16px;
-  padding: 20px;
-  color: white;
-}
-
+    .hero-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+      /* min-height: calc(100vh - 68px); */
+      /* padding: var(--space-16) 0; */
+    }
   </style>
 </head>
 
