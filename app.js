@@ -3,7 +3,7 @@
    Navbar, Toast, Cart Drawer, Theme, Search
    ============================================ */
 
-const NexTApp = (() => {
+const NexusApp = (() => {
 
   /* ══════════════════════════════════════════
      TOAST NOTIFICATION SYSTEM
@@ -95,7 +95,7 @@ const NexTApp = (() => {
 
     const render = () => {
       if (!cartBody) return;
-      const items = NexTStorage.cart.get();
+      const items = NexusStorage.cart.get();
 
       if (!items.length) {
         cartBody.innerHTML = `
@@ -103,7 +103,7 @@ const NexTApp = (() => {
             <div class="cart-empty-icon"><i class="fa-solid fa-cart-shopping"></i></div>
             <h4 style="font-family:var(--font-heading);font-size:var(--text-lg);color:var(--text-primary);">Your cart is empty</h4>
             <p style="font-size:var(--text-sm);">Browse our products and add some to your cart.</p>
-            <a href="products.html" class="btn btn-primary btn-sm" onclick="NexTApp.CartDrawer.close()">Explore Products</a>
+            <a href="products.html" class="btn btn-primary btn-sm" onclick="NexusApp.CartDrawer.close()">Explore Products</a>
           </div>
         `;
         updateFooter(0);
@@ -133,7 +133,7 @@ const NexTApp = (() => {
         </div>
       `).join('');
 
-      updateFooter(NexTStorage.cart.total());
+      updateFooter(NexusStorage.cart.total());
     };
 
     const updateFooter = (total) => {
@@ -146,10 +146,10 @@ const NexTApp = (() => {
           <span style="font-weight:700;color:var(--text-primary);">Total</span>
           <span class="cart-summary-total">$${total.toFixed(2)}</span>
         </div>
-        <a href="checkout.html" class="btn btn-primary btn-ripple" style="width:100%;margin-top:var(--space-4);justify-content:center;" onclick="NexTApp.CartDrawer.close()">
+        <a href="checkout.html" class="btn btn-primary btn-ripple" style="width:100%;margin-top:var(--space-4);justify-content:center;" onclick="NexusApp.CartDrawer.close()">
           Proceed to Checkout →
         </a>
-        <a href="cart.html" class="btn btn-secondary" style="width:100%;margin-top:var(--space-2);justify-content:center;" onclick="NexTApp.CartDrawer.close()">
+        <a href="cart.html" class="btn btn-secondary" style="width:100%;margin-top:var(--space-2);justify-content:center;" onclick="NexusApp.CartDrawer.close()">
           View Cart
         </a>
       `;
@@ -188,16 +188,16 @@ const NexTApp = (() => {
         if (qtyBtn) {
           const id = qtyBtn.dataset.id;
           const action = qtyBtn.dataset.action;
-          const item = NexTStorage.cart.get().find(i => i.id === id);
+          const item = NexusStorage.cart.get().find(i => i.id === id);
           if (!item) return;
           const newQty = action === 'inc' ? item.qty + 1 : item.qty - 1;
-          NexTStorage.cart.updateQty(id, newQty);
+          NexusStorage.cart.updateQty(id, newQty);
           render();
           updateCartCount();
         }
 
         if (removeBtn) {
-          NexTStorage.cart.remove(removeBtn.dataset.remove);
+          NexusStorage.cart.remove(removeBtn.dataset.remove);
           render();
           updateCartCount();
           Toast.info('Item removed', 'Item removed from cart.');
@@ -205,7 +205,7 @@ const NexTApp = (() => {
       });
 
       // Listen for cart updates
-      NexTStorage.events.on('cartUpdated', () => {
+      NexusStorage.events.on('cartUpdated', () => {
         updateCartCount();
         if (drawer.classList.contains('open')) render();
       });
@@ -263,7 +263,7 @@ const NexTApp = (() => {
     const init = () => {
       document.querySelectorAll('[data-theme-toggle]').forEach(btn => {
         btn.addEventListener('click', () => {
-          const next = NexTStorage.theme.toggle();
+          const next = NexusStorage.theme.toggle();
           updateIcons(next);
           Toast.info(
             `${next === 'dark' ? 'Dark' : 'Light'} Mode`,
@@ -274,7 +274,7 @@ const NexTApp = (() => {
       });
 
       // Update icon on init
-      updateIcons(NexTStorage.theme.get());
+      updateIcons(NexusStorage.theme.get());
     };
 
     const updateIcons = (theme) => {
@@ -323,7 +323,7 @@ const NexTApp = (() => {
      USER STATE & NOTIFICATIONS
   ══════════════════════════════════════════ */
   const updateCartCount = () => {
-    const count = NexTStorage.cart.count();
+    const count = NexusStorage.cart.count();
     document.querySelectorAll('.cart-count').forEach(el => {
       el.textContent = count;
       el.classList.toggle('hidden', count === 0);
@@ -333,7 +333,7 @@ const NexTApp = (() => {
   };
 
   const updateUserUI = () => {
-    const user = NexTStorage.user.get();
+    const user = NexusStorage.user.get();
     document.querySelectorAll('[data-user-name]').forEach(el => {
       el.textContent = user.name;
     });
@@ -476,13 +476,13 @@ const NexTApp = (() => {
         e.preventDefault();
         if (FormValidator.validate(form)) {
           const onSubmit = form.dataset.form;
-          NexTApp.FormHandlers[onSubmit]?.(form);
+          NexusApp.FormHandlers[onSubmit]?.(form);
         }
       });
     });
 
-    console.log('%c⬛ NEXTSPACE Platform', 'color:#3B82F6;font-size:14px;font-weight:700;');
-    console.log('%cBuilt with precision. Powered by NexTSpace.', 'color:#6B7280;font-size:11px;');
+    console.log('%c⬛ NEXUS Platform', 'color:#3B82F6;font-size:14px;font-weight:700;');
+    console.log('%cBuilt with precision. Powered by Nexus.', 'color:#6B7280;font-size:11px;');
   };
 
   /* ── Form Handlers ── */
@@ -492,20 +492,20 @@ const NexTApp = (() => {
       form.reset();
     },
     newsletter: (form) => {
-      Toast.success('Subscribed!', 'Welcome to the NexTSpace community.');
+      Toast.success('Subscribed!', 'Welcome to the Nexus community.');
       form.reset();
     },
     checkout: (form) => {
-      const cartItems = NexTStorage.cart.get();
+      const cartItems = NexusStorage.cart.get();
       if (!cartItems.length) {
         Toast.warning('Cart Empty', 'Add products to cart before checkout.');
         return;
       }
-      const order = NexTStorage.orders.add({
+      const order = NexusStorage.orders.add({
         items: cartItems,
-        total: NexTStorage.cart.total(),
+        total: NexusStorage.cart.total(),
       });
-      NexTStorage.cart.clear();
+      NexusStorage.cart.clear();
       Toast.success('Order Placed!', `Order ${order.id} confirmed. Redirecting…`);
       setTimeout(() => {
         window.location.href = 'dashboard.html';
@@ -538,8 +538,8 @@ const NexTApp = (() => {
    localStorage Management + Simulated Data
    ============================================ */
 
-const NexTStorage = (() => {
-  const PREFIX = 'nextspace_';
+const NexusStorage = (() => {
+  const PREFIX = 'nexus_';
   const KEYS = {
     CART: 'cart',
     WISHLIST: 'wishlist',
@@ -583,14 +583,14 @@ const NexTStorage = (() => {
         items.push({ ...product, qty });
       }
       set(KEYS.CART, items);
-      NexTStorage.events.emit('cartUpdated', cart.get());
+      NexusStorage.events.emit('cartUpdated', cart.get());
       return items;
     },
 
     remove: (productId) => {
       const items = cart.get().filter(i => i.id !== productId);
       set(KEYS.CART, items);
-      NexTStorage.events.emit('cartUpdated', items);
+      NexusStorage.events.emit('cartUpdated', items);
       return items;
     },
 
@@ -601,14 +601,14 @@ const NexTStorage = (() => {
         if (qty <= 0) return cart.remove(productId);
         items[idx].qty = qty;
         set(KEYS.CART, items);
-        NexTStorage.events.emit('cartUpdated', items);
+        NexusStorage.events.emit('cartUpdated', items);
       }
       return items;
     },
 
     clear: () => {
       set(KEYS.CART, []);
-      NexTStorage.events.emit('cartUpdated', []);
+      NexusStorage.events.emit('cartUpdated', []);
     },
 
     total: () => {
@@ -633,7 +633,7 @@ const NexTStorage = (() => {
         list.push(product);
       }
       set(KEYS.WISHLIST, list);
-      NexTStorage.events.emit('wishlistUpdated', list);
+      NexusStorage.events.emit('wishlistUpdated', list);
       return idx === -1; // returns true if added
     },
 
@@ -658,7 +658,7 @@ const NexTStorage = (() => {
       };
       list.unshift(newOrder);
       set(KEYS.ORDERS, list);
-      NexTStorage.events.emit('ordersUpdated', list);
+      NexusStorage.events.emit('ordersUpdated', list);
       return newOrder;
     },
 
@@ -701,7 +701,7 @@ const NexTStorage = (() => {
     set: (t) => {
       set(KEYS.THEME, t);
       document.documentElement.setAttribute('data-theme', t);
-      NexTStorage.events.emit('themeChanged', t);
+      NexusStorage.events.emit('themeChanged', t);
     },
     toggle: () => {
       const current = theme.get();
@@ -761,7 +761,7 @@ const NexTStorage = (() => {
   function _defaultNotifs() {
     return [
       { id: 1, read: false, type: 'order', title: 'Order Confirmed', message: 'Your order ORD-ABC123 has been confirmed.', date: new Date(Date.now() - 3600000).toISOString() },
-      { id: 2, read: false, type: 'system', title: 'Welcome to NexTSpace!', message: 'Thanks for joining. Explore our premium products.', date: new Date(Date.now() - 86400000).toISOString() },
+      { id: 2, read: false, type: 'system', title: 'Welcome to Nexus!', message: 'Thanks for joining. Explore our premium products.', date: new Date(Date.now() - 86400000).toISOString() },
       { id: 3, read: true, type: 'promo', title: 'Special Offer', message: 'Get 20% off Pro plan this week only.', date: new Date(Date.now() - 172800000).toISOString() },
     ];
   }
@@ -1054,7 +1054,7 @@ const SERVICES = [
 
 // Initialize theme on load
 (function initTheme() {
-  const saved = NexTStorage.theme.get();
+  const saved = NexusStorage.theme.get();
   document.documentElement.setAttribute('data-theme', saved || 'dark');
 })();
 
@@ -1063,7 +1063,7 @@ const SERVICES = [
    Scroll-reveal, Tilt, Ripple, Counters
    ============================================ */
 
-const NexTAnimations = (() => {
+const NexusAnimations = (() => {
 
   /* ── Scroll Reveal (Intersection Observer) ── */
   const initScrollReveal = () => {
@@ -1347,7 +1347,7 @@ const NexTAnimations = (() => {
     if (window.matchMedia('(pointer:coarse)').matches) return; // skip on touch
 
     const cursor = document.createElement('div');
-    cursor.id = 'nextspace-cursor';
+    cursor.id = 'nexus-cursor';
     Object.assign(cursor.style, {
       position: 'fixed',
       width: '12px',
@@ -1487,7 +1487,7 @@ const NexTAnimations = (() => {
 
 // Auto-init
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', NexTAnimations.init);
+  document.addEventListener('DOMContentLoaded', NexusAnimations.init);
 } else {
-  NexTAnimations.init();
+  NexusAnimations.init();
 }
