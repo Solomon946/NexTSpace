@@ -39,10 +39,10 @@
         </a>
 
         <nav class="navbar-nav">
-          <a href="/" class="nav-link active">Home</a>
+          <a href="/" class="nav-link">Home</a>
           <a href="products.html" class="nav-link">Products</a>
           <a href="services.html" class="nav-link">Services</a>
-          <a href="pricing.html" class="nav-link">Pricing</a>
+          <a href="pricing.html" class="nav-link active">Pricing</a>
           <a href="about.html" class="nav-link">About</a>
           <a href="contact.html" class="nav-link">Contact</a>
         </nav>
@@ -83,7 +83,7 @@
     <div class="inner-hero-glow"></div>
     <div class="container">
       <div class="inner-hero-content">
-        <div class="inner-hero-badge">💳 Pricing Plans</div>
+        <div class="inner-hero-badge"><i class="fa-regular fa-credit-card"></i> Pricing Plans</div>
         <h1 class="inner-hero-title reveal">Simple Pricing,<br><span
             style="background:linear-gradient(135deg,#93C5FD,#0EA5E9);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">No
             Surprises</span></h1>
@@ -492,7 +492,7 @@
         <div class="faq-item" data-accordion-item>
           <div class="faq-question" data-accordion-trigger>
             Can I switch plans at any time?
-            <div class="faq-icon accordion-icon">▼</div>
+            <div class="faq-icon accordion-icon"><i class="fa-solid fa-angle-down"></i></div>
           </div>
           <div class="faq-answer accordion-content" data-accordion-content>
             Yes, you can switch between our monthly and annual plans at any time. If you switch from a higher plan to a
@@ -502,7 +502,7 @@
         <div class="faq-item" data-accordion-item>
           <div class="faq-question" data-accordion-trigger>
             What happens after my free trial?
-            <div class="faq-icon accordion-icon">▼</div>
+            <div class="faq-icon accordion-icon"><i class="fa-solid fa-angle-down"></i></div>
           </div>
           <div class="faq-answer accordion-content" data-accordion-content>
             After your 14-day trial, you'll be prompted to enter payment details to continue. We'll never charge you
@@ -512,7 +512,7 @@
         <div class="faq-item" data-accordion-item>
           <div class="faq-question" data-accordion-trigger>
             Do I own the products I download?
-            <div class="faq-icon accordion-icon">▼</div>
+            <div class="faq-icon accordion-icon"><i class="fa-solid fa-angle-down"></i></div>
           </div>
           <div class="faq-answer accordion-content" data-accordion-content>
             Yes. Once downloaded, products are yours permanently — even if you cancel your subscription. Products
@@ -523,7 +523,7 @@
         <div class="faq-item" data-accordion-item>
           <div class="faq-question" data-accordion-trigger>
             Is there a one-time purchase option?
-            <div class="faq-icon accordion-icon">▼</div>
+            <div class="faq-icon accordion-icon"><i class="fa-solid fa-angle-down"></i></div>
           </div>
           <div class="faq-answer accordion-content" data-accordion-content>
             Absolutely. You can purchase individual products from our marketplace without a subscription. Individual
@@ -534,7 +534,7 @@
         <div class="faq-item" data-accordion-item>
           <div class="faq-question" data-accordion-trigger>
             Do you offer non-profit or student discounts?
-            <div class="faq-icon accordion-icon">▼</div>
+            <div class="faq-icon accordion-icon"><i class="fa-solid fa-angle-down"></i></div>
           </div>
           <div class="faq-answer accordion-content" data-accordion-content>
             Yes! We offer 50% off for verified students and 30% off for registered non-profits. Contact us at
@@ -545,7 +545,7 @@
         <div class="faq-item" data-accordion-item>
           <div class="faq-question" data-accordion-trigger>
             What's included in Enterprise support?
-            <div class="faq-icon accordion-icon">▼</div>
+            <div class="faq-icon accordion-icon"><i class="fa-solid fa-angle-down"></i></div>
           </div>
           <div class="faq-answer accordion-content" data-accordion-content>
             Enterprise includes a dedicated account manager who knows your team and tech stack, a 1-hour response SLA
@@ -580,55 +580,73 @@
       </div>
     </div>
   </section>
-
-  <!-- FOOTER -->
-  <footer class="full-footer">
+  <!-- ═══════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════ -->
+  <footer class="footer" id="about">
     <div class="container">
-      <div class="full-footer-grid">
-        <div>
-          <a href="/" class="navbar-logo" style="margin-bottom:var(--space-5);display:inline-flex;">
-            <div class="logo-mark">NX</div><span
-              style="color:white;font-family:var(--font-heading);font-weight:800;font-size:var(--text-xl);margin-left:var(--space-3);">Nexus</span>
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/" class="navbar-logo" style="margin-bottom:var(--space-4);display:inline-flex;">
+            <div class="logo-mark">✦</div>
+            <span
+              style="color:white;font-family:var(--font-heading);font-weight:800;font-size:var(--text-xl);margin-left:var(--space-3);">NexTSpace</span>
           </a>
-          <p style="font-size:var(--text-sm);color:rgba(255,255,255,0.45);max-width:260px;line-height:1.75;">The premium
-            platform for digital products and professional services.</p>
-        </div>
-        <div>
-          <div class="footer-col-title">Product</div>
-          <div class="footer-links">
-            <a href="/pages/products.html" class="footer-link">Templates</a>
-            <a href="/pages/services.html" class="footer-link">Services</a>
-            <a href="/pages/pricing.html" class="footer-link">Pricing</a>
+          <p>The premier marketplace for digital products and professional services. Built for developers, designers,
+            and agencies who demand excellence.</p>
+          <div class="footer-social">
+            <button class="social-btn" title="Twitter/X"><i class="fa-brands fa-x-twitter"></i></button>
+            <button class="social-btn" title="GitHub"><i class="fa-brands fa-github"></i></button>
+            <button class="social-btn" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></button>
+            <button class="social-btn" title="YouTube"><i class="fa-brands fa-youtube"></i></button>
           </div>
         </div>
+
+        <div>
+          <div class="footer-col-title">Products</div>
+          <div class="footer-links">
+            <a href="products.html" class="footer-link">Templates</a>
+            <a href="products.html?category=UI+Kits" class="footer-link">UI Kits</a>
+            <a href="products.html?category=Bundles" class="footer-link">Bundles</a>
+            <a href="products.html" class="footer-link">All Products</a>
+            <a href="#" class="footer-link">New Releases</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Services</div>
+          <div class="footer-links">
+            <a href="services.html?id=svc_001" class="footer-link">Web Development</a>
+            <a href="services.html?id=svc_002" class="footer-link">UI/UX Design</a>
+            <a href="services.html?id=svc_003" class="footer-link">SaaS Setup</a>
+            <a href="services.html?id=svc_004" class="footer-link">Maintenance</a>
+            <a href="services.html?id=svc_005" class="footer-link">SEO & Performance</a>
+          </div>
+        </div>
+
         <div>
           <div class="footer-col-title">Company</div>
           <div class="footer-links">
-            <a href="/pages/about.html" class="footer-link">About</a>
-            <a href="/pages/careers.html" class="footer-link">Careers</a>
-            <a href="/pages/contact.html" class="footer-link">Contact</a>
-          </div>
-        </div>
-        <div>
-          <div class="footer-col-title">Legal</div>
-          <div class="footer-links">
-            <a href="/pages/privacy-policy.html" class="footer-link">Privacy Policy</a>
-            <a href="/pages/terms-of-service.html" class="footer-link">Terms of Service</a>
-            <a href="/pages/cookie-policy.html" class="footer-link">Cookie Policy</a>
+            <a href="./about.html" class="footer-link">About Us</a>
+            <a href="./blog.html" class="footer-link">Blog</a>
+            <a href="./careers.html" class="footer-link">Careers</a>
+            <a href="./contact.html" class="footer-link">Contact</a>
+            <a href="./press.html" class="footer-link">Press Kit</a>
           </div>
         </div>
       </div>
-      <div
-        style="padding-top:var(--space-8);border-top:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--space-4);">
-        <p style="font-size:var(--text-sm);color:rgba(255,255,255,0.3);">© 2025 Nexus Platform, Inc.</p>
-        <div style="display:flex;gap:var(--space-6);">
-          <a href="/pages/privacy-policy.html" class="footer-link" style="font-size:var(--text-sm);">Privacy</a>
-          <a href="/pages/terms-of-service.html" class="footer-link" style="font-size:var(--text-sm);">Terms</a>
-          <a href="/pages/cookie-policy.html" class="footer-link" style="font-size:var(--text-sm);">Cookies</a>
+
+      <div class="footer-bottom">
+        <p>© 2026 NexTSpace Platform, Inc. All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="./privacy.html" class="footer-link">Privacy Policy</a>
+          <a href="./privacy.html" class="footer-link">Terms of Service</a>
+          <a href="./privacy.html" class="footer-link">Cookie Policy</a>
         </div>
       </div>
     </div>
   </footer>
+
 
   <div class="cart-overlay" id="cart-overlay"></div>
   <div class="cart-drawer" id="cart-drawer">
