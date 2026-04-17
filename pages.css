@@ -416,6 +416,43 @@
   line-height: 1.7;
 }
 
+/* About page button */
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  align-items: center;
+}
+
+/* Ensure buttons behave properly */
+.hero-actions .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap; /* prevents ugly text breaks */
+  min-height: 44px; /* accessibility (touch target) */
+  padding: 0 20px;
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .hero-actions {
+    gap: var(--space-3);
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+  }
+}
+
 /* ══════════════════════════════════════════
    PRICING PAGE
 ══════════════════════════════════════════ */
