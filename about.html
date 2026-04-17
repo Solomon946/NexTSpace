@@ -26,39 +26,57 @@
 
 <body class="page-wrapper">
 
-  <!-- NAVBAR -->
-  <nav class="navbar">
+  <!-- ═══════════════════════════════════════
+     NAVBAR
+═══════════════════════════════════════ -->
+  <nav class="navbar" id="navbar">
     <div class="container">
       <div class="navbar-inner">
         <a href="/" class="navbar-logo">
-          <div class="logo-mark">NX</div><span class="logo-text">Nexus</span>
+          <div class="logo-mark">✦</div>
+          <span class="logo-text">NexTS</span>
         </a>
+
         <nav class="navbar-nav">
-          <a href="/" class="nav-link">Home</a>
+          <a href="/" class="nav-link active">Home</a>
           <a href="products.html" class="nav-link">Products</a>
           <a href="services.html" class="nav-link">Services</a>
           <a href="pricing.html" class="nav-link">Pricing</a>
-          <a href="about.html" class="nav-link active">About</a>
+          <a href="about.html" class="nav-link">About</a>
           <a href="contact.html" class="nav-link">Contact</a>
         </nav>
+
         <div class="navbar-actions">
-          <button class="theme-toggle" data-theme-toggle>☀</button>
-          <button class="cart-btn" data-cart-toggle><i class="fa-solid fa-cart-shopping"></i><span class="cart-count hidden">0</span></button>
-          <a href="dashboard.html" class="btn btn-primary btn-sm btn-ripple">Dashboard</a>
+          <!-- <button class="btn btn-ghost btn-icon"
+            onclick="document.getElementById('search-expand-wrap').style.display=document.getElementById('search-expand-wrap').style.display==='none'?'flex':'none'"
+            title="Search"><i class="fa-solid fa-search"></i></button> -->
+          <button class="theme-toggle" data-theme-toggle title="Toggle Theme"></button>
+          <button class="cart-btn" data-cart-toggle title="Cart">
+            <i class="fa-solid fa-cart-arrow-down"></i> <span class="cart-count hidden" id="cart-badge">0</span>
+          </button>
+          <!-- <a href="dashboard.html" class="btn btn-secondary btn-sm">Dashboard</a>
+          <a href="products.html" class="btn btn-primary btn-sm btn-ripple">Shop Now</a> -->
         </div>
-        <button class="menu-toggle" id="menu-toggle"><span></span><span></span><span></span></button>
+
+        <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
       </div>
     </div>
     <div class="mobile-menu" id="mobile-menu">
-      <a href="index.html" class="mobile-nav-link">Home</a>
+      <a href="/" class="mobile-nav-link">Home</a>
       <a href="products.html" class="mobile-nav-link">Products</a>
       <a href="services.html" class="mobile-nav-link">Services</a>
       <a href="pricing.html" class="mobile-nav-link">Pricing</a>
       <a href="about.html" class="mobile-nav-link">About</a>
       <a href="contact.html" class="mobile-nav-link">Contact</a>
+      <div style="padding:var(--space-3) 0;display:flex;gap:var(--space-3);">
+        <a href="dashboard.html" class="btn btn-secondary btn-sm" style="flex:1;justify-content:center;">Dashboard</a>
+        <a href="products.html" class="btn btn-primary btn-sm btn-ripple" style="flex:1;justify-content:center;">Shop
+          Now</a>
+      </div>
     </div>
   </nav>
-
   <!-- HERO -->
   <div class="inner-hero">
     <div class="inner-hero-glow"></div>
@@ -372,58 +390,68 @@
       </div>
     </div>
   </section>
-
-  <!-- FOOTER -->
-  <footer class="full-footer">
+  <!-- ═══════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════ -->
+  <footer class="footer" id="about">
     <div class="container">
-      <div class="full-footer-grid">
-        <div>
-          <a href="/" class="navbar-logo" style="margin-bottom:var(--space-5);display:inline-flex;">
-            <div class="logo-mark">NX</div><span
-              style="color:white;font-family:var(--font-heading);font-weight:800;font-size:var(--text-xl);margin-left:var(--space-3);">Nexus</span>
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/" class="navbar-logo" style="margin-bottom:var(--space-4);display:inline-flex;">
+            <div class="logo-mark">✦</div>
+            <span
+              style="color:white;font-family:var(--font-heading);font-weight:800;font-size:var(--text-xl);margin-left:var(--space-3);">NexTSpace</span>
           </a>
-          <p style="font-size:var(--text-sm);color:rgba(255,255,255,0.45);max-width:260px;line-height:1.75;">The premium
-            platform for digital products, templates, and professional services.</p>
-          <div style="display:flex;gap:var(--space-3);margin-top:var(--space-5);">
-            <button class="social-btn">𝕏</button><button class="social-btn">⌂</button><button
-              class="social-btn">in</button><button class="social-btn">▶</button>
+          <p>The premier marketplace for digital products and professional services. Built for developers, designers,
+            and agencies who demand excellence.</p>
+          <div class="footer-social">
+            <button class="social-btn" title="Twitter/X"><i class="fa-brands fa-x-twitter"></i></button>
+            <button class="social-btn" title="GitHub"><i class="fa-brands fa-github"></i></button>
+            <button class="social-btn" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></button>
+            <button class="social-btn" title="YouTube"><i class="fa-brands fa-youtube"></i></button>
           </div>
         </div>
+
         <div>
-          <div class="footer-col-title">Product</div>
+          <div class="footer-col-title">Products</div>
           <div class="footer-links">
-            <a href="/pages/products.html" class="footer-link">Templates</a>
-            <a href="/pages/products.html" class="footer-link">UI Kits</a>
-            <a href="/pages/pricing.html" class="footer-link">Pricing</a>
-            <a href="/pages/blog.html" class="footer-link">Blog</a>
+            <a href="products.html" class="footer-link">Templates</a>
+            <a href="products.html?category=UI+Kits" class="footer-link">UI Kits</a>
+            <a href="products.html?category=Bundles" class="footer-link">Bundles</a>
+            <a href="products.html" class="footer-link">All Products</a>
+            <a href="#" class="footer-link">New Releases</a>
           </div>
         </div>
+
+        <div>
+          <div class="footer-col-title">Services</div>
+          <div class="footer-links">
+            <a href="services.html?id=svc_001" class="footer-link">Web Development</a>
+            <a href="services.html?id=svc_002" class="footer-link">UI/UX Design</a>
+            <a href="services.html?id=svc_003" class="footer-link">SaaS Setup</a>
+            <a href="services.html?id=svc_004" class="footer-link">Maintenance</a>
+            <a href="services.html?id=svc_005" class="footer-link">SEO & Performance</a>
+          </div>
+        </div>
+
         <div>
           <div class="footer-col-title">Company</div>
           <div class="footer-links">
-            <a href="/pages/about.html" class="footer-link">About Us</a>
-            <a href="/pages/careers.html" class="footer-link">Careers</a>
-            <a href="/pages/contact.html" class="footer-link">Contact</a>
-            <a href="/pages/blog.html" class="footer-link">Blog</a>
-          </div>
-        </div>
-        <div>
-          <div class="footer-col-title">Legal</div>
-          <div class="footer-links">
-            <a href="/pages/privacy-policy.html" class="footer-link">Privacy Policy</a>
-            <a href="/pages/terms-of-service.html" class="footer-link">Terms of Service</a>
-            <a href="/pages/cookie-policy.html" class="footer-link">Cookie Policy</a>
+            <a href="./about.html" class="footer-link">About Us</a>
+            <a href="./blog.html" class="footer-link">Blog</a>
+            <a href="./careers.html" class="footer-link">Careers</a>
+            <a href="./contact.html" class="footer-link">Contact</a>
+            <a href="./press.html" class="footer-link">Press Kit</a>
           </div>
         </div>
       </div>
-      <div
-        style="padding-top:var(--space-8);border-top:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:var(--space-4);">
-        <p style="font-size:var(--text-sm);color:rgba(255,255,255,0.3);">© 2025 Nexus Platform, Inc. All rights
-          reserved.</p>
-        <div style="display:flex;gap:var(--space-6);">
-          <a href="/pages/privacy-policy.html" class="footer-link" style="font-size:var(--text-sm);">Privacy</a>
-          <a href="/pages/terms-of-service.html" class="footer-link" style="font-size:var(--text-sm);">Terms</a>
-          <a href="/pages/cookie-policy.html" class="footer-link" style="font-size:var(--text-sm);">Cookies</a>
+
+      <div class="footer-bottom">
+        <p>© 2026 NexTSpace Platform, Inc. All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="./privacy.html" class="footer-link">Privacy Policy</a>
+          <a href="./privacy.html" class="footer-link">Terms of Service</a>
+          <a href="./privacy.html" class="footer-link">Cookie Policy</a>
         </div>
       </div>
     </div>
