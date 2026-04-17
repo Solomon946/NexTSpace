@@ -452,40 +452,68 @@
     width: 100%;
   }
 }
-/* =========================
-   MISSION GRID
-========================= */
+/* ================================
+   MISSION SECTION
+================================ */
+
+/* Mobile FIRST (default) */
 .mission-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-10);
+  gap: var(--space-12);
   align-items: center;
 }
 
-/* Tablet */
-@media (min-width: 768px) {
-  .mission-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-12);
-  }
+/* Stats grid */
+.mission-stats {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
 }
 
-/* Desktop */
-@media (min-width: 1024px) {
-  .mission-grid {
-    gap: var(--space-16);
-  }
+/* Card */
+.mission-card {
+  border-radius: var(--radius-2xl);
+  padding: var(--space-8);
+  text-align: center;
+  transition: 0.3s ease;
 }
 
-/* =========================
-   TEXT
-========================= */
+.mission-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Variants */
+.mission-card.primary {
+  background: linear-gradient(135deg, var(--navy-800), var(--navy-700));
+  border: 1px solid rgba(59,130,246,0.2);
+  color: white;
+}
+
+.mission-card.soft-blue {
+  background: rgba(37,99,235,0.08);
+  border: 1px solid rgba(37,99,235,0.2);
+}
+
+.mission-card.soft-green {
+  background: rgba(16,185,129,0.08);
+  border: 1px solid rgba(16,185,129,0.2);
+}
+
+.mission-card.dark {
+  background: linear-gradient(135deg, var(--navy-900), var(--navy-800));
+  border: 1px solid rgba(59,130,246,0.15);
+  color: white;
+}
+
+/* Text */
 .mission-title {
   font-size: var(--text-4xl);
   font-weight: 900;
   letter-spacing: -0.02em;
+  margin-bottom: var(--space-5);
   line-height: 1.15;
-  margin: var(--space-4) 0 var(--space-5);
 }
 
 .mission-text {
@@ -495,120 +523,44 @@
   margin-bottom: var(--space-5);
 }
 
-/* =========================
-   BUTTON GROUP
-========================= */
-.hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-4);
-}
-
-.hero-actions .btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 44px;
-  padding: 0 20px;
-  white-space: nowrap;
-}
-
-/* Mobile */
-@media (max-width: 480px) {
-  .hero-actions {
-    flex-direction: column;
-  }
-
-  .hero-actions .btn {
-    width: 100%;
-  }
-}
-
-/* =========================
-   STATS GRID
-========================= */
-.mission-stats {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-4);
-}
-
-/* Small tablet */
-@media (min-width: 480px) {
-  .mission-stats {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-/* =========================
-   STAT CARDS
-========================= */
-.stat-card {
-  border-radius: var(--radius-2xl);
-  padding: var(--space-8);
-  text-align: center;
-  border: 1px solid var(--border-color);
-  transition: 0.3s ease;
-}
-
-.stat-card:hover {
-  transform: translateY(-4px);
-}
-
-/* Variants */
-.stat-card.primary {
-  background: linear-gradient(135deg, var(--navy-800), var(--navy-700));
-  color: white;
-}
-
-.stat-card.blue {
-  background: rgba(37,99,235,0.08);
-  border-color: rgba(37,99,235,0.2);
-}
-
-.stat-card.green {
-  background: rgba(16,185,129,0.08);
-  border-color: rgba(16,185,129,0.2);
-}
-
-.stat-card.dark {
-  background: linear-gradient(135deg, var(--navy-900), var(--navy-800));
-  color: white;
-}
-
-/* =========================
-   STAT TEXT
-========================= */
-.stat-number {
+.mission-number {
   font-family: var(--font-heading);
   font-size: var(--text-4xl);
   font-weight: 900;
   margin-bottom: var(--space-2);
 }
 
-.stat-label {
+.mission-label {
   font-size: var(--text-sm);
   color: var(--text-muted);
 }
 
-/* =========================
-   DESKTOP OFFSET EFFECT
-========================= */
-.offset-down {
-  margin-top: var(--space-6);
+.mission-card.primary .mission-label,
+.mission-card.dark .mission-label {
+  color: rgba(255,255,255,0.6);
 }
 
-.offset-up {
-  margin-top: calc(var(--space-6) * -1);
-}
+/* ================================
+   RESPONSIVE FIX (IMPORTANT)
+================================ */
 
-/* Disable offsets on mobile */
-@media (max-width: 768px) {
-  .offset-down,
-  .offset-up {
-    margin-top: 0;
+/* Tablet */
+@media (min-width: 768px) {
+  .mission-grid {
+    grid-template-columns: 1fr 1fr; /* ✅ THIS restores desktop layout */
+  }
+
+  .mission-stats {
+    grid-template-columns: 1fr 1fr;
   }
 }
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .mission-grid {
+    gap: var(--space-16);
+  }
+}}
 /* ══════════════════════════════════════════
    PRICING PAGE
 ══════════════════════════════════════════ */
