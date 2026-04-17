@@ -453,10 +453,9 @@
   }
 }
 /* ================================
-   MISSION SECTION
+   MISSION SECTION FINAL
 ================================ */
 
-/* Mobile FIRST (default) */
 .mission-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -464,90 +463,26 @@
   align-items: center;
 }
 
-/* Stats grid */
 .mission-stats {
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-4);
 }
 
-/* Card */
-.mission-card {
-  border-radius: var(--radius-2xl);
-  padding: var(--space-8);
-  text-align: center;
-  transition: 0.3s ease;
+/* Card offsets (FIX instead of margin hacks) */
+.offset-down {
+  transform: translateY(var(--space-6));
 }
 
-.mission-card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-lg);
+.offset-up {
+  transform: translateY(calc(var(--space-6) * -1));
 }
-
-/* Variants */
-.mission-card.primary {
-  background: linear-gradient(135deg, var(--navy-800), var(--navy-700));
-  border: 1px solid rgba(59,130,246,0.2);
-  color: white;
-}
-
-.mission-card.soft-blue {
-  background: rgba(37,99,235,0.08);
-  border: 1px solid rgba(37,99,235,0.2);
-}
-
-.mission-card.soft-green {
-  background: rgba(16,185,129,0.08);
-  border: 1px solid rgba(16,185,129,0.2);
-}
-
-.mission-card.dark {
-  background: linear-gradient(135deg, var(--navy-900), var(--navy-800));
-  border: 1px solid rgba(59,130,246,0.15);
-  color: white;
-}
-
-/* Text */
-.mission-title {
-  font-size: var(--text-4xl);
-  font-weight: 900;
-  letter-spacing: -0.02em;
-  margin-bottom: var(--space-5);
-  line-height: 1.15;
-}
-
-.mission-text {
-  font-size: var(--text-base);
-  color: var(--text-secondary);
-  line-height: 1.8;
-  margin-bottom: var(--space-5);
-}
-
-.mission-number {
-  font-family: var(--font-heading);
-  font-size: var(--text-4xl);
-  font-weight: 900;
-  margin-bottom: var(--space-2);
-}
-
-.mission-label {
-  font-size: var(--text-sm);
-  color: var(--text-muted);
-}
-
-.mission-card.primary .mission-label,
-.mission-card.dark .mission-label {
-  color: rgba(255,255,255,0.6);
-}
-
-/* ================================
-   RESPONSIVE FIX (IMPORTANT)
-================================ */
 
 /* Tablet */
 @media (min-width: 768px) {
   .mission-grid {
-    grid-template-columns: 1fr 1fr; /* ✅ THIS restores desktop layout */
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-12);
   }
 
   .mission-stats {
