@@ -539,84 +539,19 @@
   margin: 0 auto;
 }
 
-/* ============================================
-   GLOBAL FIX (REMOVE SIDE GAP)
-============================================ */
-html, body {
-  overflow-x: hidden;
-}
+/* ══════════════════════════════════════════
+   CONTACT PAGE
+══════════════════════════════════════════ */
 
-/* ============================================
-   CONTAINER FIX
-============================================ */
-.container {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 16px;
-}
-
-@media (min-width: 768px) {
-  .container {
-    padding: 0 24px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .container {
-    padding: 0 32px;
-  }
-}
-
-/* ============================================
-   CONTACT GRID (FIXED RESPONSIVE)
-============================================ */
 .contact-grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-8);
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-12);
   align-items: start;
   padding: var(--space-12) 0 var(--space-20);
 }
 
-/* Desktop layout */
-@media (min-width: 1024px) {
-  .contact-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-12);
-  }
-}
-/* ============================================
-   GLOBAL FIX
-============================================ */
-html, body {
-  overflow-x: hidden;
-}
-
-/* ============================================
-   CONTACT GRID (MOBILE FIRST)
-============================================ */
-.contact-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-8);
-  align-items: start;
-  padding: var(--space-12) 0 var(--space-20);
-}
-
-/* Desktop */
-@media (min-width: 1024px) {
-  .contact-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-12);
-  }
-}
-
-/* ============================================
-   CONTACT INFO CARD
-============================================ */
 .contact-info-card {
-  width: 100%;
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-xl);
@@ -629,7 +564,7 @@ html, body {
 }
 
 .contact-info-card:hover {
-  border-color: rgba(37, 99, 235, 0.3);
+  border-color: rgba(37,99,235,0.3);
   transform: translateX(4px);
   box-shadow: var(--shadow-sm);
 }
@@ -638,8 +573,8 @@ html, body {
   width: 44px;
   height: 44px;
   border-radius: var(--radius-lg);
-  background: rgba(37, 99, 235, 0.1);
-  border: 1px solid rgba(37, 99, 235, 0.2);
+  background: rgba(37,99,235,0.1);
+  border: 1px solid rgba(37,99,235,0.2);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -668,39 +603,43 @@ html, body {
   color: var(--text-muted);
 }
 
-/* ============================================
-   CONTACT FORM
-============================================ */
 .contact-form-card {
-  width: 100%;
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-2xl);
-  padding: var(--space-6);
+  padding: var(--space-8);
 }
 
-@media (min-width: 768px) {
-  .contact-form-card {
-    padding: var(--space-8);
-  }
+/* Map placeholder */
+.map-placeholder {
+  height: 260px;
+  background: linear-gradient(135deg, var(--navy-900) 0%, var(--navy-800) 100%);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  color: var(--text-muted);
+  margin-top: var(--space-6);
+  position: relative;
+  overflow: hidden;
 }
 
-/* FORM ROW FIX */
-.form-row {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-4);
+.map-placeholder::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  /* background-image:
+    linear-gradient(rgba(59,130,246,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59,130,246,0.06) 1px, transparent 1px); */
+  background-size: 32px 32px;
 }
 
-@media (min-width: 768px) {
-  .form-row {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-/* ============================================
-   CONNECT SECTION
-============================================ */
+/* ================================
+   CONTACT SECTION
+================================ */
 .connect-section {
   padding: var(--space-16) 0;
   background: var(--bg-secondary);
@@ -724,137 +663,128 @@ html, body {
   color: var(--text-secondary);
 }
 
-/* GRID */
-.connect-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-6);
-}
-
-@media (min-width: 768px) {
-  .connect-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 1024px) {
-  .connect-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-/* CARD */
+/* ================================
+   CARD
+================================ */
 .connect-card {
-  width: 100%;
   padding: var(--space-6);
   text-align: center;
   cursor: pointer;
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 280px;
-  transition: all 0.3s ease;
+
+  min-height: 300px;
+  transition: 0.3s ease;
 }
 
 .connect-card:hover {
   transform: translateY(-6px);
-  box-shadow: var(--shadow-md);
 }
 
+/* ICON */
 .connect-icon {
-  font-size: 2.4rem;
+  font-size: 2.5rem;
   margin-bottom: var(--space-4);
 }
 
+/* TITLE */
 .connect-card-title {
   font-family: var(--font-heading);
   font-weight: 700;
   margin-bottom: var(--space-2);
 }
 
+/* TEXT */
 .connect-card-text {
   font-size: var(--text-sm);
   color: var(--text-secondary);
   line-height: 1.6;
+
+  /* Prevent overflow issues */
   overflow-wrap: break-word;
 }
 
+/* BUTTON ALIGNMENT */
 .connect-card .btn {
   margin-top: auto;
 }
 
-/* ============================================
-   MAP SECTION (FINAL PROFESSIONAL VERSION)
-============================================ */
-.map-wrapper {
-  margin-top: var(--space-10);
+/* ================================
+   GRID (FIXED RESPONSIVE)
+================================ */
+.connect-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
 }
 
-/* CARD */
-.map-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-2xl);
-  overflow: hidden;
-  box-shadow: var(--shadow-sm);
-  transition: all 0.3s ease;
+/* Tablet */
+@media (min-width: 768px) {
+  .connect-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-.map-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
+/* Desktop */
+@media (min-width: 1024px) {
+  .connect-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
-/* MAP */
+.map-placeholder {
+  margin-top: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+/* Map Box */
 .map-box {
   width: 100%;
-  height: 260px;
+  height: 300px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
 }
 
 .map-box iframe {
   width: 100%;
   height: 100%;
   border: 0;
-  filter: grayscale(20%) contrast(1.05);
 }
 
-/* CONTENT */
-.map-content {
-  padding: var(--space-6);
+/* Info Section */
+.map-info {
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-3);
 }
 
 .map-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
-  background: rgba(37, 99, 235, 0.1);
-  border: 1px solid rgba(37, 99, 235, 0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.3rem;
+  font-size: 2.5rem;
+  margin-bottom: var(--space-3);
 }
 
 .map-title {
   font-family: var(--font-heading);
   font-weight: 700;
   font-size: var(--text-base);
-  color: var(--text-primary);
+  color: var(--text-secondary);
+  margin-bottom: var(--space-1);
 }
 
 .map-subtitle {
-  font-size: var(--text-sm);
-  color: var(--text-secondary);
+  font-size: var(--text-xs);
+  color: var(--text-muted);
 }
 
-.map-content .btn {
-  margin-top: var(--space-2);
+/* Hover effect */
+.map-box:hover {
+  transform: scale(1.01);
+  transition: 0.3s ease;
 }
+
 /* ══════════════════════════════════════════
    BLOG PAGE
 ══════════════════════════════════════════ */
