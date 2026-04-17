@@ -611,7 +611,7 @@
 }
 
 /* Map placeholder */
-.map-placeholder {
+/* .map-placeholder {
   height: 260px;
   background: linear-gradient(135deg, var(--navy-900) 0%, var(--navy-800) 100%);
   border: 1px solid var(--border-color);
@@ -625,15 +625,15 @@
   margin-top: var(--space-6);
   position: relative;
   overflow: hidden;
-}
+} */
 
 .map-placeholder::before {
   content: '';
   position: absolute;
   inset: 0;
-  /* background-image:
+  background-image:
     linear-gradient(rgba(59,130,246,0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(59,130,246,0.06) 1px, transparent 1px); */
+    linear-gradient(90deg, rgba(59,130,246,0.06) 1px, transparent 1px);
   background-size: 32px 32px;
 }
 
