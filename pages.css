@@ -539,19 +539,60 @@
   margin: 0 auto;
 }
 
-/* ══════════════════════════════════════════
-   CONTACT PAGE
-══════════════════════════════════════════ */
+/* ============================================
+   GLOBAL FIX (REMOVE SIDE GAP)
+============================================ */
+html, body {
+  overflow-x: hidden;
+}
 
+/* ============================================
+   CONTAINER FIX
+============================================ */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding: 0 32px;
+  }
+}
+
+/* ============================================
+   CONTACT GRID (FIXED RESPONSIVE)
+============================================ */
 .contact-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-12);
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
   align-items: start;
   padding: var(--space-12) 0 var(--space-20);
 }
 
+/* Desktop layout */
+@media (min-width: 1024px) {
+  .contact-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-12);
+  }
+}
+
+/* ============================================
+   CONTACT INFO CARD
+============================================ */
 .contact-info-card {
+  width: 100%;
+  max-width: 100%;
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-xl);
@@ -603,43 +644,43 @@
   color: var(--text-muted);
 }
 
+/* ============================================
+   CONTACT FORM
+============================================ */
 .contact-form-card {
+  width: 100%;
+  max-width: 100%;
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-2xl);
-  padding: var(--space-8);
+  padding: var(--space-6);
 }
 
-/* Map placeholder */
-/* .map-placeholder {
-  height: 260px;
-  background: linear-gradient(135deg, var(--navy-900) 0%, var(--navy-800) 100%);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-xl);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-3);
-  color: var(--text-muted);
-  margin-top: var(--space-6);
-  position: relative;
-  overflow: hidden;
-} */
-
-.map-placeholder::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(59,130,246,0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(59,130,246,0.06) 1px, transparent 1px);
-  background-size: 32px 32px;
+@media (min-width: 768px) {
+  .contact-form-card {
+    padding: var(--space-8);
+  }
 }
 
-/* ================================
-   CONTACT SECTION
-================================ */
+/* ============================================
+   FORM GRID FIX (VERY IMPORTANT)
+============================================ */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+}
+
+/* Two inputs side-by-side on tablet+ */
+@media (min-width: 768px) {
+  .form-row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ============================================
+   CONNECT SECTION
+============================================ */
 .connect-section {
   padding: var(--space-16) 0;
   background: var(--bg-secondary);
@@ -663,18 +704,35 @@
   color: var(--text-secondary);
 }
 
-/* ================================
-   CARD
-================================ */
+/* GRID FIX */
+.connect-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+@media (min-width: 768px) {
+  .connect-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .connect-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* CARD */
 .connect-card {
+  width: 100%;
+  max-width: 100%;
   padding: var(--space-6);
   text-align: center;
   cursor: pointer;
-
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
   min-height: 300px;
   transition: 0.3s ease;
 }
@@ -683,57 +741,31 @@
   transform: translateY(-6px);
 }
 
-/* ICON */
 .connect-icon {
   font-size: 2.5rem;
   margin-bottom: var(--space-4);
 }
 
-/* TITLE */
 .connect-card-title {
   font-family: var(--font-heading);
   font-weight: 700;
   margin-bottom: var(--space-2);
 }
 
-/* TEXT */
 .connect-card-text {
   font-size: var(--text-sm);
   color: var(--text-secondary);
   line-height: 1.6;
-
-  /* Prevent overflow issues */
   overflow-wrap: break-word;
 }
 
-/* BUTTON ALIGNMENT */
 .connect-card .btn {
   margin-top: auto;
 }
 
-/* ================================
-   GRID (FIXED RESPONSIVE)
-================================ */
-.connect-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-6);
-}
-
-/* Tablet */
-@media (min-width: 768px) {
-  .connect-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* Desktop */
-@media (min-width: 1024px) {
-  .connect-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
+/* ============================================
+   MAP SECTION (FIXED)
+============================================ */
 .map-placeholder {
   margin-top: var(--space-8);
   display: flex;
@@ -741,10 +773,10 @@
   gap: var(--space-6);
 }
 
-/* Map Box */
+/* MAP BOX */
 .map-box {
   width: 100%;
-  height: 300px;
+  height: 260px;
   border-radius: 16px;
   overflow: hidden;
   border: 1px solid var(--border-color);
@@ -756,7 +788,7 @@
   border: 0;
 }
 
-/* Info Section */
+/* MAP INFO */
 .map-info {
   text-align: center;
 }
@@ -779,12 +811,11 @@
   color: var(--text-muted);
 }
 
-/* Hover effect */
+/* HOVER */
 .map-box:hover {
   transform: scale(1.01);
   transition: 0.3s ease;
 }
-
 /* ══════════════════════════════════════════
    BLOG PAGE
 ══════════════════════════════════════════ */
