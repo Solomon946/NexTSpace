@@ -166,9 +166,12 @@
           <div class="cookie-meta-sep"></div>
           <div class="cookie-meta-tag"><i class="fa-solid fa-language" style="color:var(--navy-400,#3B82F6);"></i><span>English</span></div>
         </div>
-        <button class="cookie-download-btn" onclick="NexusApp.Toast.success('Downloading…','Cookie Policy PDF is being prepared.')">
+        <!-- <button class="cookie-download-btn" onclick="NexusApp.Toast.success('Downloading…','Cookie Policy PDF is being prepared.')">
           <i class="fa-solid fa-download"></i> Download PDF
-        </button>
+        </button> -->
+        <button onclick="downloadPDF()" class="btn btn-primary">
+          <i class="fa-solid fa-download"></i> Download PDF
+</button>
       </div>
 
       <!-- ── SECTION 1 ── -->
@@ -1069,7 +1072,20 @@
 
 <script>
 'use strict';
+function downloadPDF() {
+  const link = document.createElement('a');
+  link.href = '/assets/sample.pdf'; // ✅ your actual file path
+  link.download = 'NextTS-Guide.pdf';
 
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+
+  // Optional toast
+  if (typeof NexusApp !== 'undefined') {
+    NexusApp.Toast.success('Download Started ✓', 'Your PDF is downloading.');
+  }
+}
 /* ══════════════════════════════════════════
    TOC SCROLL SPY
 ══════════════════════════════════════════ */
