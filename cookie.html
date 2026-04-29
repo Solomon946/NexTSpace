@@ -17,7 +17,6 @@
   <link rel="stylesheet" href="animations.css">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="cookie.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body class="cookie-page">
 
@@ -1069,8 +1068,10 @@
 <!-- Scripts -->
 <script src="storage.js"></script>
 <script src="app.js"></script>
-<script src="animations.js"></script>
-
+<script src="animations.js"></script>  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
 'use strict';
 function downloadPDF() {
@@ -1087,6 +1088,50 @@ function downloadPDF() {
     NexusApp.Toast.success('Download Started ✓', 'Your PDF is downloading.');
   }
 }
+  async function downloadPDF() {
+  const { jsPDF } = window.jspdf;
+
+  const element = document.getElementById('pdf-content');
+
+  if (!element) {
+    alert("PDF content not found!");
+    return;
+  }
+
+  try {
+    const canvas = await html2canvas(element, {
+      scale: 2
+    });
+
+    const imgData = canvas.toDataURL('image/png');
+
+    const pdf = new jsPDF('p', 'mm', 'a4');
+
+    const imgWidth = 210;
+    const pageHeight = 295;
+    const imgHeight = canvas.height * imgWidth / canvas.width;
+
+    let heightLeft = imgHeight;
+    let position = 0;
+
+    pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+    heightLeft -= pageHeight;
+
+    while (heightLeft > 0) {
+      position = heightLeft - imgHeight;
+      pdf.addPage();
+      pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+      heightLeft -= pageHeight;
+    }
+
+    pdf.save("website-content.pdf");
+
+  } catch (error) {
+    console.error(error);
+    alert("Failed to generate PDF");
+  }
+}
+
 /* ══════════════════════════════════════════
    TOC SCROLL SPY
 ══════════════════════════════════════════ */
